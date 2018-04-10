@@ -12,27 +12,16 @@ public class Airport {
     public LinkedList<String> airports = new LinkedList<String>();
 
 
-    public Airport(String name)
+    public Airport(String name) throws NameValidationException, NonUniqueItemException
     {
-        try {
-            this.name = validateName(name);
-            airports.add(this.name);
-            }
-            catch (NameValidationException ex) {
-                System.err.println("NameValidationException" + ex.getMessage());
-            }
-            catch (NonUniqueItemException ex){
-                System.err.println("NonUniqueItemException" + ex.getMessage());
-            }
+        this.name = validateName(name);
+        airports.add(this.name);
     }
 
 
-    // Check if a name is <= 6 chars and is not already taken
+    /** Check if a name == 3 alphabetic chars and is not already taken **/
     private String validateName(String name) throws NameValidationException, NonUniqueItemException {
 
-        if (name == null) {
-            throw new NameValidationException("Airport name cannot be null");
-        }
         if (name.length() != 3) {
             throw new NameValidationException("Airport name must be exactly three characters");
         }
