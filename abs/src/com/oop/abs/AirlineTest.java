@@ -5,20 +5,20 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-class AirportTest {
+class AirlineTest {
 
     @Test
-    public void testAirportCreate(){
-        Airport airport = null;
+    public void testAirlineCreate(){
+        Airline airline = null;
         try {
-            airport = new Airport("JWH");
+            airline = new Airline("Dream");
         } catch (NameValidationException e) {
             e.printStackTrace();
         } catch (NonUniqueItemException e) {
             e.printStackTrace();
         }
-        System.out.println("created Airport: " + airport.name);
-        }
+        System.out.println("created Airline: " + airline.name);
+    }
 
     @Test
     public void testThrowsNameValidationException() {
@@ -29,17 +29,25 @@ class AirportTest {
          **/
         Throwable exception = assertThrows(NameValidationException.class,
                 () -> {
-                    Airport errorPort = new Airport("This name is too long!");
+                    Airline errorLine = new Airline("This name is too long!");
                 });
-        assertEquals("Airport name must be exactly three characters", exception.getMessage());
+        assertEquals("Airline name must be less than six characters", exception.getMessage());
 
 
         Throwable exception1 = assertThrows(NameValidationException.class,
                 () -> {
-                    Airport errorPort = new Airport("123");
+                    Airline errorLine = new Airline("123");
                 });
-        assertEquals("Airport name must contain only Alphabetic characters", exception1.getMessage());
-        }
+        assertEquals("Airline name must contain only Alphabetic characters", exception1.getMessage());
+
+
+        Throwable exception2 = assertThrows(NameValidationException.class,
+                () -> {
+                    Airline errorLine = new Airline("");
+                });
+        assertEquals("Airline name cannot be empty string!", exception2.getMessage());
+
+    }
 
     @Test
     public void testThrowsNonUniqueItemException() throws NameValidationException, NonUniqueItemException {
@@ -48,11 +56,11 @@ class AirportTest {
 
          See: https://junit.org/junit5/docs/current/user-guide/#extensions-exception-handling
          **/
-        Airport airport = new Airport("JFK");
+        Airline airline = new Airline("JFK");
         Throwable exception = assertThrows(NonUniqueItemException.class,
-                ()-> {Airport errorPort = new Airport("JFK");
+                ()-> {Airline errorPort = new Airline("JFK");
                 });
-        assertEquals("Airport with name JFK already exists", exception.getMessage());
+        assertEquals("Airline with name JFK already exists", exception.getMessage());
     }
 
 }

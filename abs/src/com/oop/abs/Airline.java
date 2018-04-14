@@ -9,44 +9,35 @@ import java.util.*;
  *
  * An airline can have 0 or more flights associated with it.
  *
- *
   */
 
-
-public class Airline {
+public class Airline implements ABSValidator {
 
     public String name;
-    public LinkedList<String> airlines = new LinkedList<String>();
+    public static LinkedList airlines = new LinkedList();
 
 
-    public Airline(String name)
-    {
-        try {
-            this.name = validateName(name);
-            airlines.add(this.name);
-        }
-        catch (NameValidationException ex) {
-            System.err.println("NameValidationException" + ex.getMessage());
-        }
-        catch (NonUniqueItemException ex){
-            System.err.println("NonUniqueItemException" + ex.getMessage());
-        }
+    public Airline(String name) throws NameValidationException, NonUniqueItemException {
+        checkUnique(name);
+        this.name = validateName(name);
+        airlines.add(this.name);
     }
 
 
-    // Check if a name is <= 3 chars and is not already taken
-    private String validateName(String name) throws NameValidationException, NonUniqueItemException {
+    /** Check if a name < 6 alphabetic chars and is not already taken **/
+    public String validateName(String name) throws NameValidationException {
 
-        if (name == null) {
-            throw new NameValidationException("Airline names cannot be null");
+        /** n.b. the right side of the '||' conditional operator is only evaluated if the left side is False.
+         * https://docs.oracle.com/javase/specs/jls/se7/html/jls-15.html#jls-15.24
+         **/
+        if (name == null || name.length() == 0) {
+            throw new NameValidationException("Airline name cannot be empty string!");
         }
-        if (name.length() > 5 ) {
-            throw new NameValidationException("Airline name: " + name + "is more than five characters");
+
+        if (name.length() >5 ) {
+            throw new NameValidationException("Airline name must be less than six characters");
         }
-        int index = airlines.indexOf(name);
-        if (index != -1) {
-            throw new NonUniqueItemException("Airline", name);
-        }
+
         if (!isAlphabetic(name))
             throw new NameValidationException("Airline name must contain only Alphabetic characters");
 
@@ -54,10 +45,22 @@ public class Airline {
         return name;
     }
 
+    public void checkUnique(String name) throws NonUniqueItemException{
+        /**
+         * check to see if the airline name we are trying to instantiate is present in the airlines linked list
+         *
+         * :param: airline - an airline instance
+         * :throws: NonUniqueItemException - if the name is already taken
+         */
+        int index = airlines.indexOf(name);
+        if (index != -1) {
+            throw new NonUniqueItemException("Airline", name);
+        }
+    }
 
     private boolean isAlphabetic(String name){
         for (int i = 0; i < name.length(); i++) {
-            // iterate the characters of the string and return false if any are not letters
+            /*** iterate the characters of the string and return false if any are not letters **/
             char c = name.charAt(i);
             if (! Character.isLetter(c)) {
                 return false;

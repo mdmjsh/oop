@@ -1,17 +1,21 @@
 package com.oop.abs;
 
+import java.util.*;
+
 public class SystemManager {
     private Airport airport;
 
 
 /**
- createAirport(String n): Creates an airport object and links it to the SystemManager.
-
- The airport will have a name (code) n; n must have exactly three characters. No two airports can have the same name.
+ * This class provides the interface (fa ̧cade) to the system.
+ * When it is created, the SystemManager has no airport or airline objects linked to it.
  **/
+
+public LinkedList airports = new LinkedList();
 
 private Airport createAirport(String name) throws NameValidationException, NonUniqueItemException{
     airport = new Airport(name);
+    this.airports.add(airport);
     return airport;
     }
 }
