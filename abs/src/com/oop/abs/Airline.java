@@ -1,6 +1,6 @@
 package com.oop.abs;
 
-import java.util.*;
+import java.util.LinkedList;
 
 
 /** an airline has a name that must have a length less than 6.
@@ -14,13 +14,17 @@ import java.util.*;
 public class Airline implements ABSValidator {
 
     public String name;
-    public static LinkedList airlines = new LinkedList();
+    public static LinkedList<Airline> airlines = new LinkedList();
 
 
     public Airline(String name) throws NameValidationException, NonUniqueItemException {
-        checkUnique(name);
+        /** REFACTOR - get rid of the null check if possible **/
+        if (find(name) != null) {
+            throw new NonUniqueItemException("Airline", name);
+        }
+        /** no airline with this name found - we can create a new one **/
         this.name = validateName(name);
-        airlines.add(this.name);
+        airlines.add(this);
     }
 
 
@@ -45,17 +49,26 @@ public class Airline implements ABSValidator {
         return name;
     }
 
-    public void checkUnique(String name) throws NonUniqueItemException{
+
+    /** static - class method, MAKE_GENERIC_? **/
+    public static Airline find (String name){
         /**
-         * check to see if the airline name we are trying to instantiate is present in the airlines linked list
+         * Iterate the static airlines linked list and search for a matching name
          *
-         * :param: airline - an airline instance
-         * :throws: NonUniqueItemException - if the name is already taken
+         * @param: airlines - linked list of Airline instances or null
+         * @param: name - name of the airline being queried
+         * @returns: Airline instance for the linked list
+         * @throws: NotFoundException
          */
-        int index = airlines.indexOf(name);
-        if (index != -1) {
-            throw new NonUniqueItemException("Airline", name);
+        int i = 0;
+        while (i < airlines.size()) {
+            if (airlines.get(i).name.equals(name)) {
+                /** return straight away - don't finish the while loop */
+                return airlines.get(i);
+            }
+            i ++;
         }
+        return null;
     }
 
     private boolean isAlphabetic(String name){
@@ -68,5 +81,4 @@ public class Airline implements ABSValidator {
         }
         return true;
     }
-
 }

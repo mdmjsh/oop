@@ -8,16 +8,11 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 class AirlineTest {
 
     @Test
-    public void testAirlineCreate(){
-        Airline airline = null;
-        try {
-            airline = new Airline("Dream");
-        } catch (NameValidationException e) {
-            e.printStackTrace();
-        } catch (NonUniqueItemException e) {
-            e.printStackTrace();
-        }
-        System.out.println("created Airline: " + airline.name);
+    public void testAirlineCreate() throws NonUniqueItemException, NameValidationException{
+        Airline airline = new Airline("joey");
+        assertEquals( "joey", airline.name);
+        Airline airline1 = new Airline("bob");
+        assertEquals( "bob", airline1.name);
     }
 
     @Test
@@ -58,7 +53,7 @@ class AirlineTest {
          **/
         Airline airline = new Airline("JFK");
         Throwable exception = assertThrows(NonUniqueItemException.class,
-                ()-> {Airline errorPort = new Airline("JFK");
+                ()-> {new Airline("JFK");
                 });
         assertEquals("Airline with name JFK already exists", exception.getMessage());
     }

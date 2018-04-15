@@ -6,4 +6,7 @@ package com.oop.abs;
  *   and a status which indicates whether the seat is booked or not.
  **/
 public class Seat {
+    public String identifier;
+    public boolean booked = false;
+
 }

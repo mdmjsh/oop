@@ -11,16 +11,15 @@ class FlightSectionTest {
 
     @Test
     public void testFlightSectionCreate() throws FlightSectionValidationException {
-        int rows = 99;
-        int cols = 9;
+        int rows = 100;
+        int cols = 10;
         LinkedList<FlightSection> flightSections = new LinkedList();
         /** n.b. using an array of FlightSection[3] would also work, but the boundless linkedlist is more future proof.
          * e.g. if further seat classes are added in the future, this test will not break.
          **/
 
-        /** iterate the enum and create and add a flightSection instance to the flightSections linked list
-         *
-         * assert that
+        /** iterate the enum and add a flightSection instance to the flightSections linked list
+         * assert that the correct flightSections are added each time and that the ll is the correct size.
          * **/
         int i = 0;
         for (FlightSection.SeatClass sc : FlightSection.SeatClass.values()) {
@@ -44,25 +43,29 @@ class FlightSectionTest {
                 /** too many rows **/
                 ()-> {FlightSection errorSection = new FlightSection(101, 10, FlightSection.SeatClass.FIRST);
                 });
-        assertEquals("Flight section must have at least one seat, and at most 100 rows and 10 columns", exception.getMessage());
+        assertEquals("Flight section must have at least one seat, and at most 100 rows and 10 columns",
+                exception.getMessage());
 
             /** too many columns **/
         Throwable exception1 = assertThrows(FlightSectionValidationException.class,
                 ()-> {FlightSection errorSection1 = new FlightSection(100, 11, FlightSection.SeatClass.FIRST);
                 });
-        assertEquals("Flight section must have at least one seat, and at most 100 rows and 10 columns", exception.getMessage());
+        assertEquals("Flight section must have at least one seat, and at most 100 rows and 10 columns",
+                exception.getMessage());
 
             /** 0 rows **/
         Throwable exception2 = assertThrows(FlightSectionValidationException.class,
                 ()-> {FlightSection errorSection1 = new FlightSection(0, 11, FlightSection.SeatClass.FIRST);
                 });
-        assertEquals("Flight section must have at least one seat, and at most 100 rows and 10 columns", exception.getMessage());
+        assertEquals("Flight section must have at least one seat, and at most 100 rows and 10 columns",
+                exception.getMessage());
 
         /** 0 columns **/
         Throwable exception3 = assertThrows(FlightSectionValidationException.class,
                 ()-> {FlightSection errorSection1 = new FlightSection(100, 0, FlightSection.SeatClass.FIRST);
                 });
-        assertEquals("Flight section must have at least one seat, and at most 100 rows and 10 columns", exception.getMessage());
+        assertEquals("Flight section must have at least one seat, and at most 100 rows and 10 columns",
+                exception.getMessage());
 
     }
 }
