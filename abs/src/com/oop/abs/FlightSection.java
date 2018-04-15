@@ -57,6 +57,7 @@ public class FlightSection {
              */
             for (int row=this.nextSeat; row<=this.rows; row++) {
                 /** add a Seat instance to the Seat arrray at the current index **/
+                /** TO DO: FIX THIS BIT!! **/
                 seats[row] = new Seat(column, row, this.seatClass);
 //                System.out.println(this.seats[row-1].id);
                 this.nextSeat ++;
