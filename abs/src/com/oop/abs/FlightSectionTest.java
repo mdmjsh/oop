@@ -18,8 +18,8 @@ class FlightSectionTest {
          * e.g. if further seat classes are added in the future, this test will not break.
          **/
 
-        /** iterate the enum and add a flightSection instance to the flightSections linked list
-         * assert that the correct flightSections are added each time and that the ll is the correct size.
+        /** iterate the enum and add a FlightSection instance to the flightSections linked list
+         * assert that the correct FlightSections are added each time and that the ll is the correct size.
          * **/
         int i = 0;
         for (FlightSection.SeatClass sc : FlightSection.SeatClass.values()) {
@@ -68,4 +68,17 @@ class FlightSectionTest {
                 exception.getMessage());
 
     }
+
+    @Test
+    public void testGenerateSeats() throws FlightSectionValidationException {
+        /** test that generating seats from a FlightSection instance
+         * generates an array of correctly proportioned seats **/
+        FlightSection first = new FlightSection(1,1, FlightSection.SeatClass.FIRST);
+//        FlightSection business = new FlightSection(1,1, FlightSection.SeatClass.BUSINESS);
+//        FlightSection eco = new FlightSection(1,1, FlightSection.SeatClass.ECONOMY);
+
+
+
+    }
+
 }

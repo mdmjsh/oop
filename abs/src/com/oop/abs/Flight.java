@@ -48,11 +48,22 @@ public class Flight {
     }
 
     public void addFlightSection(FlightSection flightSection) throws NonUniqueItemException{
+        /** Associates a Flight instance with a FlightSection instance.
+         * only one FlightSection of each SeatClass is allow on a Flight.
+         *
+         * @param: flightSection - a FlightSection instance
+         */
         if (existingFlightSection(flightSection)){
             throw new NonUniqueItemException("Flight already contains a flight section with seat class" +
                     flightSection.seatClass);
         }
         this.flightSections.add(flightSection);
+
+        /** also associate the Flight instance with the flight attribute of the flightSections item added
+         *
+         * i.e the Flight knows about its FlightSections, and the FlightSection knows about its parent Flight instance.
+         * **/
+        this.flightSections.getLast().flight = this;
     }
 
 

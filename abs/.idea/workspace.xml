@@ -30,9 +30,21 @@
       <file leaf-file-name="FlightSection.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/oop/abs/FlightSection.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="321">
-              <caret line="34" column="9" lean-forward="true" selection-start-line="34" selection-start-column="9" selection-end-line="34" selection-end-column="9" />
+            <state relative-caret-position="206">
+              <caret line="24" column="51" lean-forward="true" selection-start-line="24" selection-start-column="4" selection-end-line="24" selection-end-column="51" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FlightSectionTest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/oop/abs/FlightSectionTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="294">
+              <caret line="76" column="84" lean-forward="false" selection-start-line="76" selection-start-column="84" selection-end-line="76" selection-end-column="84" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -40,8 +52,8 @@
       <file leaf-file-name="Flight.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/oop/abs/Flight.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-51">
-              <caret line="13" column="21" lean-forward="true" selection-start-line="13" selection-start-column="21" selection-end-line="13" selection-end-column="21" />
+            <state relative-caret-position="225">
+              <caret line="58" column="9" lean-forward="false" selection-start-line="58" selection-start-column="9" selection-end-line="59" selection-end-column="47" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -52,9 +64,11 @@
       <file leaf-file-name="Seat.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/oop/abs/Seat.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="12" column="1" lean-forward="true" selection-start-line="12" selection-start-column="1" selection-end-line="12" selection-end-column="1" />
-              <folding />
+            <state relative-caret-position="385">
+              <caret line="32" column="5" lean-forward="true" selection-start-line="32" selection-start-column="5" selection-end-line="32" selection-end-column="5" />
+              <folding>
+                <element signature="e#461#481#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -98,7 +112,6 @@
         <option value="$PROJECT_DIR$/src/com/oop/abs/AirportClient.java" />
         <option value="$PROJECT_DIR$/src/com/oop/abs/SystemManager.java" />
         <option value="$PROJECT_DIR$/src/com/oop/abs/FlightSectionValidationException.java" />
-        <option value="$PROJECT_DIR$/src/com/oop/abs/FlightSectionTest.java" />
         <option value="$PROJECT_DIR$/src/com/oop/abs/ABSValidator.java" />
         <option value="$PROJECT_DIR$/src/com/oop/abs/NameValidationException.java" />
         <option value="$PROJECT_DIR$/src/com/oop/abs/AirlineTest.java" />
@@ -111,6 +124,7 @@
         <option value="$PROJECT_DIR$/src/com/oop/abs/FlightTest.java" />
         <option value="$PROJECT_DIR$/src/com/oop/abs/Flight.java" />
         <option value="$PROJECT_DIR$/src/com/oop/abs/Seat.java" />
+        <option value="$PROJECT_DIR$/src/com/oop/abs/FlightSectionTest.java" />
         <option value="$PROJECT_DIR$/src/com/oop/abs/FlightSection.java" />
       </list>
     </option>
@@ -196,7 +210,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.AirlineTest">
+  <component name="RunManager" selected="JUnit.FlightSectionTest.testGenerateSeats">
     <configuration default="true" type="Applet" factoryName="Applet">
       <option name="HTML_USED" value="false" />
       <option name="WIDTH" value="400" />
@@ -218,7 +232,7 @@
       <module name="" />
       <envs />
     </configuration>
-    <configuration name="AirlineTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="FlightSectionTest.testFlightSectionCreate" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
           <option name="PATTERN" value="com.oop.abs.*" />
@@ -229,9 +243,34 @@
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="PACKAGE_NAME" value="com.oop.abs" />
-      <option name="MAIN_CLASS_NAME" value="com.oop.abs.AirlineTest" />
-      <option name="METHOD_NAME" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="MAIN_CLASS_NAME" value="com.oop.abs.FlightSectionTest" />
+      <option name="METHOD_NAME" value="testFlightSectionCreate" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+    </configuration>
+    <configuration name="FlightSectionTest.testGenerateSeats" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="com.oop.abs.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="ABS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="com.oop.abs" />
+      <option name="MAIN_CLASS_NAME" value="com.oop.abs.FlightSectionTest" />
+      <option name="METHOD_NAME" value="testGenerateSeats" />
+      <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
@@ -268,7 +307,7 @@
       <envs />
       <patterns />
     </configuration>
-    <configuration name="FlightTest.addFlightSection" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="FlightTest.testAddFlightSection" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
           <option name="PATTERN" value="com.oop.abs.*" />
@@ -280,7 +319,7 @@
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="PACKAGE_NAME" value="com.oop.abs" />
       <option name="MAIN_CLASS_NAME" value="com.oop.abs.FlightTest" />
-      <option name="METHOD_NAME" value="addFlightSection" />
+      <option name="METHOD_NAME" value="testAddFlightSection" />
       <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
@@ -306,31 +345,6 @@
       <option name="PACKAGE_NAME" value="com.oop.abs" />
       <option name="MAIN_CLASS_NAME" value="com.oop.abs.FlightTest" />
       <option name="METHOD_NAME" value="testCreateFlight" />
-      <option name="TEST_OBJECT" value="method" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <envs />
-      <patterns />
-    </configuration>
-    <configuration name="FlightTest.testNonUniqueItemExceptionThrown" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="com.oop.abs.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <module name="ABS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="com.oop.abs" />
-      <option name="MAIN_CLASS_NAME" value="com.oop.abs.FlightTest" />
-      <option name="METHOD_NAME" value="testNonUniqueItemExceptionThrown" />
       <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
@@ -405,18 +419,18 @@
     </configuration>
     <list size="5">
       <item index="0" class="java.lang.String" itemvalue="JUnit.FlightTest" />
-      <item index="1" class="java.lang.String" itemvalue="JUnit.FlightTest.testCreateFlight" />
-      <item index="2" class="java.lang.String" itemvalue="JUnit.FlightTest.addFlightSection" />
-      <item index="3" class="java.lang.String" itemvalue="JUnit.FlightTest.testNonUniqueItemExceptionThrown" />
-      <item index="4" class="java.lang.String" itemvalue="JUnit.AirlineTest" />
+      <item index="1" class="java.lang.String" itemvalue="JUnit.FlightTest.testAddFlightSection" />
+      <item index="2" class="java.lang.String" itemvalue="JUnit.FlightTest.testCreateFlight" />
+      <item index="3" class="java.lang.String" itemvalue="JUnit.FlightSectionTest.testGenerateSeats" />
+      <item index="4" class="java.lang.String" itemvalue="JUnit.FlightSectionTest.testFlightSectionCreate" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="JUnit.AirlineTest" />
-        <item index="1" class="java.lang.String" itemvalue="JUnit.FlightTest" />
-        <item index="2" class="java.lang.String" itemvalue="JUnit.FlightTest.testNonUniqueItemExceptionThrown" />
-        <item index="3" class="java.lang.String" itemvalue="JUnit.FlightTest.addFlightSection" />
-        <item index="4" class="java.lang.String" itemvalue="JUnit.FlightTest.testCreateFlight" />
+        <item index="0" class="java.lang.String" itemvalue="JUnit.FlightSectionTest.testGenerateSeats" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.FlightSectionTest.testFlightSectionCreate" />
+        <item index="2" class="java.lang.String" itemvalue="JUnit.FlightTest.testCreateFlight" />
+        <item index="3" class="java.lang.String" itemvalue="JUnit.FlightTest" />
+        <item index="4" class="java.lang.String" itemvalue="JUnit.FlightTest.testAddFlightSection" />
       </list>
     </recent_temporary>
   </component>
@@ -434,35 +448,35 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="AirlineTest - 2018.04.15 at 15h 40m 41s.xml">
-      <configuration name="AirlineTest" configurationId="JUnit" />
+    <history-entry file="FlightSectionTest_testFlightSectionCreate - 2018.04.15 at 20h 42m 48s.xml">
+      <configuration name="FlightSectionTest.testFlightSectionCreate" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="AirlineTest - 2018.04.15 at 15h 40m 48s.xml">
-      <configuration name="AirlineTest" configurationId="JUnit" />
+    <history-entry file="FlightSectionTest_testGenerateSeats - 2018.04.15 at 20h 41m 50s.xml">
+      <configuration name="FlightSectionTest.testGenerateSeats" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="FlightTest - 2018.04.15 at 15h 24m 40s.xml">
+    <history-entry file="FlightSectionTest_testGenerateSeats - 2018.04.15 at 20h 42m 25s.xml">
+      <configuration name="FlightSectionTest.testGenerateSeats" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="FlightSectionTest_testGenerateSeats - 2018.04.15 at 20h 42m 36s.xml">
+      <configuration name="FlightSectionTest.testGenerateSeats" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="FlightSectionTest_testGenerateSeats - 2018.04.15 at 20h 43m 12s.xml">
+      <configuration name="FlightSectionTest.testGenerateSeats" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="FlightSectionTest_testGenerateSeats - 2018.04.15 at 20h 46m 34s.xml">
+      <configuration name="FlightSectionTest.testGenerateSeats" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="FlightSectionTest_testGenerateSeats - 2018.04.15 at 20h 47m 08s.xml">
+      <configuration name="FlightSectionTest.testGenerateSeats" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="FlightTest - 2018.04.15 at 20h 22m 06s.xml">
       <configuration name="FlightTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="FlightTest - 2018.04.15 at 15h 33m 21s.xml">
-      <configuration name="FlightTest" configurationId="JUnit" />
+    <history-entry file="FlightTest_testAddFlightSection - 2018.04.15 at 20h 21m 59s.xml">
+      <configuration name="FlightTest.testAddFlightSection" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="FlightTest - 2018.04.15 at 15h 37m 22s.xml">
-      <configuration name="FlightTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="FlightTest_addFlightSection - 2018.04.15 at 15h 12m 21s.xml">
-      <configuration name="FlightTest.addFlightSection" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="FlightTest_addFlightSection - 2018.04.15 at 15h 26m 38s.xml">
-      <configuration name="FlightTest.addFlightSection" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="FlightTest_addFlightSection - 2018.04.15 at 15h 27m 18s.xml">
-      <configuration name="FlightTest.addFlightSection" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="FlightTest_testNonUniqueItemExceptionThrown - 2018.04.15 at 15h 32m 57s.xml">
-      <configuration name="FlightTest.testNonUniqueItemExceptionThrown" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="FlightTest_testNonUniqueItemExceptionThrown - 2018.04.15 at 15h 33m 15s.xml">
-      <configuration name="FlightTest.testNonUniqueItemExceptionThrown" configurationId="JUnit" />
+    <history-entry file="FlightTest_testCreateFlight - 2018.04.15 at 20h 33m 44s.xml">
+      <configuration name="FlightTest.testCreateFlight" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="ToolWindowManager">
@@ -477,7 +491,7 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27308708" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27308708" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -528,7 +542,7 @@
           <option name="timeStamp" value="9" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="10" />
+      <option name="time" value="12" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -765,16 +779,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/oop/abs/FlightSectionTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="303">
-          <caret line="32" column="12" lean-forward="false" selection-start-line="32" selection-start-column="12" selection-end-line="32" selection-end-column="48" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/junit/jupiter/junit-jupiter-api/5.0.0/junit-jupiter-api-5.0.0.jar!/org/junit/jupiter/api/AssertThrows.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="127">
@@ -799,16 +803,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/oop/abs/FlightTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="256">
-          <caret line="41" column="23" lean-forward="true" selection-start-line="41" selection-start-column="23" selection-end-line="41" selection-end-column="23" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/oop/abs/AirlineTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
@@ -819,18 +813,40 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/oop/abs/Seat.java">
+    <entry file="file://$PROJECT_DIR$/src/com/oop/abs/Flight.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="1" lean-forward="true" selection-start-line="12" selection-start-column="1" selection-end-line="12" selection-end-column="1" />
-          <folding />
+        <state relative-caret-position="225">
+          <caret line="58" column="9" lean-forward="false" selection-start-line="58" selection-start-column="9" selection-end-line="59" selection-end-column="47" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/oop/abs/Flight.java">
+    <entry file="file://$PROJECT_DIR$/src/com/oop/abs/Seat.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-51">
-          <caret line="13" column="21" lean-forward="true" selection-start-line="13" selection-start-column="21" selection-end-line="13" selection-end-column="21" />
+        <state relative-caret-position="385">
+          <caret line="32" column="5" lean-forward="true" selection-start-line="32" selection-start-column="5" selection-end-line="32" selection-end-column="5" />
+          <folding>
+            <element signature="e#461#481#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/oop/abs/FlightTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="159">
+          <caret line="58" column="40" lean-forward="true" selection-start-line="58" selection-start-column="40" selection-end-line="58" selection-end-column="40" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/oop/abs/FlightSectionTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="294">
+          <caret line="76" column="84" lean-forward="false" selection-start-line="76" selection-start-column="84" selection-end-line="76" selection-end-column="84" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -839,8 +855,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/oop/abs/FlightSection.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="321">
-          <caret line="34" column="9" lean-forward="true" selection-start-line="34" selection-start-column="9" selection-end-line="34" selection-end-column="9" />
+        <state relative-caret-position="206">
+          <caret line="24" column="51" lean-forward="true" selection-start-line="24" selection-start-column="4" selection-end-line="24" selection-end-column="51" />
           <folding />
         </state>
       </provider>
