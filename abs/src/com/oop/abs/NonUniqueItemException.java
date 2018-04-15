@@ -4,4 +4,8 @@ public class NonUniqueItemException extends Exception{
     public NonUniqueItemException(String className, String instanceName){
         super(className + " with name " + instanceName + " already exists");
     }
+    /** Overriding **/
+    public NonUniqueItemException(String msg){
+        super(msg);
+    }
 }

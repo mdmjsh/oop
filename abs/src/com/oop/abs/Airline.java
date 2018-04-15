@@ -15,6 +15,7 @@ public class Airline implements ABSValidator {
 
     public String name;
     public static LinkedList<Airline> airlines = new LinkedList();
+    public LinkedList<Flight> flights = new LinkedList();
 
 
     public Airline(String name) throws NameValidationException, NonUniqueItemException {

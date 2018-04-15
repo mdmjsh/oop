@@ -25,13 +25,13 @@ public class FlightSection {
     public int columns;
     private static int MAXROWS = 100;
     private static int MAXCOLS= 10;
-    public static LinkedList<Seat> seats;
+    public LinkedList<Seat> seats;
 
-    public FlightSection(int rows, int cols, SeatClass sc) throws FlightSectionValidationException {
-            this.seatClass = sc;
+    public FlightSection(int rows, int cols, SeatClass seatClass) throws FlightSectionValidationException {
+            this.seatClass = seatClass;
             this.rows = validateFlightSection(rows, MAXROWS);
             this.columns = validateFlightSection(cols, MAXCOLS);
-//            generateSeats(this.seatClass);
+            this.seats.add(generateSeats(this));
         }
 
             private int validateFlightSection(int input, int limit) throws FlightSectionValidationException{
@@ -42,14 +42,13 @@ public class FlightSection {
         return input;
     }
 
-//    public void generateSeats(SeatClass seatClass){
-//    /**
-//     * Used to generate seat objects of the seatSection.
-//     *
-//     * :param: seatClass - SeatClass instance
-//     */
-//
-//
-//    }
+    public Seat generateSeats(Flight flight){
+        /** generate a seat instance for all of the seats by the given dimensions for the FlightSections of the Flight
+         *
+         * @param: Flight - the instantiated flightSection (this)
+         */
 
-}
+
+    }
+
+ }
