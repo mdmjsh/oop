@@ -8,17 +8,12 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 class AirportTest {
 
     @Test
-    public void testAirportCreate(){
-        Airport airport = null;
-        try {
-            airport = new Airport("JWH");
-        } catch (NameValidationException e) {
-            e.printStackTrace();
-        } catch (NonUniqueItemException e) {
-            e.printStackTrace();
-        }
-        System.out.println("created Airport: " + airport.name);
-        }
+    public void testAirportCreate()throws NonUniqueItemException, NameValidationException{
+        Airport airport = new Airport("joe");
+        assertEquals( "joe", airport.name);
+        Airport airport1 = new Airport("bob");
+        assertEquals( "bob", airport1.name);
+    }
 
     @Test
     public void testThrowsNameValidationException() {

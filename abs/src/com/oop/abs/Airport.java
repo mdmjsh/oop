@@ -9,15 +9,18 @@ import java.util.*;
 public class Airport {
 
     public String name;
-    public static LinkedList airports = new LinkedList();
+    public static LinkedList<Airport> airports = new LinkedList();
 
 
     public Airport(String name) throws NameValidationException, NonUniqueItemException {
-        checkUnique(name);
-        this.name = validateName(name);
-        airports.add(this.name);
-    }
+        /** REFACTOR - get rid of the null check if possible **/
+        if (find(name) != null) {
+            throw new NonUniqueItemException("Airport", name);
+        }
 
+        this.name = validateName(name);
+        airports.add(this);
+    }
 
     /** Check if a name == 3 alphabetic chars and is not already taken **/
     private String validateName(String name) throws NameValidationException {
@@ -37,17 +40,37 @@ public class Airport {
         return name;
     }
 
-    private void checkUnique(String name) throws NonUniqueItemException{
+//    private void checkUnique(String name) throws NonUniqueItemException{
+//        /**
+//         * check to see if the airport name we are trying to instantiate is present in the airports linked list
+//         *
+//         * :param: airport - an airport instance
+//         * :throws: NonUniqueItemException - if the name is already taken
+//         */
+//        int index = airports.indexOf(name);
+//        if (index != -1) {
+//            throw new NonUniqueItemException("Airport", name);
+//        }
+//    }
+
+
+    /** static - class method, MAKE_GENERIC_? **/
+    public static Airport find (String name){
         /**
-         * check to see if the airport name we are trying to instantiate is present in the airports linked list
+         * Iterate the static airlines linked list and search for a matching name
          *
-         * :param: airport - an airport instance
-         * :throws: NonUniqueItemException - if the name is already taken
+         * @param: name - name of the airline being queried
+         * @returns: Airport instance for the linked list
          */
-        int index = airports.indexOf(name);
-        if (index != -1) {
-            throw new NonUniqueItemException("Airport", name);
+        int i = 0;
+        while (i < airports.size()) {
+            if (airports.get(i).name.equals(name)) {
+                /** return straight away - don't finish the while loop */
+                return airports.get(i);
+            }
+            i ++;
         }
+        return null;
     }
 
 

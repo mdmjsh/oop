@@ -55,10 +55,8 @@ public class Airline implements ABSValidator {
         /**
          * Iterate the static airlines linked list and search for a matching name
          *
-         * @param: airlines - linked list of Airline instances or null
          * @param: name - name of the airline being queried
          * @returns: Airline instance for the linked list
-         * @throws: NotFoundException
          */
         int i = 0;
         while (i < airlines.size()) {
