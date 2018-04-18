@@ -22,12 +22,10 @@ public class FlightSection {
     public int columns;
     private static int MAXROWS = 100;
     private static int MAXCOLS= 10;
-    public Seat seats[] = new Seat[rows * columns];
-    /** we need to create an array of the dimensions of the FlightSection to dynamically fill it with Seat objects
+    protected Flight flight;
+    /** we need to create an linkedlist of the dimensions of the FlightSection to dynamically fill it with Seat objects
      * See: https://stackoverflow.com/questions/19105401/how-would-i-create-a-new-object-from-a-class-using-a-for-loop-in-java
      */
-    public Flight flight;
-    private int nextSeat = 1;
 
     public FlightSection(int rows, int cols, SeatClass seatClass) throws FlightSectionValidationException {
             this.seatClass = seatClass;
@@ -50,17 +48,18 @@ public class FlightSection {
          *
          * @param: flightSection - the instantiated flightSection object (this)
          */
-        System.out.println(this.seats.length);
-        for (int column=1; column<=this.columns; column++) {
-            /** this.nextSeat is used as a mechanism to culmalitvely add numerical values
-             * to the seats. i.e. the next seatClass row number should = the previous seatClass row number +1.
-             */
-            for (int row=this.nextSeat; row<=this.rows; row++) {
-                /** add a Seat instance to the Seat arrray at the current index **/
-                /** TO DO: FIX THIS BIT!! **/
-                seats[row] = new Seat(column, row, this.seatClass);
-//                System.out.println(this.seats[row-1].id);
-                this.nextSeat ++;
+        int row = 0;
+        for (int column=0; column <= this.columns-1; column++) {
+//            System.out.println("column: " + column);
+            for (int i=0; i <= this.rows-1; i++) {
+//                System.out.println("row: " + row);
+                try {
+                    /** get the last seat added in the flight and increment **/
+                    row = this.flight.seats.getLast().row + 1;
+                } catch (java.util.NoSuchElementException e) {
+                    row = 1;
+                }
+                this.flight.seats.add(new Seat(column, row, this.seatClass));
             }
         }
     }

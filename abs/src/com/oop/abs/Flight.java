@@ -15,9 +15,10 @@ public class Flight {
     public UUID id;
     public Airline airline;
     /** n.b. disccusion_point - could have used FlightSection.SeatClass.values().length to make an array of length of flight sectionEnums **/
-    public LinkedList <FlightSection> flightSections = new LinkedList();
+    public LinkedList <FlightSection> flightSections = new LinkedList<>();
     public String source;
     public String dest;
+    public LinkedList<Seat> seats = new LinkedList<>();
 
     /** Associate a flight to an airline or raise an exception **/
         public Flight(Airline airline, String source, String dest) throws NotFoundException, FlightInvalidException{
