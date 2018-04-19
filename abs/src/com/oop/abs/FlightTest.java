@@ -21,7 +21,7 @@ class FlightTest {
     }
 
     @Test
-    void testCreateFlight() throws NotFoundException, FlightInvalidException{
+    void testCreateFlight() throws NotFoundException, FlightInvalidException {
         Flight flight = new Flight(airline, "london", "san francisco");
         /** assert that the flight instance has been created with an reference to the airline instance **/
         assertEquals(flight.airline, airline);
@@ -47,7 +47,7 @@ class FlightTest {
 
     @Test
     void testAddFlightSection() throws NonUniqueItemException, FlightSectionValidationException,
-            FlightInvalidException, NotFoundException{
+            FlightInvalidException, NotFoundException {
         FlightSection fs = new FlightSection(99, 10, FlightSection.SeatClass.BUSINESS);
         Flight flight = new Flight(airline, "london", "mexico city");
         flight.addFlightSection(fs);
@@ -57,7 +57,7 @@ class FlightTest {
 
     @Test
     void testNonUniqueItemExceptionThrown() throws NonUniqueItemException, FlightSectionValidationException,
-            FlightInvalidException, NotFoundException{
+            FlightInvalidException, NotFoundException {
         /** test that only one instance of given seatClass can be added to a flight **/
         FlightSection fs = new FlightSection(99, 10, FlightSection.SeatClass.BUSINESS);
         FlightSection fs1 = new FlightSection(99, 10, FlightSection.SeatClass.BUSINESS);
@@ -71,6 +71,28 @@ class FlightTest {
                 exception.getMessage());
     }
 
+    @Test
+    public void testGenerateSeats() throws FlightSectionValidationException, NonUniqueItemException,
+            NotFoundException, FlightInvalidException {
+        /** test that generating seats from a FlightSection instance
+         * generates an array of correctly proportioned seats **/
 
+        /** generate a flight section with 5*5 dimensions starting from seat A1 and ending at seat E25 **/
+        int rows = 5;
+        int columns = 5;
+        Flight flight = new Flight(airline, "london", "san francisco");
+        FlightSection first = new FlightSection(rows, columns, FlightSection.SeatClass.FIRST);
+        flight.addFlightSection(first);
+        assertEquals(flight.seats.getFirst().id, "A1");
+        assertEquals(flight.seats.getLast().id, "E25");
+        assertEquals(flight.seats.size(), rows * columns);
 
+        /** generate a flight section with 10*10 dimensions starting from seat A26 and ending at seat J125 **/
+        rows = 10;
+        columns = 10;
+        FlightSection business = new FlightSection(rows, columns, FlightSection.SeatClass.BUSINESS);
+        flight.addFlightSection(business);
+        assertEquals(flight.seats.getLast().id, "J125");
+
+    }
 }

@@ -65,6 +65,7 @@ public class Flight {
          * i.e the Flight knows about its FlightSections, and the FlightSection knows about its parent Flight instance.
          * **/
         this.flightSections.getLast().flight = this;
+        generateSeats(flightSection);
     }
 
 
@@ -86,4 +87,27 @@ public class Flight {
         }
         return false;
     }
+        public void generateSeats(FlightSection flightSection){
+            /** generate a seat instance for all of the seats by the given dimensions of a FlightSection instance and add
+             * a pointer to its to the seats linkedlist.
+             *
+             * @param: flightSection - the instantiated flightSection object (this)
+             */
+            int row;
+            for (int column=0; column <= flightSection.columns-1; column++) {
+//            System.out.println("column: " + column);
+                for (int i=0; i <= flightSection.rows-1; i++) {
+//                System.out.println("row: " + row);
+                    try {
+                        /** get the last seat added in the flight and increment **/
+                        row = this.seats.getLast().row + 1;
+                    } catch (java.util.NoSuchElementException e) {
+                        /** if no seat h been added yet start at 1 **/
+                        row = 1;
+                    }
+                    this.seats.add(new Seat(column, row, flightSection.seatClass));
+                }
+            }
+        }
+
 }

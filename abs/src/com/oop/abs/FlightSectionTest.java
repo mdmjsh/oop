@@ -9,14 +9,35 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class FlightSectionTest {
 
-        private static Airline airline = new Airline("air");
-        private static Flight flight = new Flight(airline, "london", "mexico city");
+        private static Airline airline;
+
+    static {
+        try {
+            airline = new Airline("air");
+        } catch (NameValidationException e) {
+            e.printStackTrace();
+        } catch (NonUniqueItemException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static Flight flight;
+
+    static {
+        try {
+            flight = new Flight(airline, "london", "mexico city");
+        } catch (NotFoundException e) {
+            e.printStackTrace();
+        } catch (FlightInvalidException e) {
+            e.printStackTrace();
+        }
+    }
 
 
     @Test
     public void testFlightSectionCreate() throws FlightSectionValidationException {
-        int rows = 100;
-        int cols = 10;
+        int rows = 99;
+        int cols = 9;
         LinkedList<FlightSection> flightSections = new LinkedList<>();
         /** n.b. using an array of FlightSection[3] would also work, but the boundless linkedlist is more future proof.
          * e.g. if further seat classes are added in the future, this test will not break.
@@ -73,33 +94,5 @@ class FlightSectionTest {
 
     }
 
-    @Test
-    public void testGenerateSeats() throws FlightSectionValidationException {
-        /** test that generating seats from a FlightSection instance
-         * generates an array of correctly proportioned seats **/
-
-        /** generate a flight section with 5*5 dimensions starting from seat A1 and ending at seat E25 **/
-        int rows = 5;
-        int columns = 5;
-        FlightSection first = new FlightSection(rows,columns, FlightSection.SeatClass.FIRST);
-        flight.addFlightSection(first);
-        assertEquals(first.flight.seats.getFirst().id, "A1");
-        assertEquals(first.flight.seats.getLast().id, "E25");
-        assertEquals(first.flight.seats.size(),  rows * columns);
-
-        /** generate a flight section with 10*10 dimensions starting from seat A26 and ending at seat J126 **/
-        rows = 10;
-        columns = 10;
-        FlightSection business = new FlightSection(rows,columns, FlightSection.SeatClass.BUSINESS);
-//        assertEquals(business.seats.getFirst().id, "A26");
-//        assertEquals(business.seats.getLast().id, "J126");
-        assertEquals(business.flight.seats.size(),  rows * columns);
-
-
-        System.out.println(business.flight.seats.getLast().id);
-
-
-
-    }
-
 }
+
