@@ -93,6 +93,16 @@ class FlightSectionTest {
                 exception.getMessage());
 
     }
-
+    @Test
+    public void testHasAvailableSeats() throws FlightSectionValidationException, NonUniqueItemException,
+            NotFoundException, FlightInvalidException, SeatClassFullException {
+        FlightSection first = new FlightSection(1, 1, FlightSection.SeatClass.FIRST);
+        Flight flight = new Flight(airline, "london", "paris");
+        flight.addFlightSection(first);
+        assertEquals(first.hasAvailableSeats(), true);
+        first.bookSeat();
+//        assertEquals(first.hasAvailableSeats(), false);
+        System.out.println(first.seats.getLast().booked);
+    }
 }
 

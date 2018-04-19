@@ -95,9 +95,7 @@ public class Flight {
              */
             int row;
             for (int column=0; column <= flightSection.columns-1; column++) {
-//            System.out.println("column: " + column);
                 for (int i=0; i <= flightSection.rows-1; i++) {
-//                System.out.println("row: " + row);
                     try {
                         /** get the last seat added in the flight and increment **/
                         row = this.seats.getLast().row + 1;
@@ -107,7 +105,8 @@ public class Flight {
                     }
                     this.seats.add(new Seat(column, row, flightSection.seatClass));
                 }
+                /** Flight section also has awareness of its seats **/
+                flightSection.seats = seats;
             }
         }
-
 }

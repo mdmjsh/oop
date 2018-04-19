@@ -9,7 +9,7 @@ import java.util.*;
 public class Airport {
 
     public String name;
-    public static LinkedList<Airport> airports = new LinkedList();
+    public static LinkedList<Airport> airports = new LinkedList<>();
 
 
     public Airport(String name) throws NameValidationException, NonUniqueItemException {
@@ -40,20 +40,6 @@ public class Airport {
         return name;
     }
 
-//    private void checkUnique(String name) throws NonUniqueItemException{
-//        /**
-//         * check to see if the airport name we are trying to instantiate is present in the airports linked list
-//         *
-//         * :param: airport - an airport instance
-//         * :throws: NonUniqueItemException - if the name is already taken
-//         */
-//        int index = airports.indexOf(name);
-//        if (index != -1) {
-//            throw new NonUniqueItemException("Airport", name);
-//        }
-//    }
-
-
     /** static - class method, MAKE_GENERIC_? **/
     public static Airport find (String name){
         /**
@@ -73,7 +59,6 @@ public class Airport {
         return null;
     }
 
-
     private boolean isAlphabetic(String name){
         for (int i = 0; i < name.length(); i++) {
             /*** iterate the characters of the string and return false if any are not letters **/
@@ -84,5 +69,4 @@ public class Airport {
         }
         return true;
     }
-
 }

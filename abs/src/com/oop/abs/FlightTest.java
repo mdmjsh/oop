@@ -86,6 +86,8 @@ class FlightTest {
         assertEquals(flight.seats.getFirst().id, "A1");
         assertEquals(flight.seats.getLast().id, "E25");
         assertEquals(flight.seats.size(), rows * columns);
+        /** assert that the flight and the flightSection 'seats' ll is the same object in the heap **/
+        assertEquals(flight.seats, first.seats);
 
         /** generate a flight section with 10*10 dimensions starting from seat A26 and ending at seat J125 **/
         rows = 10;
@@ -93,6 +95,5 @@ class FlightTest {
         FlightSection business = new FlightSection(rows, columns, FlightSection.SeatClass.BUSINESS);
         flight.addFlightSection(business);
         assertEquals(flight.seats.getLast().id, "J125");
-
     }
 }
