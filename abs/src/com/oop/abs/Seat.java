@@ -10,7 +10,7 @@ import java.util.HashMap;
 public class Seat {
     public String id;
     protected int row;
-    protected int column;
+    private int column;
     public boolean booked = false;
     public FlightSection.SeatClass seatClass;
     private static HashMap<Object, Object> seatMap = new HashMap<>();
@@ -29,9 +29,9 @@ public class Seat {
         seatMap.put(9, 'I');
         seatMap.put(10, 'J');
 
-        /** concat the column mapping and a string representation of the row integer **/
+        /* concat the column mapping and a string representation of the row integer */
         this.id = seatMap.get(column) + String.valueOf(row);
-        /** a seat knows its own seatClass **/
+        /* a seat knows its own seatClass */
         this.seatClass = seatClass;
         this.row = row;
         this.column = column;

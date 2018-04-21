@@ -1,7 +1,13 @@
 package com.oop.abs;
 
+import sun.awt.image.ImageWatched;
+
+import java.util.HashMap;
 import java.util.LinkedList;
 
+import java.util.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 
 /** an airline has a name that must have a length less than 6.
  *
@@ -13,17 +19,18 @@ import java.util.LinkedList;
 
 public class Airline implements ABSValidator {
 
-    public String name;
-    public static LinkedList<Airline> airlines = new LinkedList<>();
-    public LinkedList<Flight> flights = new LinkedList<>();
+    String name;
+    private static LinkedList<Airline> airlines = new LinkedList<>();
+    LinkedList<Flight> flights = new LinkedList<>();
+    public static HashMap<String, LinkedList<Flight>> flightMap = new HashMap<>();
 
 
     public Airline(String name) throws NameValidationException, NonUniqueItemException {
-        /** REFACTOR - get rid of the null check if possible **/
+        /* REFACTOR - get rid of the null check if possible */
         if (find(name) != null) {
             throw new NonUniqueItemException("Airline", name);
         }
-        /** no airline with this name found - we can create a new one **/
+        /* no airline with this name found - we can create a new one */
         this.name = validateName(name);
         airlines.add(this);
     }
@@ -31,10 +38,6 @@ public class Airline implements ABSValidator {
 
     /** Check if a name < 6 alphabetic chars and is not already taken **/
     public String validateName(String name) throws NameValidationException {
-
-        /** n.b. the right side of the '||' conditional operator is only evaluated if the left side is False.
-         * https://docs.oracle.com/javase/specs/jls/se7/html/jls-15.html#jls-15.24
-         **/
         if (name == null || name.length() == 0) {
             throw new NameValidationException("Airline name cannot be empty string!");
         }
@@ -51,18 +54,17 @@ public class Airline implements ABSValidator {
     }
 
 
-    /** static - class method, MAKE_GENERIC_? **/
+    /**
+     * Iterate the static airlines linked list and search for a matching name
+     *
+     * @param: name - name of the airline being queried
+     * @returns: Airline instance for the linked list
+     */
     public static Airline find (String name){
-        /**
-         * Iterate the static airlines linked list and search for a matching name
-         *
-         * @param: name - name of the airline being queried
-         * @returns: Airline instance for the linked list
-         */
         int i = 0;
         while (i < airlines.size()) {
             if (airlines.get(i).name.equals(name)) {
-                /** return straight away - don't finish the while loop */
+                /* return straight away - don't finish the while loop */
                 return airlines.get(i);
             }
             i ++;
@@ -72,7 +74,7 @@ public class Airline implements ABSValidator {
 
     private boolean isAlphabetic(String name){
         for (int i = 0; i < name.length(); i++) {
-            /*** iterate the characters of the string and return false if any are not letters **/
+            /* iterate the characters of the string and return false if any are not letters */
             char c = name.charAt(i);
             if (! Character.isLetter(c)) {
                 return false;
@@ -80,4 +82,57 @@ public class Airline implements ABSValidator {
         }
         return true;
     }
+
+    /***
+     * Use to build a HashMap `flightMap` of all of the airline's flights.
+     * flightMap has is structured: `dest~source~data`: linkedlist of flights with available seats.
+     *
+     * @param flight
+     */
+     void buildFlightMap(Flight flight){
+//        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+//        String key = flight.dest + "~" + flight.source + "~" + df.format(flight.date);
+         String key = buildFlightMapKey(flight.source, flight.dest, flight.date);
+
+        /* Perform a look up of the key in the static flightMap */
+        LinkedList<Flight> flights = flightMap.get(key);
+        if (flights == null){
+            /* if the key is not found create a new linkedList */
+            flights = new LinkedList<>();
+        }
+        /* n.b. we don't care if the key is found in the hash map or not,
+        either way we'll add the flight to the tail of the linkedList */
+        flights.add(flight);
+        /* add the linkedList to the flightMap at the corresponding key */
+        flightMap.put(key, flights);
+    }
+
+    private String buildFlightMapKey(String source, String dest, Date date){
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        return dest + "~" + source + "~" + df.format(date);
+    }
+
+    public LinkedList<Flight> findAvailableFlights(String source, String dest, Date date) {
+         String key = buildFlightMapKey(source, dest, date);
+         LinkedList<Flight> flights = Airline.flightMap.get(key);
+         if (flights == null){
+             DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+             throw new NotFoundException("No flights to " + dest + " from " + source + " found on " +  df.format(date);
+         }
+         else {
+             LinkedList <Flight> availableFlights = new LinkedList<>();
+             for (Flight flight : flights){
+                 for (FlightSection fs : flight.flightSections){
+                     if (fs.hasAvailableSeats()){
+                         /* Finish this */
+                     }
+                 }
+
+             }
+
+         }
+
+         return flights;
+    }
+
 }

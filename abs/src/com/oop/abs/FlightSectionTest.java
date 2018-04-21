@@ -26,23 +26,23 @@ class FlightSectionTest {
         int rows = 99;
         int cols = 9;
         LinkedList<FlightSection> flightSections = new LinkedList<>();
-        /**
+        /*
          * n.b. using an array of FlightSection[3] would also work, but the boundless linkedlist is more future proof.
          * e.g. if further seat classes are added in the future, this test will not break.
-         **/
+         */
 
-        /** iterate the enum and add a FlightSection instance to the flightSections linked list
+        /* iterate the enum and add a FlightSection instance to the flightSections linked list
          * assert that the correct FlightSections are added each time and that the ll is the correct size.
-         * **/
+         * */
         int i = 0;
         for (FlightSection.SeatClass sc : FlightSection.SeatClass.values()) {
             flightSections.add(new FlightSection(rows, cols, sc));
             FlightSection fs = flightSections.get(i);
-            /** assert that the correct seatClass and rows/cols have been created **/
+            /* assert that the correct seatClass and rows/cols have been created */
             assert fs.columns == cols;
             assert fs.rows == rows;
             assert fs.seatClass == sc;
-            /** assert that the correct number of items have been added to the linked list **/
+            /* assert that the correct number of items have been added to the linked list */
             assert flightSections.size() == i+1;
             i ++;
         }
@@ -152,5 +152,7 @@ class FlightSectionTest {
         assertEquals(A1, flight.seats.getFirst());
 
     }
+
+
 }
 

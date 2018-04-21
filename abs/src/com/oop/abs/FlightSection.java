@@ -5,10 +5,10 @@ import java.util.LinkedList;
 /**
  * A flight section has a seatClass (first, business or economy)
  * and must have at least 1 seat.
- * <p>
+ *
  * A flight section can contain at most 100 rows of seats
  * and at most 10 columns of seats.
- * <p>
+ *
  * hasAvailableSeats() returns true iff the section has some seats that are not booked,
  * and bookSeat() books an available seat.
  */
@@ -34,7 +34,6 @@ public class FlightSection {
      * we need to create an linkedlist of the dimensions of the FlightSection to dynamically fill it with Seat objects
      * See: https://stackoverflow.com/questions/19105401/how-would-i-create-a-new-object-from-a-class-using-a-for-loop-in-java
      */
-
     public FlightSection(int rows, int columns, SeatClass seatClass) throws FlightSectionValidationException {
         this.seatClass = seatClass;
         this.rows = validateFlightSection(rows, MAXROWS);
@@ -49,7 +48,7 @@ public class FlightSection {
     }
 
     public boolean hasAvailableSeats() {
-        /** returns true iff the section has some seats that are not booked **/
+        /* returns true iff the section has some seats that are not booked */
         for (Seat seat : this.seats) {
             if (!seat.booked) {
                 return true;
@@ -75,7 +74,7 @@ public class FlightSection {
      * n.b. possibly better encapsulated in the seat class
      **/
     public Seat getBySeatId(String id) throws NotFoundException {
-        /** return a seat by the id or throw NotFoundException **/
+        /* return a seat by the id or throw NotFoundException */
         for (Seat seat : this.seats) {
             if (seat.id.equals(id)) {
                 return seat;

@@ -14,6 +14,7 @@ public class SystemManager {
 LinkedList airports = new LinkedList();
 HashMap flightMap = new HashMap();
 
+
 private Airport createAirport(String name) throws NameValidationException, NonUniqueItemException{
     airport = new Airport(name);
     this.airports.add(airport);

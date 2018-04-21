@@ -1,8 +1,8 @@
 package com.oop.abs;
 
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.UUID;
-import java.util.Date;
 
 /**
  * A flight can be associated with 0 or more flight sections.
@@ -16,7 +16,7 @@ import java.util.Date;
 public class Flight {
     public UUID id;
     public Airline airline;
-    /* n.b. disccusion_point - could have used FlightSection.SeatClass.values().length to make an array of length of flight sectionEnums **/
+    /* n.b. discussion_point - could have used FlightSection.SeatClass.values().length to make an array of length of flight sectionEnums **/
     public LinkedList <FlightSection> flightSections = new LinkedList<>();
     public String source;
     public String dest;
@@ -44,6 +44,8 @@ public class Flight {
 
             /* after we've validated all flight info, add the flight to the airline's flights variable **/
             this.airline.flights.add(this);
+            this.airline.buildFlightMap(this);
+
 
     }
 
@@ -132,7 +134,7 @@ public class Flight {
 
 
     /**
-     * Calulate the size of the size of the flight section and then iteratively add Seat objects to this.seats ll.
+     * Calculate the size of the size of the flight section and then iteratively add Seat objects to this.seats ll.
      *
      * If the number of iterations == the size of this.column, we've added all required seats in the current row and
      * need to move to the next row by incrementing the row number.
@@ -169,12 +171,5 @@ public class Flight {
             }
             /* Flight section also has awareness of its seats */
             flightSection.seats = this.seats;
-    }
-
-    public LinkedList<Flight> findAvailableFlights(String source, String dest, Date date,) {
-        return flightSections;
-
-
-
     }
 }

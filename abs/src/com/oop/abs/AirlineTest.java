@@ -2,6 +2,11 @@ package com.oop.abs;
 
 import org.junit.jupiter.api.Test;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.LinkedList;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -45,7 +50,7 @@ class AirlineTest {
     }
 
     @Test
-    public void testThrowsNonUniqueItemException() throws NameValidationException, NonUniqueItemException {
+    void testThrowsNonUniqueItemException() throws NameValidationException, NonUniqueItemException {
         /**
          Fancy Lambda syntax - the function is being passed into the assertThrows call with the -> operator.
 
@@ -56,6 +61,34 @@ class AirlineTest {
                 ()-> {new Airline("JFK");
                 });
         assertEquals("Airline with name JFK already exists", exception.getMessage());
+    }
+
+    @Test
+    void testBuildFlightMap() throws NameValidationException, NonUniqueItemException,
+            NotFoundException, FlightInvalidException {
+        Airline airline = new Airline("king");
+        Airline airline1 = new Airline("queen");
+        Flight flight = new Flight(airline, "london", "burma", new Date());
+        Flight flight1 = new Flight(airline, "london", "burma", new Date());
+
+        /* build a key to query */
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        String key = flight.dest + "~" + flight.source + "~" + df.format(flight.date);
+
+        /* assert both flights added to the flightMap hashmap at the right key location */
+        assertEquals(Airline.flightMap.get(key).size(), 2);
+
+        /* add another flight, this time with a different airline */
+        Flight flight2 = new Flight(airline1, "london", "burma", new Date());
+
+        /* assert that as the fligthMap is static all flights from both airlines are present */
+        assertEquals(Airline.flightMap.get(key).size(), 3);
+        LinkedList<Flight> flights = Airline.flightMap.get(key);
+
+        /* assert that the linked list contains pointers to the Flight object */
+        assert flights.get(0) == flight;
+        assert flights.get(1) == flight1;
+        assert flights.get(2) == flight2;
     }
 
 }
