@@ -7,11 +7,12 @@ public class SystemManager {
 
 
 /**
- * This class provides the interface (fa ̧cade) to the system.
+ * This class provides the interface (fa̧cade) to the system.
  * When it is created, the SystemManager has no airport or airline objects linked to it.
  **/
 
-public LinkedList airports = new LinkedList();
+LinkedList airports = new LinkedList();
+HashMap flightMap = new HashMap();
 
 private Airport createAirport(String name) throws NameValidationException, NonUniqueItemException{
     airport = new Airport(name);

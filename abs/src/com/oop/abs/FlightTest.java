@@ -2,6 +2,8 @@ package com.oop.abs;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.Date;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -22,7 +24,7 @@ class FlightTest {
 
     @Test
     void testCreateFlight() throws NotFoundException, FlightInvalidException {
-        Flight flight = new Flight(airline, "london", "san francisco");
+        Flight flight = new Flight(airline, "london", "san francisco", new Date());
         /** assert that the flight instance has been created with an reference to the airline instance **/
         assertEquals(flight.airline, airline);
         /** assert that the airline.flight variable contains a reference to the flight instance **/
@@ -33,14 +35,14 @@ class FlightTest {
     void testFlightInvalidExceptionThrown() {
         Throwable exception = assertThrows(FlightInvalidException.class,
                 () -> {
-                    new Flight(airline, "london", "london");
+                    new Flight(airline, "london", "london", new Date());
                 });
         assertEquals("Source and Destination of flight cannot be the same", exception.getMessage());
 
         /** same test but with case sensitivity **/
         Throwable exception1 = assertThrows(FlightInvalidException.class,
                 () -> {
-                    new Flight(airline, "loNDon", "LoNdOn");
+                    new Flight(airline, "loNDon", "LoNdOn", new Date());
                 });
         assertEquals("Source and Destination of flight cannot be the same", exception1.getMessage());
     }
@@ -49,7 +51,7 @@ class FlightTest {
     void testAddFlightSection() throws NonUniqueItemException, FlightSectionValidationException,
             FlightInvalidException, NotFoundException {
         FlightSection fs = new FlightSection(99, 10, FlightSection.SeatClass.BUSINESS);
-        Flight flight = new Flight(airline, "london", "mexico city");
+        Flight flight = new Flight(airline, "london", "mexico city", new Date());
         flight.addFlightSection(fs);
         /** assert that a reference to the flight section instance has been created in the flightSections array **/
         assertEquals(flight.flightSections.indexOf(fs), 0);
@@ -61,7 +63,7 @@ class FlightTest {
         /** test that only one instance of given seatClass can be added to a flight **/
         FlightSection fs = new FlightSection(99, 10, FlightSection.SeatClass.BUSINESS);
         FlightSection fs1 = new FlightSection(99, 10, FlightSection.SeatClass.BUSINESS);
-        Flight flight = new Flight(airline, "london", "mexico city");
+        Flight flight = new Flight(airline, "london", "mexico city", new Date());
         flight.addFlightSection(fs);
         Throwable exception = assertThrows(NonUniqueItemException.class,
                 () -> {
@@ -74,26 +76,31 @@ class FlightTest {
     @Test
     public void testGenerateSeats() throws FlightSectionValidationException, NonUniqueItemException,
             NotFoundException, FlightInvalidException {
-        /** test that generating seats from a FlightSection instance
-         * generates an array of correctly proportioned seats **/
+        /* test that generating seats from a FlightSection instance
+          generates an array of correctly proportioned seats */
 
-        /** generate a flight section with 5*5 dimensions starting from seat A1 and ending at seat E25 **/
+        /* generate a flight section with 5*5 dimensions starting from seat A1 and ending at seat E25 */
         int rows = 5;
         int columns = 5;
-        Flight flight = new Flight(airline, "london", "san francisco");
+        Flight flight = new Flight(airline, "london", "san francisco", new Date());
         FlightSection first = new FlightSection(rows, columns, FlightSection.SeatClass.FIRST);
         flight.addFlightSection(first);
         assertEquals(flight.seats.getFirst().id, "A1");
-        assertEquals(flight.seats.getLast().id, "E25");
+        assertEquals(flight.seats.getLast().id, "E5");
         assertEquals(flight.seats.size(), rows * columns);
-        /** assert that the flight and the flightSection 'seats' ll is the same object in the heap **/
+        /* assert that the flight and the flightSection 'seats' ll is the same object in the heap */
         assertEquals(flight.seats, first.seats);
 
-        /** generate a flight section with 10*10 dimensions starting from seat A26 and ending at seat J125 **/
+        /* generate another seat section and ensure that the seat numbering is continuous
+        * n.b. the last seat added in the first class section is E5 therefore the first seat added will be F1.
+        * */
+        System.out.println("Last row added: " + flight.seats.getLast().row);
         rows = 10;
         columns = 10;
         FlightSection business = new FlightSection(rows, columns, FlightSection.SeatClass.BUSINESS);
         flight.addFlightSection(business);
-        assertEquals(flight.seats.getLast().id, "J125");
+
+        /* F1 + 100 seats == J15 * - uncomment Flight.161 for print demonstration */
+        assertEquals(flight.seats.getLast().id, "J15");
     }
 }

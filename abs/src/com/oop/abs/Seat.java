@@ -10,6 +10,7 @@ import java.util.HashMap;
 public class Seat {
     public String id;
     protected int row;
+    protected int column;
     public boolean booked = false;
     public FlightSection.SeatClass seatClass;
     private static HashMap<Object, Object> seatMap = new HashMap<>();
@@ -17,21 +18,22 @@ public class Seat {
 
     Seat(int column, int row, FlightSection.SeatClass seatClass) {
 
-        seatMap.put(0, 'A');
-        seatMap.put(1, 'B');
-        seatMap.put(2, 'C');
-        seatMap.put(3, 'D');
-        seatMap.put(4, 'E');
-        seatMap.put(5, 'F');
-        seatMap.put(6, 'G');
-        seatMap.put(7, 'H');
-        seatMap.put(8, 'I');
-        seatMap.put(9, 'J');
+        seatMap.put(1, 'A');
+        seatMap.put(2, 'B');
+        seatMap.put(3, 'C');
+        seatMap.put(4, 'D');
+        seatMap.put(5, 'E');
+        seatMap.put(6, 'F');
+        seatMap.put(7, 'G');
+        seatMap.put(8, 'H');
+        seatMap.put(9, 'I');
+        seatMap.put(10, 'J');
 
         /** concat the column mapping and a string representation of the row integer **/
         this.id = seatMap.get(column) + String.valueOf(row);
         /** a seat knows its own seatClass **/
         this.seatClass = seatClass;
         this.row = row;
+        this.column = column;
     }
 }
