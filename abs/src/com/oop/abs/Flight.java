@@ -16,15 +16,20 @@ import java.util.UUID;
 public class Flight {
     public UUID id;
     public Airline airline;
-    /* n.b. discussion_point - could have used FlightSection.SeatClass.values().length to make an array of length of flight sectionEnums **/
+    /* n.b. discussion_point - could have used FlightSection.SeatClass.values().length to make an array of length of
+    flight sectionEnums **/
     public LinkedList <FlightSection> flightSections = new LinkedList<>();
     public String source;
     public String dest;
     public Date date;
     public LinkedList<Seat> seats = new LinkedList<>();
 
-    /* Associate a flight to an airline or raise an exception **/
-        public Flight(Airline airline, String source, String dest, Date date) throws NotFoundException,
+    /** Associate a flight to an airline or raise an exception **
+     *
+     *
+     *
+     */
+        Flight(Airline airline, String source, String dest, Date date) throws NotFoundException,
                 FlightInvalidException{
             if (Airline.find(airline.name) == null){
                 throw new NotFoundException("Airline", airline.name);
@@ -44,9 +49,7 @@ public class Flight {
 
             /* after we've validated all flight info, add the flight to the airline's flights variable **/
             this.airline.flights.add(this);
-            this.airline.buildFlightMap(this);
-
-
+            Airline.buildFlightMap(this);
     }
 
     private static boolean validFlight(String source, String dest){
@@ -100,39 +103,6 @@ public class Flight {
         return false;
     }
 
-        /**
-         * generate a seat instance for all of the seats by the given dimensions of a FlightSection instance and add
-         * a pointer to its to the seats linkedlist.
-         *
-         * @param: flightSection - the instantiated flightSection object (this)
-         */
-        private void generateSeatsOld(FlightSection flightSection){
-
-            int previousRow=1;
-            try {
-                /* get the last seat added in the flight */
-                previousRow = this.seats.getLast().row;
-            } catch (java.util.NoSuchElementException e) {
-                /* if no seat has been added at all yet start at row 1, column 1 */
-                Seat seat = new Seat (1, 1, flightSection.seatClass);
-                this.seats.add(seat);
-//                this.seats.add(new Seat(1, 1, flightSection.seatClass));
-            }
-            for (int column=0; column <= flightSection.columns-1; column++) {
-                /* this enable us to build up the seating blocks evenly */
-                System.out.println("Previous row: " + previousRow);
-                for (int row = previousRow +1; row <= flightSection.rows; row++) {
-                    Seat seat = new Seat (column, row, flightSection.seatClass);
-                    System.out.println(seat.id);
-                    this.seats.add(seat);
-//                    this.seats.add(new Seat(column, row, flightSection.seatClass));
-                }
-            }
-            /* Flight section also has awareness of its seats */
-            flightSection.seats = this.seats;
-        }
-
-
     /**
      * Calculate the size of the size of the flight section and then iteratively add Seat objects to this.seats ll.
      *
@@ -143,7 +113,7 @@ public class Flight {
      *
      * @param flightSection
      */
-    public void generateSeats(FlightSection flightSection){
+    private void generateSeats(FlightSection flightSection){
             int size = flightSection.rows * flightSection.columns;
             int column =1;
             int row;
@@ -171,5 +141,18 @@ public class Flight {
             }
             /* Flight section also has awareness of its seats */
             flightSection.seats = this.seats;
+    }
+
+    /**
+     * returns true if any FlightSection on the flight has available seats, otherwise false.
+     * @return boolean
+     */
+    public boolean hasAvailableSeats(){
+        for (FlightSection flightSection : this.flightSections){
+            if (flightSection.hasAvailableSeats()){
+                return true;
+            }
+        }
+        return false;
     }
 }

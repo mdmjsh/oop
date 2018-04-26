@@ -13,11 +13,9 @@ class FlightTest {
 
     static {
         try {
-            /** create a new static airline instance to use in the below tests **/
+            /* create a new static airline instance to use in the below tests */
             airline = new Airline("air");
-        } catch (NameValidationException e) {
-            e.printStackTrace();
-        } catch (NonUniqueItemException e) {
+        } catch (NameValidationException | NonUniqueItemException e) {
             e.printStackTrace();
         }
     }
@@ -74,7 +72,7 @@ class FlightTest {
     }
 
     @Test
-    public void testGenerateSeats() throws FlightSectionValidationException, NonUniqueItemException,
+     void testGenerateSeats() throws FlightSectionValidationException, NonUniqueItemException,
             NotFoundException, FlightInvalidException {
         /* test that generating seats from a FlightSection instance
           generates an array of correctly proportioned seats */
@@ -103,4 +101,39 @@ class FlightTest {
         /* F1 + 100 seats == J15 * - uncomment Flight.161 for print demonstration */
         assertEquals(flight.seats.getLast().id, "J15");
     }
-}
+
+    @Test
+    void testHasAvailableSeats() throws NotFoundException, FlightInvalidException,
+            FlightSectionValidationException, NonUniqueItemException, SeatBookedException {
+        int rows = 1;
+        int columns = 1;
+        Flight flight = new Flight(airline, "london", "san francisco", new Date());
+        FlightSection first = new FlightSection(rows, columns, FlightSection.SeatClass.FIRST);
+        FlightSection business = new FlightSection(rows, columns, FlightSection.SeatClass.BUSINESS);
+
+        flight.addFlightSection(first);
+        flight.addFlightSection(business);
+
+        /* Seats are available */
+        assertEquals(flight.hasAvailableSeats(), true);
+
+        /* book the only seat in business class */
+        business.bookSeat("A1");
+
+        /* Seats are available */
+        assertEquals(flight.hasAvailableSeats(), true);
+
+        /* book the only seat in first class */
+        first.bookSeat("A2");
+
+        /* no Seats are available */
+        assertEquals(flight.hasAvailableSeats(), false);
+
+        /* add an economy section and retest */
+        FlightSection eco = new FlightSection(rows, columns, FlightSection.SeatClass.ECONOMY);
+        flight.addFlightSection(eco);
+
+        assertEquals(flight.hasAvailableSeats(), true);
+        }
+
+    }

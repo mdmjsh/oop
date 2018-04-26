@@ -1,13 +1,10 @@
 package com.oop.abs;
 
-import sun.awt.image.ImageWatched;
-
-import java.util.HashMap;
-import java.util.LinkedList;
-
-import java.util.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.LinkedList;
 
 /** an airline has a name that must have a length less than 6.
  *
@@ -84,12 +81,13 @@ public class Airline implements ABSValidator {
     }
 
     /***
-     * Use to build a HashMap `flightMap` of all of the airline's flights.
+     * Used to build a HashMap `flightMap` of all of the Flights in the system.
      * flightMap has is structured: `dest~source~data`: linkedlist of flights with available seats.
+     * This HashMap is then queried by the SystemManager's findAvailableFlights() method.
      *
      * @param flight
      */
-     void buildFlightMap(Flight flight){
+     static void buildFlightMap(Flight flight){
 //        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 //        String key = flight.dest + "~" + flight.source + "~" + df.format(flight.date);
          String key = buildFlightMapKey(flight.source, flight.dest, flight.date);
@@ -107,32 +105,9 @@ public class Airline implements ABSValidator {
         flightMap.put(key, flights);
     }
 
-    private String buildFlightMapKey(String source, String dest, Date date){
+    private static String buildFlightMapKey(String source, String dest, Date date){
         DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
         return dest + "~" + source + "~" + df.format(date);
-    }
-
-    public LinkedList<Flight> findAvailableFlights(String source, String dest, Date date) {
-         String key = buildFlightMapKey(source, dest, date);
-         LinkedList<Flight> flights = Airline.flightMap.get(key);
-         if (flights == null){
-             DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-             throw new NotFoundException("No flights to " + dest + " from " + source + " found on " +  df.format(date);
-         }
-         else {
-             LinkedList <Flight> availableFlights = new LinkedList<>();
-             for (Flight flight : flights){
-                 for (FlightSection fs : flight.flightSections){
-                     if (fs.hasAvailableSeats()){
-                         /* Finish this */
-                     }
-                 }
-
-             }
-
-         }
-
-         return flights;
     }
 
 }
