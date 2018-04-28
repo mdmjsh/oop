@@ -187,4 +187,9 @@ public class SystemManagerTest {
             assertEquals(flight.date, date);
         }
     }
+
+    @Test
+    void testDisplaySystemDetails() throws IllegalAccessException {
+        SystemManager.displaySystemDetails(flight);
+    }
 }

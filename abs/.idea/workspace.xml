@@ -33,11 +33,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="SystemManager.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="SystemManager.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/oop/abs/SystemManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="113">
-              <caret line="84" column="64" lean-forward="false" selection-start-line="84" selection-start-column="64" selection-end-line="84" selection-end-column="64" />
+            <state relative-caret-position="561">
+              <caret line="120" column="38" lean-forward="true" selection-start-line="120" selection-start-column="38" selection-end-line="120" selection-end-column="38" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -45,11 +45,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SystemManagerTest.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="SystemManagerTest.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/oop/abs/SystemManagerTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2265">
-              <caret line="151" column="110" lean-forward="false" selection-start-line="151" selection-start-column="110" selection-end-line="151" selection-end-column="110" />
+            <state relative-caret-position="396">
+              <caret line="180" column="55" lean-forward="false" selection-start-line="180" selection-start-column="55" selection-end-line="180" selection-end-column="55" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -60,7 +60,7 @@
       <file leaf-file-name="Airport.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/oop/abs/Airport.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
+            <state relative-caret-position="-354">
               <caret line="6" column="4" lean-forward="true" selection-start-line="6" selection-start-column="4" selection-end-line="6" selection-end-column="4" />
               <folding />
             </state>
@@ -171,8 +171,8 @@
         <option value="$PROJECT_DIR$/src/com/oop/abs/FlightTest.java" />
         <option value="$PROJECT_DIR$/src/com/oop/abs/Airline.java" />
         <option value="$PROJECT_DIR$/src/com/oop/abs/AirlineTest.java" />
-        <option value="$PROJECT_DIR$/src/com/oop/abs/SystemManager.java" />
         <option value="$PROJECT_DIR$/src/com/oop/abs/SystemManagerTest.java" />
+        <option value="$PROJECT_DIR$/src/com/oop/abs/SystemManager.java" />
       </list>
     </option>
   </component>
@@ -257,7 +257,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.SystemManagerTest">
+  <component name="RunManager" selected="JUnit.SystemManagerTest.testDisplaySystemDetails">
     <configuration default="true" type="Applet" factoryName="Applet">
       <option name="HTML_USED" value="false" />
       <option name="WIDTH" value="400" />
@@ -293,31 +293,6 @@
       <option name="MAIN_CLASS_NAME" value="com.oop.abs.AirlineTest" />
       <option name="METHOD_NAME" />
       <option name="TEST_OBJECT" value="class" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <envs />
-      <patterns />
-    </configuration>
-    <configuration name="AirlineTest.testBuildFlightMap" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="com.oop.abs.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <module name="ABS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="com.oop.abs" />
-      <option name="MAIN_CLASS_NAME" value="com.oop.abs.AirlineTest" />
-      <option name="METHOD_NAME" value="testBuildFlightMap" />
-      <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
@@ -367,6 +342,31 @@
       <option name="PACKAGE_NAME" value="com.oop.abs" />
       <option name="MAIN_CLASS_NAME" value="com.oop.abs.SystemManagerTest" />
       <option name="METHOD_NAME" value="testCreate" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+    </configuration>
+    <configuration name="SystemManagerTest.testDisplaySystemDetails" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="com.oop.abs.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="ABS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="com.oop.abs" />
+      <option name="MAIN_CLASS_NAME" value="com.oop.abs.SystemManagerTest" />
+      <option name="METHOD_NAME" value="testDisplaySystemDetails" />
       <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
@@ -467,17 +467,17 @@
     <list size="5">
       <item index="0" class="java.lang.String" itemvalue="JUnit.SystemManagerTest.testCreate" />
       <item index="1" class="java.lang.String" itemvalue="JUnit.SystemManagerTest.testFindAvailableFlights" />
-      <item index="2" class="java.lang.String" itemvalue="JUnit.AirlineTest.testBuildFlightMap" />
-      <item index="3" class="java.lang.String" itemvalue="JUnit.AirlineTest" />
-      <item index="4" class="java.lang.String" itemvalue="JUnit.SystemManagerTest" />
+      <item index="2" class="java.lang.String" itemvalue="JUnit.AirlineTest" />
+      <item index="3" class="java.lang.String" itemvalue="JUnit.SystemManagerTest" />
+      <item index="4" class="java.lang.String" itemvalue="JUnit.SystemManagerTest.testDisplaySystemDetails" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="JUnit.SystemManagerTest" />
-        <item index="1" class="java.lang.String" itemvalue="JUnit.SystemManagerTest.testCreate" />
-        <item index="2" class="java.lang.String" itemvalue="JUnit.SystemManagerTest.testFindAvailableFlights" />
-        <item index="3" class="java.lang.String" itemvalue="JUnit.AirlineTest" />
-        <item index="4" class="java.lang.String" itemvalue="JUnit.AirlineTest.testBuildFlightMap" />
+        <item index="0" class="java.lang.String" itemvalue="JUnit.SystemManagerTest.testDisplaySystemDetails" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.SystemManagerTest" />
+        <item index="2" class="java.lang.String" itemvalue="JUnit.SystemManagerTest.testCreate" />
+        <item index="3" class="java.lang.String" itemvalue="JUnit.SystemManagerTest.testFindAvailableFlights" />
+        <item index="4" class="java.lang.String" itemvalue="JUnit.AirlineTest" />
       </list>
     </recent_temporary>
   </component>
@@ -495,35 +495,35 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="SystemManagerTest - 2018.04.27 at 23h 31m 06s.xml">
-      <configuration name="SystemManagerTest" configurationId="JUnit" />
+    <history-entry file="SystemManagerTest_testDisplaySystemDetails - 2018.04.28 at 11h 39m 32s.xml">
+      <configuration name="SystemManagerTest.testDisplaySystemDetails" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="SystemManagerTest_testCreate - 2018.04.27 at 23h 28m 25s.xml">
-      <configuration name="SystemManagerTest.testCreate" configurationId="JUnit" />
+    <history-entry file="SystemManagerTest_testDisplaySystemDetails - 2018.04.28 at 11h 46m 16s.xml">
+      <configuration name="SystemManagerTest.testDisplaySystemDetails" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="SystemManagerTest_testCreate - 2018.04.27 at 23h 28m 34s.xml">
-      <configuration name="SystemManagerTest.testCreate" configurationId="JUnit" />
+    <history-entry file="SystemManagerTest_testDisplaySystemDetails - 2018.04.28 at 11h 47m 10s.xml">
+      <configuration name="SystemManagerTest.testDisplaySystemDetails" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="SystemManagerTest_testCreate - 2018.04.27 at 23h 28m 54s.xml">
-      <configuration name="SystemManagerTest.testCreate" configurationId="JUnit" />
+    <history-entry file="SystemManagerTest_testDisplaySystemDetails - 2018.04.28 at 11h 47m 48s.xml">
+      <configuration name="SystemManagerTest.testDisplaySystemDetails" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="SystemManagerTest_testCreate - 2018.04.27 at 23h 29m 12s.xml">
-      <configuration name="SystemManagerTest.testCreate" configurationId="JUnit" />
+    <history-entry file="SystemManagerTest_testDisplaySystemDetails - 2018.04.28 at 11h 48m 03s.xml">
+      <configuration name="SystemManagerTest.testDisplaySystemDetails" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="SystemManagerTest_testCreate - 2018.04.27 at 23h 29m 21s.xml">
-      <configuration name="SystemManagerTest.testCreate" configurationId="JUnit" />
+    <history-entry file="SystemManagerTest_testDisplaySystemDetails - 2018.04.28 at 11h 48m 35s.xml">
+      <configuration name="SystemManagerTest.testDisplaySystemDetails" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="SystemManagerTest_testCreate - 2018.04.27 at 23h 29m 33s.xml">
-      <configuration name="SystemManagerTest.testCreate" configurationId="JUnit" />
+    <history-entry file="SystemManagerTest_testDisplaySystemDetails - 2018.04.28 at 11h 52m 14s.xml">
+      <configuration name="SystemManagerTest.testDisplaySystemDetails" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="SystemManagerTest_testCreate - 2018.04.27 at 23h 29m 42s.xml">
-      <configuration name="SystemManagerTest.testCreate" configurationId="JUnit" />
+    <history-entry file="SystemManagerTest_testDisplaySystemDetails - 2018.04.28 at 11h 53m 42s.xml">
+      <configuration name="SystemManagerTest.testDisplaySystemDetails" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="SystemManagerTest_testCreate - 2018.04.27 at 23h 29m 49s.xml">
-      <configuration name="SystemManagerTest.testCreate" configurationId="JUnit" />
+    <history-entry file="SystemManagerTest_testDisplaySystemDetails - 2018.04.28 at 11h 56m 33s.xml">
+      <configuration name="SystemManagerTest.testDisplaySystemDetails" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="SystemManagerTest_testCreate - 2018.04.27 at 23h 30m 00s.xml">
-      <configuration name="SystemManagerTest.testCreate" configurationId="JUnit" />
+    <history-entry file="SystemManagerTest_testDisplaySystemDetails - 2018.04.28 at 11h 57m 30s.xml">
+      <configuration name="SystemManagerTest.testDisplaySystemDetails" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="ToolWindowManager">
@@ -573,7 +573,7 @@
           <option name="timeStamp" value="14" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="27" />
+      <option name="time" value="28" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -916,14 +916,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/oop/abs/Airport.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="4" lean-forward="true" selection-start-line="6" selection-start-column="4" selection-end-line="6" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/oop/abs/Airline.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="457">
@@ -942,20 +934,28 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/oop/abs/SystemManager.java">
+    <entry file="file://$PROJECT_DIR$/src/com/oop/abs/Airport.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="113">
-          <caret line="84" column="64" lean-forward="false" selection-start-line="84" selection-start-column="64" selection-end-line="84" selection-end-column="64" />
+        <state relative-caret-position="-354">
+          <caret line="6" column="4" lean-forward="true" selection-start-line="6" selection-start-column="4" selection-end-line="6" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/oop/abs/SystemManagerTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="180" column="55" lean-forward="false" selection-start-line="180" selection-start-column="55" selection-end-line="180" selection-end-column="55" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/oop/abs/SystemManagerTest.java">
+    <entry file="file://$PROJECT_DIR$/src/com/oop/abs/SystemManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2265">
-          <caret line="151" column="110" lean-forward="false" selection-start-line="151" selection-start-column="110" selection-end-line="151" selection-end-column="110" />
+        <state relative-caret-position="561">
+          <caret line="120" column="38" lean-forward="true" selection-start-line="120" selection-start-column="38" selection-end-line="120" selection-end-column="38" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
