@@ -12,7 +12,7 @@ import java.util.LinkedList;
  *
  * An airline can have 0 or more flights associated with it.
  *
-  */
+ */
 
 public class Airline implements ABSValidator {
 
@@ -22,7 +22,7 @@ public class Airline implements ABSValidator {
     public static HashMap<String, LinkedList<Flight>> flightMap = new HashMap<>();
 
 
-    public Airline(String name) throws NameValidationException, NonUniqueItemException {
+     public Airline(String name) throws NameValidationException, NonUniqueItemException {
         /* REFACTOR - get rid of the null check if possible */
         if (find(name) != null) {
             throw new NonUniqueItemException("Airline", name);
@@ -49,7 +49,6 @@ public class Airline implements ABSValidator {
         // If we've got this far the name is validated
         return name;
     }
-
 
     /**
      * Iterate the static airlines linked list and search for a matching name
@@ -85,11 +84,9 @@ public class Airline implements ABSValidator {
      * flightMap has is structured: `dest~source~data`: linkedlist of flights with available seats.
      * This HashMap is then queried by the SystemManager's findAvailableFlights() method.
      *
-     * @param flight
+     * @param flight - A Flight instance
      */
      static void buildFlightMap(Flight flight){
-//        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-//        String key = flight.dest + "~" + flight.source + "~" + df.format(flight.date);
          String key = buildFlightMapKey(flight.source.name, flight.dest.name, flight.date);
 
         /* Perform a look up of the key in the static flightMap */

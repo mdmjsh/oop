@@ -14,7 +14,7 @@ public class Seat {
     public boolean booked = false;
     public FlightSection.SeatClass seatClass;
     private static HashMap<Object, Object> seatMap = new HashMap<>();
-
+    /* n.b need to use object as can't use primative type for K,V types */
 
     Seat(int column, int row, FlightSection.SeatClass seatClass) {
 

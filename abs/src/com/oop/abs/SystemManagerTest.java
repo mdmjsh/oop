@@ -9,6 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class SystemManagerTest {
 
+    private static SystemManager sm = new SystemManager();
     private static Airline airline;
     private static Airline airline1;
     private static Flight flight;
@@ -113,19 +114,17 @@ public class SystemManagerTest {
 
 
     @Test
-    void testCreateSystemManager(){
+    void testCreateSystemManager() {
         /* assert SystemManager is created empty */
-        SystemManager sm = new SystemManager();
-        assertEquals(sm.airlines.size(), 0);
-        assertEquals(sm.airports.size(), 0);
-        assertEquals(sm.flights.size(), 0);
+        SystemManager sm1 = new SystemManager();
+        assertEquals(sm1.airlines.size(), 0);
+        assertEquals(sm1.airports.size(), 0);
+        assertEquals(sm1.flights.size(), 0);
     }
 
     @Test
-    void testCreate() throws NameValidationException, NonUniqueItemException, NotFoundException,
-            FlightInvalidException, FlightSectionValidationException {
+    void testCreate() throws NameValidationException, NonUniqueItemException, NotFoundException, FlightInvalidException, FlightSectionValidationException {
         /* Test creating Flights, FlightSections, Airports, Airline through the SystemManager */
-        SystemManager sm = new SystemManager();
         airline = sm.createAirline("dev");
         assertEquals(sm.airlines.size(), 1);
         airline1 = sm.createAirline("bla");
@@ -150,46 +149,47 @@ public class SystemManagerTest {
 
         FlightSection flightSection = sm.createFlightSection(10, 10, FlightSection.SeatClass.BUSINESS, flight);
         FlightSection flightSection1 = sm.createFlightSection(10, 10, FlightSection.SeatClass.FIRST, flight1);
-
     }
 
-
     @Test
-    void testFindAvailableFlights() throws NotFoundException, SeatBookedException {
+    void testFindAvailableFlights() throws NotFoundException, SeatBookedException, IllegalAccessException {
         /* at the start of the test, each flight has seats available so two flights should be found */
-        LinkedList<Flight> availableFlights = SystemManager.findAvailableFlights("LHR", "SFO", date);
+        LinkedList<Flight> availableFlights = sm.findAvailableFlights("LHR", "SFO", date);
         assertEquals(availableFlights.size(), 2);
 
         /* assert that correct Flights have been found */
-        for (Flight flight : availableFlights){
+        for (Flight flight : availableFlights) {
             assertEquals(flight.source, lhr);
             assertEquals(flight.dest, sfo);
             assertEquals(flight.date, date);
         }
 
         first1.bookSeat("A1");
-        availableFlights = SystemManager.findAvailableFlights("LHR", "SFO", date);
+        availableFlights = sm.findAvailableFlights("LHR", "SFO", date);
         assertEquals(availableFlights.size(), 1);
 
         /* assert that `flight` is now the only Flight object present in the linkedList */
         assertEquals(availableFlights.get(0), flight);
 
         /* assert that the search also find the monoco flight */
-        availableFlights = SystemManager.findAvailableFlights("LHR", "JFK", date);
+        availableFlights = sm.findAvailableFlights("LHR", "JFK", date);
         assertEquals(availableFlights.size(), 2);
 
         /* assert that correct Flights have been found */
-        for (Flight flight : availableFlights){
+        for (Flight flight : availableFlights) {
             assertEquals(flight.source.name, "LHR");
             assertEquals(flight.source, lhr);
             assertEquals(flight.dest.name, "JFK");
             assertEquals(flight.dest, jfk);
             assertEquals(flight.date, date);
         }
+        sm.displaySystemDetails();
     }
 
     @Test
-    void testDisplaySystemDetails() throws IllegalAccessException {
-        SystemManager.displaySystemDetails(flight);
+    void testDisplaySystemDetails() throws IllegalAccessException, FlightInvalidException,
+            FlightSectionValidationException, NameValidationException, NonUniqueItemException, NotFoundException {
+        testCreate();
+        sm.displaySystemDetails();
     }
 }
