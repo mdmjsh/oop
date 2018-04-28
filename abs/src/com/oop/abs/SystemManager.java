@@ -2,7 +2,8 @@ package com.oop.abs;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.Date;
+import java.util.LinkedList;
 
 public class SystemManager {
     private Airport airport;
@@ -47,11 +48,11 @@ public Airport createAirport(String name) throws NameValidationException, NonUni
 
     /** create a new Airline instance
      * @param airline - Airline instance
-     * @param source - String
-     * @param dest - String
+     * @param source - Airport Instance
+     * @param dest - Airport Instance
      * @param date - java.util.Date instance;
      * **/
-    public Flight createFlight(Airline airline, String source, String dest, Date date) throws NotFoundException,
+    public Flight createFlight(Airline airline, Airport source, Airport dest, Date date) throws NotFoundException,
             FlightInvalidException{
         Flight flight = new Flight(airline, source, dest, date);
         this.flights.add(flight);
@@ -60,7 +61,7 @@ public Airport createAirport(String name) throws NameValidationException, NonUni
 
 
     public FlightSection createFlightSection(int rows, int columns, FlightSection.SeatClass seatClass, Flight flight) throws
-            NotFoundException, FlightInvalidException, FlightSectionValidationException, NonUniqueItemException {
+            FlightSectionValidationException, NonUniqueItemException {
         FlightSection flightSection = new FlightSection(rows, columns, seatClass);
         flight.addFlightSection(flightSection);
         return flightSection;
@@ -75,7 +76,7 @@ public Airport createAirport(String name) throws NameValidationException, NonUni
      * @param dest
      * @param date
      * @return availableFlights - linkedList of Flight objects
-     * @throws NotFoundException
+     * @throws NotFoundException - no flights found for query params
      */
     public static LinkedList<Flight> findAvailableFlights(String source, String dest, Date date) throws NotFoundException {
         String key = buildFlightMapKey(source, dest, date);
@@ -85,7 +86,7 @@ public Airport createAirport(String name) throws NameValidationException, NonUni
         LinkedList <Flight> availableFlights = new LinkedList<>();
 
         if (flights == null){
-            throw new NotFoundException("No flights to " + dest + " from " + source + " found on " +  df.format(date));
+            throw new NotFoundException("No flights from " + source + " to " + dest + " found on " +  df.format(date));
         }
         else {
             for (Flight flight : flights){
@@ -103,6 +104,6 @@ public Airport createAirport(String name) throws NameValidationException, NonUni
 
     private static String buildFlightMapKey(String source, String dest, Date date){
         DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-        return dest + "~" + source + "~" + df.format(date);
+        return source + dest + df.format(date);
     }
 }

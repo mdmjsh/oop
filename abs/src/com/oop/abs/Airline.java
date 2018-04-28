@@ -90,7 +90,7 @@ public class Airline implements ABSValidator {
      static void buildFlightMap(Flight flight){
 //        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 //        String key = flight.dest + "~" + flight.source + "~" + df.format(flight.date);
-         String key = buildFlightMapKey(flight.source, flight.dest, flight.date);
+         String key = buildFlightMapKey(flight.source.name, flight.dest.name, flight.date);
 
         /* Perform a look up of the key in the static flightMap */
         LinkedList<Flight> flights = flightMap.get(key);
@@ -107,7 +107,7 @@ public class Airline implements ABSValidator {
 
     private static String buildFlightMapKey(String source, String dest, Date date){
         DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-        return dest + "~" + source + "~" + df.format(date);
+        return source + dest + df.format(date);
     }
 
 }

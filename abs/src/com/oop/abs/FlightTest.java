@@ -10,6 +10,9 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 class FlightTest {
 
     private static Airline airline;
+    private static Airport lhr;
+    private static Airport sfo;
+    private static Airport jfk;
 
     static {
         try {
@@ -20,36 +23,52 @@ class FlightTest {
         }
     }
 
+    static {
+        try {
+            /* create a new static Airport instances to use in the below tests */
+            /* n.b - talking point real world implemention would use getter method to assign the variables as the 
+            result of a query for the airport name 
+            e.g. jfk = Airport.get("jfk") */
+            lhr = new Airport("lhr");
+            sfo = new Airport("sfo");
+            jfk = new Airport("jfk");
+        } catch (NameValidationException | NonUniqueItemException e) {
+            e.printStackTrace();
+        }
+    }
+
+
     @Test
-    void testCreateFlight() throws NotFoundException, FlightInvalidException {
-        Flight flight = new Flight(airline, "london", "san francisco", new Date());
+    void testCreateFlight() throws NotFoundException, FlightInvalidException,
+            NameValidationException, NonUniqueItemException {
+        Flight flight = new Flight(airline, lhr, jfk, new Date());
         /* assert that the flight instance has been created with an reference to the airline instance */
         assertEquals(flight.airline, airline);
         /* assert that the airline.flight variable contains a reference to the flight instance */
         assert airline.flights.indexOf(flight) != -1;
     }
-
-    @Test
-    void testFlightInvalidExceptionThrown() {
-        Throwable exception = assertThrows(FlightInvalidException.class,
-                () -> {
-                    new Flight(airline, "london", "london", new Date());
-                });
-        assertEquals("Source and Destination of flight cannot be the same", exception.getMessage());
-
-        /* same test but with case sensitivity */
-        Throwable exception1 = assertThrows(FlightInvalidException.class,
-                () -> {
-                    new Flight(airline, "loNDon", "LoNdOn", new Date());
-                });
-        assertEquals("Source and Destination of flight cannot be the same", exception1.getMessage());
-    }
+//
+//    @Test
+//    void testFlightInvalidExceptionThrown() {
+//        Throwable exception = assertThrows(FlightInvalidException.class,
+//                () -> {
+//                    new Flight(airline, "london", "london", new Date());
+//                });
+//        assertEquals("Source and Destination of flight cannot be the same", exception.getMessage());
+//
+//        /* same test but with case sensitivity */
+//        Throwable exception1 = assertThrows(FlightInvalidException.class,
+//                () -> {
+//                    new Flight(airline, "loNDon", "LoNdOn", new Date());
+//                });
+//        assertEquals("Source and Destination of flight cannot be the same", exception1.getMessage());
+//    }
 
     @Test
     void testAddFlightSection() throws NonUniqueItemException, FlightSectionValidationException,
-            FlightInvalidException, NotFoundException {
+            FlightInvalidException, NotFoundException, NameValidationException {
         FlightSection fs = new FlightSection(99, 10, FlightSection.SeatClass.BUSINESS);
-        Flight flight = new Flight(airline, "london", "mexico city", new Date());
+        Flight flight = new Flight(airline, jfk, sfo, new Date());
         flight.addFlightSection(fs);
         /* assert that a reference to the flight section instance has been created in the flightSections array */
         assertEquals(flight.flightSections.indexOf(fs), 0);
@@ -57,11 +76,11 @@ class FlightTest {
 
     @Test
     void testNonUniqueItemExceptionThrown() throws NonUniqueItemException, FlightSectionValidationException,
-            FlightInvalidException, NotFoundException {
+            FlightInvalidException, NotFoundException, NameValidationException {
         /* test that only one instance of given seatClass can be added to a flight */
         FlightSection fs = new FlightSection(99, 10, FlightSection.SeatClass.BUSINESS);
         FlightSection fs1 = new FlightSection(99, 10, FlightSection.SeatClass.BUSINESS);
-        Flight flight = new Flight(airline, "london", "mexico city", new Date());
+        Flight flight = new Flight(airline, jfk, lhr, new Date());
         flight.addFlightSection(fs);
         Throwable exception = assertThrows(NonUniqueItemException.class,
                 () -> {
@@ -73,14 +92,14 @@ class FlightTest {
 
     @Test
      void testGenerateSeats() throws FlightSectionValidationException, NonUniqueItemException,
-            NotFoundException, FlightInvalidException {
+            NotFoundException, FlightInvalidException, NameValidationException {
         /* test that generating seats from a FlightSection instance
           generates an array of correctly proportioned seats */
 
         /* generate a flight section with 5*5 dimensions starting from seat A1 and ending at seat E25 */
         int rows = 5;
         int columns = 5;
-        Flight flight = new Flight(airline, "london", "san francisco", new Date());
+        Flight flight = new Flight(airline, lhr, jfk, new Date());
         FlightSection first = new FlightSection(rows, columns, FlightSection.SeatClass.FIRST);
         flight.addFlightSection(first);
         assertEquals(flight.seats.getFirst().id, "A1");
@@ -104,10 +123,10 @@ class FlightTest {
 
     @Test
     void testHasAvailableSeats() throws NotFoundException, FlightInvalidException,
-            FlightSectionValidationException, NonUniqueItemException, SeatBookedException {
+            FlightSectionValidationException, NonUniqueItemException, SeatBookedException, NameValidationException {
         int rows = 1;
         int columns = 1;
-        Flight flight = new Flight(airline, "london", "san francisco", new Date());
+        Flight flight = new Flight(airline, sfo, lhr, new Date());
         FlightSection first = new FlightSection(rows, columns, FlightSection.SeatClass.FIRST);
         FlightSection business = new FlightSection(rows, columns, FlightSection.SeatClass.BUSINESS);
 

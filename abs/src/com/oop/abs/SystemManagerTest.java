@@ -19,6 +19,9 @@ public class SystemManagerTest {
     private static FlightSection first1;
     private static FlightSection first2;
     private static FlightSection first3;
+    private static Airport lhr;
+    private static Airport sfo;
+    private static Airport jfk;
 
     static {
         try {
@@ -56,7 +59,7 @@ public class SystemManagerTest {
 
     static {
         try {
-            /* create a new static airline instance to use in the below tests */
+            /* create new static Airline instances to use in the below tests */
             airline = new Airline("air");
             airline1 = new Airline("bob");
         } catch (NameValidationException | NonUniqueItemException e) {
@@ -64,17 +67,28 @@ public class SystemManagerTest {
         }
     }
 
+    static {
+        try {
+            /* create a new static Airport instances to use in the below tests */
+            lhr = new Airport("LHR");
+            sfo = new Airport("SFO");
+            jfk = new Airport("JFK");
+        } catch (NameValidationException | NonUniqueItemException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     static {
-        /* create a new static airline instance to use in the below tests */
+        /* create a new static Flight instances to use in the below tests */
         try {
-            flight = new Flight(airline, "london", "berlin", date);
+            flight = new Flight(airline, lhr, sfo, date);
             flight.addFlightSection(first);
         } catch (NotFoundException | FlightInvalidException | NonUniqueItemException e) {
             e.printStackTrace();
         }
         try {
-            flight1 = new Flight(airline1, "london", "berlin", date);
+            flight1 = new Flight(airline1, lhr, sfo, date);
             try {
                 flight1.addFlightSection(first1);
             } catch (NonUniqueItemException e) {
@@ -84,48 +98,16 @@ public class SystemManagerTest {
             e.printStackTrace();
         }
         try {
-            flight2 = new Flight(airline, "london", "monaco", date);
+            flight2 = new Flight(airline, lhr, jfk, date);
             flight2.addFlightSection(first2);
         } catch (NotFoundException | FlightInvalidException | NonUniqueItemException e) {
             e.printStackTrace();
         }
         try {
-            flight3 = new Flight(airline1, "london", "monaco", date);
+            flight3 = new Flight(airline1, lhr, jfk, date);
             flight3.addFlightSection(first3);
         } catch (NotFoundException | FlightInvalidException | NonUniqueItemException e) {
             e.printStackTrace();
-        }
-    }
-
-    @Test
-    void testFindAvailableFlights() throws NotFoundException, SeatBookedException {
-        /* at the start of the test, each flight has seats available so two flights should be found */
-        LinkedList<Flight> availableFlights = SystemManager.findAvailableFlights("london", "berlin", date);
-        assertEquals(availableFlights.size(), 2);
-
-        /* assert that correct Flights have been found */
-        for (Flight flight : availableFlights){
-            assertEquals(flight.source, "london");
-            assertEquals(flight.dest, "berlin");
-            assertEquals(flight.date, date);
-        }
-
-        first1.bookSeat("A1");
-        availableFlights = SystemManager.findAvailableFlights("london", "berlin", date);
-        assertEquals(availableFlights.size(), 1);
-
-        /* assert that `flight` is now the only Flight object present in the linkedList */
-        assertEquals(availableFlights.get(0), flight);
-
-        /* assert that the search also find the monoco flight */
-        availableFlights = SystemManager.findAvailableFlights("london", "monaco", date);
-        assertEquals(availableFlights.size(), 2);
-
-        /* assert that correct Flights have been found */
-        for (Flight flight : availableFlights){
-            assertEquals(flight.source, "london");
-            assertEquals(flight.dest, "monaco");
-            assertEquals(flight.date, date);
         }
     }
 
@@ -153,35 +135,56 @@ public class SystemManagerTest {
         assertEquals(sm.airlines.get(0), airline);
         assertEquals(sm.airlines.get(1), airline1);
 
-        Airport airport = sm.createAirport("par");
-        assertEquals(sm.airports.size(), 1);
-        Airport airport1 = sm.createAirport("mil");
-        assertEquals(sm.airports.size(), 2);
-        /* assert sm.airports contains pointers to the composite Airport objects */
-        assertEquals(sm.airports.get(0), airport);
-        assertEquals(sm.airports.get(1), airport1);
+        Airport airport5 = sm.createAirport("par");
 
-        Flight flight = sm.createFlight(airline, "london", "berlin", new Date());
+        /* assert there are three static Airports + the one created in this test */
+        assertEquals(sm.airports.size(), 4);
+        Airport airport4 = sm.createAirport("mil");
+        assertEquals(sm.airports.size(), 5);
+
+        /* assert there are three static Flights + the one created in this test */
+        Flight flight = sm.createFlight(airline, lhr, sfo, new Date());
         assertEquals(sm.flights.size(), 1);
-        Flight flight1 = sm.createFlight(airline1, "london", "berlin", new Date());
+        Flight flight1 = sm.createFlight(airline1, lhr, sfo, new Date());
         assertEquals(sm.flights.size(), 2);
-        /* assert sm.flights contains pointers to the composite Flight objects */
-        assertEquals(sm.flights.get(0), flight);
-        assertEquals(sm.flights.get(1), flight1);
-
 
         FlightSection flightSection = sm.createFlightSection(10, 10, FlightSection.SeatClass.BUSINESS, flight);
         FlightSection flightSection1 = sm.createFlightSection(10, 10, FlightSection.SeatClass.FIRST, flight1);
-        /* assert that flight section has been added to the flight */
-        assertEquals(sm.flights.get(0).flightSections.size(), 1);
-        assertEquals(sm.flights.get(1).flightSections.size(), 1);
-
-        /* assert sm.flights contains pointers to the composite FlightSection objects */
-        assertEquals(sm.flights.get(0).flightSections.get(0), flightSection);
-        assertEquals(sm.flights.get(1).flightSections.get(0), flightSection1);
 
     }
 
 
+    @Test
+    void testFindAvailableFlights() throws NotFoundException, SeatBookedException {
+        /* at the start of the test, each flight has seats available so two flights should be found */
+        LinkedList<Flight> availableFlights = SystemManager.findAvailableFlights("LHR", "SFO", date);
+        assertEquals(availableFlights.size(), 2);
 
+        /* assert that correct Flights have been found */
+        for (Flight flight : availableFlights){
+            assertEquals(flight.source, lhr);
+            assertEquals(flight.dest, sfo);
+            assertEquals(flight.date, date);
+        }
+
+        first1.bookSeat("A1");
+        availableFlights = SystemManager.findAvailableFlights("LHR", "SFO", date);
+        assertEquals(availableFlights.size(), 1);
+
+        /* assert that `flight` is now the only Flight object present in the linkedList */
+        assertEquals(availableFlights.get(0), flight);
+
+        /* assert that the search also find the monoco flight */
+        availableFlights = SystemManager.findAvailableFlights("LHR", "JFK", date);
+        assertEquals(availableFlights.size(), 2);
+
+        /* assert that correct Flights have been found */
+        for (Flight flight : availableFlights){
+            assertEquals(flight.source.name, "LHR");
+            assertEquals(flight.source, lhr);
+            assertEquals(flight.dest.name, "JFK");
+            assertEquals(flight.dest, jfk);
+            assertEquals(flight.date, date);
+        }
+    }
 }

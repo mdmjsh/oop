@@ -12,6 +12,22 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class AirlineTest {
 
+    private static Airport lhr;
+    private static Airport sfo;
+
+    static {
+        try {
+            /* create a new static Airport instances to use in the below tests */
+            /* n.b - talking point real world implemention would use getter method to assign the variables as the
+            result of a query for the airport name
+            e.g. jfk = Airport.get("jfk") */
+            lhr = new Airport("lhr");
+            sfo = new Airport("sfo");
+        } catch (NameValidationException | NonUniqueItemException e) {
+            e.printStackTrace();
+        }
+    }
+
     @Test
     public void testAirlineCreate() throws NonUniqueItemException, NameValidationException{
         Airline airline = new Airline("joey");
@@ -56,11 +72,11 @@ class AirlineTest {
 
          See: https://junit.org/junit5/docs/current/user-guide/#extensions-exception-handling
          **/
-        Airline airline = new Airline("JFK");
+        Airline airline = new Airline("JOE");
         Throwable exception = assertThrows(NonUniqueItemException.class,
-                ()-> {new Airline("JFK");
+                ()-> {new Airline("JOE");
                 });
-        assertEquals("Airline with name JFK already exists", exception.getMessage());
+        assertEquals("Airline with name JOE already exists", exception.getMessage());
     }
 
     @Test
@@ -68,18 +84,19 @@ class AirlineTest {
             NotFoundException, FlightInvalidException {
         Airline airline = new Airline("king");
         Airline airline1 = new Airline("queen");
-        Flight flight = new Flight(airline, "london", "burma", new Date());
-        Flight flight1 = new Flight(airline, "london", "burma", new Date());
+        /* create two flight from lhr to sfo on the same day */
+        Flight flight = new Flight(airline, lhr, sfo, new Date());
+        Flight flight1 = new Flight(airline, lhr, sfo, new Date());
 
         /* build a key to query */
         DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-        String key = flight.dest + "~" + flight.source + "~" + df.format(flight.date);
+        String key = flight.source.name + flight.dest.name + df.format(flight.date);
 
         /* assert both flights added to the flightMap hashmap at the right key location */
         assertEquals(Airline.flightMap.get(key).size(), 2);
 
-        /* add another flight, this time with a different airline */
-        Flight flight2 = new Flight(airline1, "london", "burma", new Date());
+        /* add another Flight from lhr to sfo but this time with a different Airline */
+        Flight flight2 = new Flight(airline1, lhr, sfo, new Date());
 
         /* assert that as the fligthMap is static all flights from both airlines are present */
         assertEquals(Airline.flightMap.get(key).size(), 3);

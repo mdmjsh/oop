@@ -19,17 +19,20 @@ public class Flight {
     /* n.b. discussion_point - could have used FlightSection.SeatClass.values().length to make an array of length of
     flight sectionEnums **/
     public LinkedList <FlightSection> flightSections = new LinkedList<>();
-    public String source;
-    public String dest;
+    public Airport source;
+    public Airport dest;
     public Date date;
     public LinkedList<Seat> seats = new LinkedList<>();
 
     /** Associate a flight to an airline or raise an exception **
      *
+     * @param: airline - An Airline instance
+     * @param: source - An Airport instance
+     * @param: dest - An airport instance
+     * @param: date - A Java.util.Date instance
      *
-     *
-     */
-        Flight(Airline airline, String source, String dest, Date date) throws NotFoundException,
+     * */
+        Flight(Airline airline, Airport source, Airport dest, Date date) throws NotFoundException,
                 FlightInvalidException{
             if (Airline.find(airline.name) == null){
                 throw new NotFoundException("Airline", airline.name);
@@ -51,10 +54,14 @@ public class Flight {
             this.airline.flights.add(this);
             Airline.buildFlightMap(this);
     }
-
-    private static boolean validFlight(String source, String dest){
-    /* convert both string to lowercase and check the source and destination are distinct **/
-        return !source.toLowerCase().equals(dest.toLowerCase());
+    /** convert both names to lowercase and check the source and destination are distinct ***
+     *
+     * @param: source - An Airport instance
+     * @param: dest - An Airport instance
+     */
+    private static boolean validFlight(Airport source, Airport dest){
+        /* n.b - here we are interested in comparing the string of the name, not the objects themselves */
+        return !source.name.toLowerCase().equals(dest.name.toLowerCase());
     }
 
 
