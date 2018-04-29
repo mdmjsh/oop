@@ -34,6 +34,8 @@ public class Flight {
      * */
         Flight(Airline airline, Airport source, Airport dest, Date date) throws NotFoundException,
                 FlightInvalidException{
+
+            /* n.b handles edge case where client doesn't know that the airline object has been deleted...*/
             if (Airline.find(airline.name) == null){
                 throw new NotFoundException("Airline", airline.name);
             }
@@ -74,7 +76,7 @@ public class Flight {
     public void addFlightSection(FlightSection flightSection) throws NonUniqueItemException{
 
         if (existingFlightSection(flightSection)){
-            throw new NonUniqueItemException("Flight already contains a flight section with seat class" +
+            throw new NonUniqueItemException("Flight already contains a flight section with seat class " +
                     flightSection.seatClass);
         }
         this.flightSections.add(flightSection);

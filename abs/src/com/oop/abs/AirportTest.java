@@ -10,9 +10,9 @@ class AirportTest {
     @Test
     public void testAirportCreate()throws NonUniqueItemException, NameValidationException{
         Airport airport = new Airport("joe");
-        assertEquals( "joe", airport.name);
+        assertEquals( "JOE", airport.name);
         Airport airport1 = new Airport("bob");
-        assertEquals( "bob", airport1.name);
+        assertEquals( "BOB", airport1.name);
     }
 
     @Test
@@ -36,6 +36,7 @@ class AirportTest {
         assertEquals("Airport name must contain only Alphabetic characters", exception1.getMessage());
         }
 
+
     @Test
     public void testThrowsNonUniqueItemException() throws NameValidationException, NonUniqueItemException {
         /**
@@ -48,6 +49,13 @@ class AirportTest {
                 ()-> {Airport errorPort = new Airport("JFK");
                 });
         assertEquals("Airport with name JFK already exists", exception.getMessage());
+
+        /* test for case sensitivity in duplicate airport names */
+        Throwable exception1 = assertThrows(NonUniqueItemException.class,
+                () -> {
+                    Airport airport1 = new Airport("jFk");
+                });
+        assertEquals("Airport with name JFK already exists", exception1.getMessage());
     }
 
 }

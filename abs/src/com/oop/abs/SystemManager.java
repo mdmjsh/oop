@@ -1,11 +1,10 @@
 package com.oop.abs;
 
+import java.lang.reflect.Field;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.LinkedList;
-import java.lang.reflect.Field;
 
 public class SystemManager {
 
@@ -17,7 +16,7 @@ public class SystemManager {
     public  LinkedList<Airport> airports = new LinkedList<>();
     public LinkedList<Airline> airlines = new LinkedList<>();
     public LinkedList<Flight> flights = new LinkedList<>();
-    public static HashMap<String, String> ABSMap = new HashMap<>();
+//    public static HashMap<String, String> ABSMap = new HashMap<>();
 
 
     /**
@@ -48,7 +47,8 @@ public class SystemManager {
      * @param columns   - int, must abide by the validation of Flight section
      * @param seatClass - FlightSection.SeatClass enumerator
      **/
-    public FlightSection createFlightSection(int rows, int columns, FlightSection.SeatClass seatClass) throws FlightSectionValidationException {
+    public FlightSection createFlightSection(int rows, int columns, FlightSection.SeatClass seatClass)
+            throws FlightSectionValidationException {
         return new FlightSection(rows, columns, seatClass);
     }
 
@@ -61,7 +61,8 @@ public class SystemManager {
      * @param dest    - Airport Instance
      * @param date    - java.util.Date instance;
      **/
-    public Flight createFlight(Airline airline, Airport source, Airport dest, Date date) throws NotFoundException, FlightInvalidException {
+    public Flight createFlight(Airline airline, Airport source, Airport dest, Date date)
+            throws NotFoundException, FlightInvalidException {
         Flight flight = new Flight(airline, source, dest, date);
         this.flights.add(flight);
         return flight;
@@ -129,40 +130,47 @@ public class SystemManager {
             System.out.println(field.getName() + ": " + field.get(object));
             System.out.println("Type: " + field.getGenericType());
             System.out.println(object.getClass().getPackage());
-
-            String field_class = checkABSClass(field.getGenericType().toString());
-            if (checkABSClass(field.getGenericType().toString()) !=null){
-                System.out.println("RECURSION : " + field_class);
-                System.out.println("\n");
-                reflexivePrint(field);
-                }
+//
+//            String field_class = checkABSClass(field.getGenericType().toString());
+//            if (checkABSClass(field.getGenericType().toString()) !=null){
+////                reflexivePrint(field);
+//                }
             }
             System.out.println("\n");
         }
 
 
-    /** used to assert if a field is from the ABS package or outside - i.e. field.getGenericType()
-     * String field - string representation of the field type
-     * **/
-    private String checkABSClass(String field ){
-        ABSMap.put("class com.oop.abs.Airport", "Airport");
-        ABSMap.put("class com.oop.abs.Airline", "Airline");
-        ABSMap.put("class com.oop.abs.Flight", "Flight");
-        ABSMap.put("class com.oop.abs.FlightSection", "FlightSection");
-        ABSMap.put("class com.oop.abs.Seat", "Seat");
-        ABSMap.put("class com.oop.abs.SeatClass", "SeatClass");
-        return ABSMap.get(field);
-    }
-
     public void displaySystemDetails() throws IllegalAccessException {
+        this.reflexivePrint(this);
         for(Airport airport : this.airports){this.reflexivePrint(airport);}
         for(Flight flight : this.flights) {
             this.reflexivePrint(flight);
+            this.reflexivePrint(flight.airline);
+            this.reflexivePrint(flight.source);
+            this.reflexivePrint(flight.dest);
             for (FlightSection flightSection : flight.flightSections) {
                 this.reflexivePrint(flightSection);
+                for (Seat seat : flightSection.seats){
+                    this.reflexivePrint(seat);
+                }
             }
+
         }
     }
+
+//    /** used to assert if a field is from the ABS package or outside - i.e. field.getGenericType()
+//     * String field - string representation of the field type
+//     * **/
+//    private String checkABSClass(String field ){
+//        ABSMap.put("class com.oop.abs.Airport", "Airport");
+//        ABSMap.put("class com.oop.abs.Airline", "Airline");
+//        ABSMap.put("class com.oop.abs.Flight", "Flight");
+//        ABSMap.put("class com.oop.abs.FlightSection", "FlightSection");
+//        ABSMap.put("class com.oop.abs.Seat", "Seat");
+//        ABSMap.put("class com.oop.abs.SeatClass", "SeatClass");
+//        ABSMap.put("java.util.LinkedList<com.oop.abs.Seat>", "Seat");
+//        return ABSMap.get(field);
+//    }
 
 
     /*

@@ -58,7 +58,7 @@ public class FlightSection {
     }
 
     /** Books the seat at the specified id iff available **/
-    public Seat bookSeat(String id) throws NotFoundException, SeatBookedException {
+        public Seat bookSeat(String id) throws NotFoundException, SeatBookedException {
         if (hasAvailableSeats()) {
             Seat seat = getBySeatId(id);
             if (!seat.booked) {

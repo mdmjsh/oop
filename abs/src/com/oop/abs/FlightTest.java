@@ -48,21 +48,6 @@ class FlightTest {
         assert airline.flights.indexOf(flight) != -1;
     }
 //
-//    @Test
-//    void testFlightInvalidExceptionThrown() {
-//        Throwable exception = assertThrows(FlightInvalidException.class,
-//                () -> {
-//                    new Flight(airline, "london", "london", new Date());
-//                });
-//        assertEquals("Source and Destination of flight cannot be the same", exception.getMessage());
-//
-//        /* same test but with case sensitivity */
-//        Throwable exception1 = assertThrows(FlightInvalidException.class,
-//                () -> {
-//                    new Flight(airline, "loNDon", "LoNdOn", new Date());
-//                });
-//        assertEquals("Source and Destination of flight cannot be the same", exception1.getMessage());
-//    }
 
     @Test
     void testAddFlightSection() throws NonUniqueItemException, FlightSectionValidationException,
@@ -74,21 +59,6 @@ class FlightTest {
         assertEquals(flight.flightSections.indexOf(fs), 0);
     }
 
-    @Test
-    void testNonUniqueItemExceptionThrown() throws NonUniqueItemException, FlightSectionValidationException,
-            FlightInvalidException, NotFoundException, NameValidationException {
-        /* test that only one instance of given seatClass can be added to a flight */
-        FlightSection fs = new FlightSection(99, 10, FlightSection.SeatClass.BUSINESS);
-        FlightSection fs1 = new FlightSection(99, 10, FlightSection.SeatClass.BUSINESS);
-        Flight flight = new Flight(airline, jfk, lhr, new Date());
-        flight.addFlightSection(fs);
-        Throwable exception = assertThrows(NonUniqueItemException.class,
-                () -> {
-                    flight.addFlightSection(fs1);
-                });
-        assertEquals("Flight already contains a flight section with seat classBUSINESS",
-                exception.getMessage());
-    }
 
     @Test
      void testGenerateSeats() throws FlightSectionValidationException, NonUniqueItemException,
@@ -153,6 +123,48 @@ class FlightTest {
         flight.addFlightSection(eco);
 
         assertEquals(flight.hasAvailableSeats(), true);
-        }
-
     }
+
+    /* EXCEPTIONS */
+    @Test
+    void testNotFoundExceptionThrown() throws NotFoundException, FlightInvalidException {
+        /* remove the airline object */
+        Airline.airlines.remove(0);
+        /* send a client request to add a flight on the removed airline - this will error */
+        Throwable exception = assertThrows(NotFoundException.class,
+                () -> { new Flight(airline, lhr, jfk, new Date()); });
+        assertEquals("Airline with name air not found",
+                exception.getMessage());
+        assertEquals(exception.getClass().toString(), "class com.oop.abs.NotFoundException");
+    }
+
+    @Test
+    void testFlightInvalidExceptionThrown() throws NameValidationException, NonUniqueItemException {
+        Airport airport = new Airport("JWG");
+
+        Throwable exception = assertThrows(FlightInvalidException.class,
+                () -> {
+                    new Flight(airline, airport, airport, new Date());
+                });
+        assertEquals("Source and Destination of flight cannot be the same", exception.getMessage());
+        assertEquals(exception.getClass().toString(), "class com.oop.abs.FlightInvalidException");
+    }
+
+    @Test
+    void testNonUniqueItemExceptionThrown() throws NonUniqueItemException, FlightSectionValidationException,
+            FlightInvalidException, NotFoundException, NameValidationException {
+        /* test that only one instance of given seatClass can be added to a flight */
+        FlightSection fs = new FlightSection(99, 10, FlightSection.SeatClass.BUSINESS);
+        FlightSection fs1 = new FlightSection(99, 10, FlightSection.SeatClass.BUSINESS);
+        Flight flight = new Flight(airline, jfk, lhr, new Date());
+        flight.addFlightSection(fs);
+        Throwable exception = assertThrows(NonUniqueItemException.class,
+                () -> {
+                    flight.addFlightSection(fs1);
+                });
+        assertEquals("Flight already contains a flight section with seat class BUSINESS",
+                exception.getMessage());
+        assertEquals(exception.getClass().toString(), "class com.oop.abs.NonUniqueItemException");
+    }
+
+}

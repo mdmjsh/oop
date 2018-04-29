@@ -147,8 +147,8 @@ public class SystemManagerTest {
         Flight flight1 = sm.createFlight(airline1, lhr, sfo, new Date());
         assertEquals(sm.flights.size(), 2);
 
-        FlightSection flightSection = sm.createFlightSection(10, 10, FlightSection.SeatClass.BUSINESS, flight);
-        FlightSection flightSection1 = sm.createFlightSection(10, 10, FlightSection.SeatClass.FIRST, flight1);
+        FlightSection flightSection = sm.createFlightSection(2, 2, FlightSection.SeatClass.BUSINESS, flight);
+        FlightSection flightSection1 = sm.createFlightSection(2, 2, FlightSection.SeatClass.FIRST, flight1);
     }
 
     @Test

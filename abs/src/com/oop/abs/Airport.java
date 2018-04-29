@@ -12,9 +12,9 @@ public class Airport {
     public static LinkedList<Airport> airports = new LinkedList<>();
 
      Airport(String name) throws NameValidationException, NonUniqueItemException {
-        /** REFACTOR - get rid of the null check if possible **/
-        if (find(name) != null) {
-            throw new NonUniqueItemException("Airport", name);
+        /* REFACTOR - get rid of the null check if possible */
+        if (find(name.toUpperCase()) != null) {
+            throw new NonUniqueItemException("Airport", name.toUpperCase());
         }
 
         this.name = validateName(name);
@@ -35,8 +35,8 @@ public class Airport {
         if (!isAlphabetic(name))
             throw new NameValidationException("Airport name must contain only Alphabetic characters");
 
-        // If we've got this far the name is validated
-        return name;
+        // If we've got this far the name is validated - convert names to upper case
+        return name.toUpperCase();
     }
 
     /** static - class method, MAKE_GENERIC_? **/

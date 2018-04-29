@@ -17,7 +17,7 @@ import java.util.LinkedList;
 public class Airline implements ABSValidator {
 
     String name;
-    private static LinkedList<Airline> airlines = new LinkedList<>();
+    static LinkedList<Airline> airlines = new LinkedList<>();
     LinkedList<Flight> flights = new LinkedList<>();
     public static HashMap<String, LinkedList<Flight>> flightMap = new HashMap<>();
 
@@ -81,7 +81,7 @@ public class Airline implements ABSValidator {
 
     /***
      * Used to build a HashMap `flightMap` of all of the Flights in the system.
-     * flightMap has is structured: `dest~source~data`: linkedlist of flights with available seats.
+     * flightMap has is structured: `source~dest~data`: linkedlist of flights with available seats.
      * This HashMap is then queried by the SystemManager's findAvailableFlights() method.
      *
      * @param flight - A Flight instance
