@@ -48,10 +48,14 @@ public class SystemManager {
      * @param rows      - int, must abide by the validation of Flight section
      * @param columns   - int, must abide by the validation of Flight section
      * @param seatClass - FlightSection.SeatClass enumerator
+     * @param flight - Flight instance
      **/
-    public FlightSection createFlightSection(int rows, int columns, FlightSection.SeatClass seatClass)
-            throws FlightSectionValidationException {
-        return new FlightSection(rows, columns, seatClass);
+    public FlightSection createFlightSection(int rows, int columns,
+                                             FlightSection.SeatClass seatClass, Flight flight)
+            throws FlightSectionValidationException, NonUniqueItemException {
+        FlightSection flightSection = new FlightSection(rows, columns, seatClass);
+        flight.addFlightSection(flightSection);
+        return flightSection;
     }
 
 
@@ -70,13 +74,6 @@ public class SystemManager {
         return flight;
     }
 
-
-    public FlightSection createFlightSection(int rows, int columns, FlightSection.SeatClass seatClass, Flight flight)
-            throws FlightSectionValidationException, NonUniqueItemException {
-        FlightSection flightSection = new FlightSection(rows, columns, seatClass);
-        flight.addFlightSection(flightSection);
-        return flightSection;
-    }
 
 
     /**
@@ -118,7 +115,7 @@ public class SystemManager {
      *
      * @param flight - Flight instance
      * @param seatId - Id of seat to book
-     * @return
+     * @return seat - the booked seat
      */
     public Seat bookSeat(Flight flight, String seatId) throws NotFoundException, SeatBookedException {
         Seat seat = null;
