@@ -123,6 +123,8 @@ public class Flight {
      * @param flightSection
      */
     private void generateSeats(FlightSection flightSection){
+
+        /* n.b could this be moved into flightSection for better encapsulation? */
             int size = flightSection.rows * flightSection.columns;
             int column =1;
             int row;

@@ -36,48 +36,6 @@ class AirlineTest {
         assertEquals( "bob", airline1.name);
     }
 
-    @Test
-    public void testThrowsNameValidationException() {
-        /**
-         Fancy Lambda syntax - the function is being passed into the assertThrows call with the -> operator.
-
-         See: https://junit.org/junit5/docs/current/user-guide/#extensions-exception-handling
-         **/
-        Throwable exception = assertThrows(NameValidationException.class,
-                () -> {
-                    Airline errorLine = new Airline("This name is too long!");
-                });
-        assertEquals("Airline name must be less than six characters", exception.getMessage());
-
-
-        Throwable exception1 = assertThrows(NameValidationException.class,
-                () -> {
-                    Airline errorLine = new Airline("123");
-                });
-        assertEquals("Airline name must contain only Alphabetic characters", exception1.getMessage());
-
-
-        Throwable exception2 = assertThrows(NameValidationException.class,
-                () -> {
-                    Airline errorLine = new Airline("");
-                });
-        assertEquals("Airline name cannot be empty string!", exception2.getMessage());
-
-    }
-
-    @Test
-    void testThrowsNonUniqueItemException() throws NameValidationException, NonUniqueItemException {
-        /**
-         Fancy Lambda syntax - the function is being passed into the assertThrows call with the -> operator.
-
-         See: https://junit.org/junit5/docs/current/user-guide/#extensions-exception-handling
-         **/
-        Airline airline = new Airline("JOE");
-        Throwable exception = assertThrows(NonUniqueItemException.class,
-                ()-> {new Airline("JOE");
-                });
-        assertEquals("Airline with name JOE already exists", exception.getMessage());
-    }
 
     @Test
     void testBuildFlightMap() throws NameValidationException, NonUniqueItemException,
@@ -106,6 +64,53 @@ class AirlineTest {
         assert flights.get(0) == flight;
         assert flights.get(1) == flight1;
         assert flights.get(2) == flight2;
+    }
+
+    /* Exceptions */
+
+    @Test
+    public void testThrowsNameValidationException() {
+        /**
+         Fancy Lambda syntax - the function is being passed into the assertThrows call with the -> operator.
+
+         See: https://junit.org/junit5/docs/current/user-guide/#extensions-exception-handling
+         **/
+        Throwable exception = assertThrows(NameValidationException.class,
+                () -> {
+                    Airline errorLine = new Airline("This name is too long!");
+                });
+        assertEquals("Airline name must be less than six characters", exception.getMessage());
+
+
+        Throwable exception1 = assertThrows(NameValidationException.class,
+                () -> {
+                    Airline errorLine = new Airline("123");
+                });
+        assertEquals("Airline name must contain only Alphabetic characters", exception1.getMessage());
+
+
+        Throwable exception2 = assertThrows(NameValidationException.class,
+                () -> {
+                    Airline errorLine = new Airline("");
+                });
+        assertEquals("Airline name cannot be empty string!", exception2.getMessage());
+        assertEquals(exception.getClass().toString(), "class com.oop.abs.NameValidationException");
+
+    }
+
+    @Test
+    void testThrowsNonUniqueItemException() throws NameValidationException, NonUniqueItemException {
+        /**
+         Fancy Lambda syntax - the function is being passed into the assertThrows call with the -> operator.
+
+         See: https://junit.org/junit5/docs/current/user-guide/#extensions-exception-handling
+         **/
+        Airline airline = new Airline("JOE");
+        Throwable exception = assertThrows(NonUniqueItemException.class,
+                ()-> {new Airline("JOE");
+                });
+        assertEquals("Airline with name JOE already exists", exception.getMessage());
+        assertEquals(exception.getClass().toString(), "class com.oop.abs.NonUniqueItemException");
     }
 
 }

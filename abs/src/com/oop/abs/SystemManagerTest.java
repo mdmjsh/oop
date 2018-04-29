@@ -2,10 +2,14 @@ package com.oop.abs;
 
 import org.junit.jupiter.api.Test;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.LinkedList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class SystemManagerTest {
 
@@ -24,6 +28,7 @@ public class SystemManagerTest {
     private static Airport sfo;
     private static Airport jfk;
 
+    /* Set up static variables to be used in tests */
     static {
         try {
             first = new FlightSection(1, 1, FlightSection.SeatClass.FIRST);
@@ -123,32 +128,19 @@ public class SystemManagerTest {
     }
 
     @Test
-    void testCreate() throws NameValidationException, NonUniqueItemException, NotFoundException, FlightInvalidException, FlightSectionValidationException {
+    void testCreate() throws NameValidationException, NonUniqueItemException, NotFoundException,
+            FlightInvalidException, FlightSectionValidationException, IllegalAccessException {
         /* Test creating Flights, FlightSections, Airports, Airline through the SystemManager */
-        airline = sm.createAirline("dev");
-        assertEquals(sm.airlines.size(), 1);
-        airline1 = sm.createAirline("bla");
-        assertEquals(sm.airlines.size(), 2);
-
-        /* assert sm.airlines contains pointers to the composite Airline objects */
-        assertEquals(sm.airlines.get(0), airline);
-        assertEquals(sm.airlines.get(1), airline1);
-
-        Airport airport5 = sm.createAirport("par");
+        createData(sm,"blu", "bla", "ble", "blo");
+        /* assert there are two static Airlines + the one created in this test */
+        assertEquals(sm.airlines.size(), 4);
 
         /* assert there are three static Airports + the one created in this test */
-        assertEquals(sm.airports.size(), 4);
-        Airport airport4 = sm.createAirport("mil");
         assertEquals(sm.airports.size(), 5);
 
         /* assert there are three static Flights + the one created in this test */
-        Flight flight = sm.createFlight(airline, lhr, sfo, new Date());
-        assertEquals(sm.flights.size(), 1);
-        Flight flight1 = sm.createFlight(airline1, lhr, sfo, new Date());
         assertEquals(sm.flights.size(), 2);
-
-        FlightSection flightSection = sm.createFlightSection(2, 2, FlightSection.SeatClass.BUSINESS, flight);
-        FlightSection flightSection1 = sm.createFlightSection(2, 2, FlightSection.SeatClass.FIRST, flight1);
+        sm.displaySystemDetails();
     }
 
     @Test
@@ -164,6 +156,7 @@ public class SystemManagerTest {
             assertEquals(flight.date, date);
         }
 
+        /* book a seat - now only one is available */
         first1.bookSeat("A1");
         availableFlights = sm.findAvailableFlights("LHR", "SFO", date);
         assertEquals(availableFlights.size(), 1);
@@ -171,7 +164,7 @@ public class SystemManagerTest {
         /* assert that `flight` is now the only Flight object present in the linkedList */
         assertEquals(availableFlights.get(0), flight);
 
-        /* assert that the search also find the monoco flight */
+        /* assert that the search also find the JFK flight */
         availableFlights = sm.findAvailableFlights("LHR", "JFK", date);
         assertEquals(availableFlights.size(), 2);
 
@@ -183,13 +176,104 @@ public class SystemManagerTest {
             assertEquals(flight.dest, jfk);
             assertEquals(flight.date, date);
         }
-        sm.displaySystemDetails();
     }
 
     @Test
-    void testDisplaySystemDetails() throws IllegalAccessException, FlightInvalidException,
-            FlightSectionValidationException, NameValidationException, NonUniqueItemException, NotFoundException {
-        testCreate();
-        sm.displaySystemDetails();
+    void testBookSeat() throws NotFoundException, SeatBookedException {
+        for (Seat seat : first.seats){System.out.println(seat.id);}
+        Seat seat = first3.getSeatById("A1");
+        /* check seat isn't already booked */
+        assertEquals(seat.booked, false);
+        seat = sm.bookSeat(flight3, "A1");
+        /* assert seat is now booked through the SystemManager */
+        assertEquals(seat.booked, true);
+    }
+
+
+    /* Exceptions */
+
+    @Test
+    void testSeatBookedExceptionThrown() throws NotFoundException, SeatBookedException {
+        Seat seat = first3.getSeatById("A1");
+        /* n.b. conditional required to handle testing in situ and in isolation */
+        if (seat.booked){
+            Throwable exception = assertThrows(SeatBookedException.class,
+                    () -> { sm.bookSeat(flight3, "A1");});
+            assertEquals("Seat: A1 on flight: " + flight3.id + " already booked",
+                    exception.getMessage());
+            assertEquals(exception.getClass().toString(), "class com.oop.abs.SeatBookedException");
+        }
+        else {
+            sm.bookSeat(flight3, "A1");
+            Throwable exception = assertThrows(SeatBookedException.class, () -> {
+                sm.bookSeat(flight3, "A1");
+            });
+            assertEquals("Seat: A1 on flight: " + flight3.id + " already booked", exception.getMessage());
+            assertEquals(exception.getClass().toString(), "class com.oop.abs.SeatBookedException");
+        }
+    }
+
+    @Test
+    void testNotFoundExceptionThrown() throws NotFoundException, SeatBookedException {
+        /* this flight doesn't exist at all */
+        /* use java Calendar utility to update the date */
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        /* Increment date by one day */
+        cal.add(Calendar.DATE, +1);
+        Date newDate = cal.getTime();
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+
+        Throwable exception = assertThrows(NotFoundException.class, () -> {
+            sm.findAvailableFlights("BWT", "JFK", date);
+        });
+        assertEquals("No flights from BWT to JFK found on " + df.format(date), exception.getMessage());
+        assertEquals(exception.getClass().toString(), "class com.oop.abs.NotFoundException");
+//
+        /* this flight exists but not on the given date */
+        Throwable exception1 = assertThrows(NotFoundException.class, () -> {
+            sm.findAvailableFlights("LHR", "JFK", newDate);
+        });
+        assertEquals("No flights from LHR to JFK found on " + df.format(newDate), exception1.getMessage());
+        assertEquals(exception1.getClass().toString(), "class com.oop.abs.NotFoundException");
+    }
+    /** this flight exists but the seats are fully booked - raise a notFoundException **/
+    @Test
+    void testNotFoundExceptionThrownFullyBookedFlights() throws NameValidationException, NonUniqueItemException, NotFoundException, FlightInvalidException, FlightSectionValidationException, SeatBookedException {
+
+        Airline dky = sm.createAirline("DKY");
+        Airport prs = sm.createAirport("PRS");
+        Date date = new Date();
+        flight = sm.createFlight(dky, jfk, prs, new Date());
+        first = new FlightSection(1, 1, FlightSection.SeatClass.FIRST);
+        flight.addFlightSection(first);
+        sm.bookSeat(flight, "A1");
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+
+        Throwable exception2 = assertThrows(NotFoundException.class, () -> {
+            sm.findAvailableFlights("JFK", "PRS", date);
+        });
+        assertEquals("No seats available from JFK to PRS found on " + df.format(date),
+                exception2.getMessage());
+        assertEquals(exception2.getClass().toString(), "class com.oop.abs.NotFoundException");
+    }
+
+
+    /** helper method to create additional test data **/
+    void createData(SystemManager sysManager, String airlineName, String airlineName1,
+                    String airportName, String airportName1) throws NameValidationException,
+            NonUniqueItemException, NotFoundException, FlightInvalidException, FlightSectionValidationException {
+        sysManager.createAirline(airlineName);
+        sysManager.createAirline(airlineName1);
+
+        sysManager.createAirport(airportName);
+        sysManager.createAirport(airportName1);
+
+        Flight flight = sysManager.createFlight(airline, lhr, jfk, new Date());
+        Flight flight1 = sysManager.createFlight(airline1, lhr, jfk, new Date());
+
+        sysManager.createFlightSection(2, 2, FlightSection.SeatClass.BUSINESS, flight);
+        sysManager.createFlightSection(2, 2, FlightSection.SeatClass.FIRST, flight1);
+
     }
 }

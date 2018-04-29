@@ -49,41 +49,6 @@ class FlightSectionTest {
     }
 
     @Test
-    void testThrowsFlightSectionValidationException() {
-        /* Test permutations of flight section exceptions **/
-
-        Throwable exception = assertThrows(FlightSectionValidationException.class,
-                /* too many rows **/
-                () -> {
-                    FlightSection errorSection = new FlightSection(101, 10, FlightSection.SeatClass.FIRST);
-                });
-        assertEquals("Flight section must have at least one seat, and at most 100 rows and 10 columns",
-                exception.getMessage());
-
-        /* too many columns **/
-        Throwable exception1 = assertThrows(FlightSectionValidationException.class, () -> {
-            FlightSection errorSection1 = new FlightSection(100, 11, FlightSection.SeatClass.FIRST);
-        });
-        assertEquals("Flight section must have at least one seat, and at most 100 rows and 10 columns",
-                exception.getMessage());
-
-        /* 0 rows **/
-        Throwable exception2 = assertThrows(FlightSectionValidationException.class, () -> {
-            FlightSection errorSection1 = new FlightSection(0, 11, FlightSection.SeatClass.FIRST);
-        });
-        assertEquals("Flight section must have at least one seat, and at most 100 rows and 10 columns",
-                exception.getMessage());
-
-        /* 0 columns **/
-        Throwable exception3 = assertThrows(FlightSectionValidationException.class, () -> {
-            FlightSection errorSection1 = new FlightSection(100, 0, FlightSection.SeatClass.FIRST);
-        });
-        assertEquals("Flight section must have at least one seat, and at most 100 rows and 10 columns",
-                exception.getMessage());
-
-    }
-
-    @Test
     void testHasAvailableSeats() throws FlightSectionValidationException, NonUniqueItemException,
             NotFoundException, FlightInvalidException, SeatClassFullException, SeatBookedException, NameValidationException {
         /* add two seats to the flight section **/
@@ -110,8 +75,8 @@ class FlightSectionTest {
         FlightSection first = new FlightSection(1, 2, FlightSection.SeatClass.FIRST);
         Flight flight = new Flight(airline, new Airport("LGW"), new Airport("MMR"), new Date());
         flight.addFlightSection(first);
-        Seat A1 = first.getBySeatId("A1");
-        Seat B1 = first.getBySeatId("B1");
+        Seat A1 = first.getSeatById("A1");
+        Seat B1 = first.getSeatById("B1");
         /* assert that Seat A1 is not already book */
         assertEquals(A1.booked, false);
         /* book Seat A1 and assert that is is booked after the transaction is complete */
@@ -126,20 +91,6 @@ class FlightSectionTest {
     }
 
     @Test
-    void testThrowsSeatBookedException() throws NonUniqueItemException, NotFoundException, FlightInvalidException,
-            FlightSectionValidationException, SeatBookedException, NameValidationException {
-        FlightSection first = new FlightSection(1, 2, FlightSection.SeatClass.FIRST);
-        Flight flight = new Flight(airline, new Airport("HKK"), new Airport("SFO"), new Date());
-        flight.addFlightSection(first);
-        Seat bookedSeat = first.bookSeat("A1");
-
-        Throwable exception = assertThrows(SeatBookedException.class, () -> {
-            Seat errorSeat = first.bookSeat("A1");
-        });
-        assertEquals("Seat: A1 on flight: " + flight.id + " already booked", exception.getMessage());
-    }
-
-    @Test
     void testGetSeatByID() throws NonUniqueItemException, FlightSectionValidationException, NotFoundException,
             FlightInvalidException, SeatBookedException, NameValidationException {
         FlightSection first = new FlightSection(1, 2, FlightSection.SeatClass.FIRST);
@@ -148,11 +99,77 @@ class FlightSectionTest {
         flight.addFlightSection(first);
         flight.addFlightSection(business);
 
-        Seat A1 = first.getBySeatId("A1");
+        Seat A1 = first.getSeatById("A1");
         /* assert that the correct ID has been matched */
         assertEquals(A1.id, "A1");
         /* assert that the seat returned is the actual seat object in the flight */
         assertEquals(A1, flight.seats.getFirst());
+    }
+
+    /* Exceptions */
+
+    @Test
+    void testThrowsSeatBookedException() throws NonUniqueItemException, NotFoundException, FlightInvalidException,
+            FlightSectionValidationException, SeatBookedException, NameValidationException {
+        FlightSection first = new FlightSection(1, 2, FlightSection.SeatClass.FIRST);
+        Flight flight = new Flight(airline, new Airport("HKK"), new Airport("SFO"), new Date());
+        flight.addFlightSection(first);
+        first.bookSeat("A1");
+
+        Throwable exception = assertThrows(SeatBookedException.class, () -> {
+            first.bookSeat("A1");
+        });
+        assertEquals("Seat: A1 on flight: " + flight.id + " already booked", exception.getMessage());
+        assertEquals(exception.getClass().toString(), "class com.oop.abs.SeatBookedException");
+    }
+
+    @Test
+    void testThrowsFlightSectionValidationException() {
+        /* Test permutations of flight section exceptions **/
+
+        Throwable exception = assertThrows(FlightSectionValidationException.class,
+                /* too many rows **/
+                () -> {
+                    new FlightSection(101, 10, FlightSection.SeatClass.FIRST);
+                });
+        assertEquals("Flight section must have at least one seat, and at most 100 rows and 10 columns",
+                exception.getMessage());
+
+
+        /* too many columns **/
+        Throwable exception1 = assertThrows(FlightSectionValidationException.class, () -> {
+            new FlightSection(100, 11, FlightSection.SeatClass.FIRST);
+        });
+        assertEquals("Flight section must have at least one seat, and at most 100 rows and 10 columns",
+                exception.getMessage());
+
+        /* 0 rows **/
+        Throwable exception2 = assertThrows(FlightSectionValidationException.class, () -> {
+            new FlightSection(0, 11, FlightSection.SeatClass.FIRST);
+        });
+        assertEquals("Flight section must have at least one seat, and at most 100 rows and 10 columns",
+                exception.getMessage());
+
+        /* 0 columns **/
+        Throwable exception3 = assertThrows(FlightSectionValidationException.class, () -> {
+            new FlightSection(100, 0, FlightSection.SeatClass.FIRST);
+        });
+        assertEquals("Flight section must have at least one seat, and at most 100 rows and 10 columns",
+                exception.getMessage());
+        assertEquals(exception.getClass().toString(), "class com.oop.abs.FlightSectionValidationException");
+
+    }
+
+    @Test
+    void testNotFoundExceptionThrown() throws FlightSectionValidationException, NotFoundException,
+             NonUniqueItemException, NameValidationException, FlightInvalidException {
+        FlightSection first = new FlightSection(1, 2, FlightSection.SeatClass.FIRST);
+        Flight flight = new Flight(airline, new Airport("JJH"), new Airport("GHD"), new Date());
+        flight.addFlightSection(first);
+        Throwable exception = assertThrows(NotFoundException.class, () -> { first.bookSeat("A3");});
+        assertEquals("Seat with name A3 not found",
+                exception.getMessage());
+        assertEquals(exception.getClass().toString(), "class com.oop.abs.NotFoundException");
     }
 }
 

@@ -23,7 +23,6 @@ public class Airline implements ABSValidator {
 
 
      public Airline(String name) throws NameValidationException, NonUniqueItemException {
-        /* REFACTOR - get rid of the null check if possible */
         if (find(name) != null) {
             throw new NonUniqueItemException("Airline", name);
         }
@@ -58,6 +57,10 @@ public class Airline implements ABSValidator {
      */
     public static Airline find (String name){
         int i = 0;
+//        if (name.equals("blu")){
+//        System.out.println(airlines);
+//        System.out.println(name);}
+
         while (i < airlines.size()) {
             if (airlines.get(i).name.equals(name)) {
                 /* return straight away - don't finish the while loop */

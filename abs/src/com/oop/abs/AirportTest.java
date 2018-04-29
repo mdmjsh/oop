@@ -34,6 +34,7 @@ class AirportTest {
                     Airport errorPort = new Airport("123");
                 });
         assertEquals("Airport name must contain only Alphabetic characters", exception1.getMessage());
+        assertEquals(exception.getClass().toString(), "class com.oop.abs.NameValidationException");
         }
 
 
@@ -56,6 +57,7 @@ class AirportTest {
                     Airport airport1 = new Airport("jFk");
                 });
         assertEquals("Airport with name JFK already exists", exception1.getMessage());
+        assertEquals(exception.getClass().toString(), "class com.oop.abs.NonUniqueItemException");
     }
 
 }

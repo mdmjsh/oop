@@ -42,7 +42,8 @@ public class FlightSection {
 
     private int validateFlightSection(int input, int limit) throws FlightSectionValidationException {
         if (input == 0 || input > limit) {
-            throw new FlightSectionValidationException("Flight section must have at least one seat, and at most" + " 100 rows and 10 columns");
+            throw new FlightSectionValidationException("Flight section must have at least one seat, and at most" +
+                    " 100 rows and 10 columns");
         }
         return input;
     }
@@ -60,26 +61,33 @@ public class FlightSection {
     /** Books the seat at the specified id iff available **/
         public Seat bookSeat(String id) throws NotFoundException, SeatBookedException {
         if (hasAvailableSeats()) {
-            Seat seat = getBySeatId(id);
+            if (getSeatById(id) == null){
+                throw new NotFoundException("Seat with name " + id + " not found");
+            }
+            Seat seat = getSeatById(id);
             if (!seat.booked) {
-                /* see: https://stackoverflow.com/questions/23308193/break-or-return-from-java-8-stream-foreach */
                 seat.booked = true;
                 return seat;
             }
         }
+        /* If we've got this far the seat has already been booked */
         throw new SeatBookedException(id, this.flight);
     }
 
     /**
      * n.b. possibly better encapsulated in the seat class
      **/
-    public Seat getBySeatId(String id) throws NotFoundException {
+    public Seat getSeatById(String id) {
         /* return a seat by the id or throw NotFoundException */
         for (Seat seat : this.seats) {
             if (seat.id.equals(id)) {
                 return seat;
             }
         }
-        throw new NotFoundException("Seat", id);
+        /* n.b. return null here rather than raise exception as we need to use this method in loop in the SystemManger
+        to book a seat. Returning Null here means that we don't need to rely on exception handling for control flow -
+        which is considered back practice in Java.
+         */
+        return null;
     }
 }

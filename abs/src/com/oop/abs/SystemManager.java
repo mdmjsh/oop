@@ -35,13 +35,15 @@ public class SystemManager {
      * @param name - string, must abide by the validation of Airline name
      **/
     public Airline createAirline(String name) throws NameValidationException, NonUniqueItemException {
+        System.out.println("creating airline " + name);
         Airline airline = new Airline(name);
-        this.airlines.add(airline);
+        System.out.println("created OK " + name);
+        this.airlines = Airline.airlines;
         return airline;
     }
 
     /**
-     * create a new Airline instance
+     * create a new FlightSection instance
      *
      * @param rows      - int, must abide by the validation of Flight section
      * @param columns   - int, must abide by the validation of Flight section
@@ -54,7 +56,7 @@ public class SystemManager {
 
 
     /**
-     * create a new Airline instance
+     * create a new Flight instance
      *
      * @param airline - Airline instance
      * @param source  - Airport Instance
@@ -81,9 +83,9 @@ public class SystemManager {
      * Query the Airline.flightMap HashMap of available flights.
      * If flights are found check their availability using flight.hasAvailableSeats
      *
-     * @param source
-     * @param dest
-     * @param date
+     * @param source - string source Airport name
+     * @param dest - string source Airport name
+     * @param date - java.utils.Date object
      * @return availableFlights - linkedList of Flight objects
      * @throws NotFoundException - no flights found for query params
      */
@@ -104,9 +106,34 @@ public class SystemManager {
             }
         }
         if (availableFlights.isEmpty()) {
-            throw new NotFoundException("No seats available from " + dest + " from " + source + " found on " + df.format(date));
+            throw new NotFoundException("No seats available from " + source + " to " + dest +
+                    " found on " + df.format(date));
         }
         return availableFlights;
+    }
+
+
+    /**
+     * Book a seat on a given Flight.
+     *
+     * @param flight - Flight instance
+     * @param seatId - Id of seat to book
+     * @return
+     */
+    public Seat bookSeat(Flight flight, String seatId) throws NotFoundException, SeatBookedException {
+        Seat seat = null;
+        for (FlightSection flightSection : flight.flightSections) {
+            if (flightSection.getSeatById(seatId) != null)
+                try {
+                seat = flightSection.bookSeat(seatId);
+                return seat;
+                } catch (SeatBookedException e) {
+                    throw new SeatBookedException(seatId, flight);
+                }
+                /* if we get to here we've looped all the flightSections and didn't find the seat */
+                throw new NotFoundException("Seat with name " + seatId + " not found");
+        }
+        return seat;
     }
 
     private static String buildFlightMapKey(String source, String dest, Date date) {
@@ -117,6 +144,8 @@ public class SystemManager {
     /**
      * generic method to take any object and print it's variables
      * n.b. this method uses reflection to inspect the class of the generic input and iterate its values
+     *
+     * * @throws IllegalAccessException - thrown if field.get(object)) fails in the method
      **/
     private <E> void reflexivePrint(E object) throws IllegalAccessException {
 
@@ -140,6 +169,11 @@ public class SystemManager {
         }
 
 
+    /**
+     * Iterate the objects in the system and use reflection to print out their current state attributes
+     *
+     * @throws IllegalAccessException - thrown if field.get(object)) fails in the above method
+     */
     public void displaySystemDetails() throws IllegalAccessException {
         this.reflexivePrint(this);
         for(Airport airport : this.airports){this.reflexivePrint(airport);}
