@@ -75,7 +75,6 @@ public class FlightSection {
     }
 
     /**
-     * n.b. possibly better encapsulated in the seat class
      **/
     public Seat getSeatById(String id) {
         /* return a seat by the id or throw NotFoundException */
@@ -89,5 +88,50 @@ public class FlightSection {
         which is considered back practice in Java.
          */
         return null;
+    }
+
+    /**
+     * Calculate the size of the size of the flight section and then iteratively add Seat objects to this.seats ll.
+     *
+     * If the number of iterations == the size of this.column, we've added all required seats in the current row and
+     * need to move to the next row by incrementing the row number.
+     *
+     * Until fill all of the required seats in the FlightSection.
+     *
+     */
+    public void generateSeats() throws NotFoundException {
+
+        /* n.b could this be moved into flightSection for better encapsulation? */
+        int size = this.rows * this.columns;
+        int column = 1;
+        int row;
+
+        try {
+            /*  get the last seat added in the flight so we can continue allocating seats
+                from where the previous FlightSection left off */
+            row = this.flight.flightSections.getLast().seats.getLast().row + 1;
+
+        } catch (NullPointerException e) {
+            throw new NotFoundException("This FlightSection " + this + " not associated with any flights. " +
+                    "You must add a Flight to assigning Seats");
+
+        } catch (java.util.NoSuchElementException e) {
+            /* if we've not yet added any seats start from row 1 */
+            row = 1;
+        }
+        for (int i = 1; i <= size; i++) {
+            /* add the Seat object at the given row, column coordinates and move to the next column */
+
+//            System.out.println("adding seat at row: " + row + " column: " + column);
+            this.seats.add(new Seat(column, row, this.seatClass));
+//            System.out.println("Created Seat: " + this.seats.getLast().id);
+            column++;
+                /* check if we've added the required number Seats for this row,
+                    and if so move to the next row and reset the column back to 1 */
+            if (column > this.columns) {
+                row++;
+                column = 1;
+            }
+        }
     }
 }

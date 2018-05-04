@@ -2,11 +2,6 @@ package com.oop.abs;
 
 import org.junit.jupiter.api.Test;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.LinkedList;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -35,38 +30,6 @@ class AirlineTest {
         Airline airline1 = new Airline("bob");
         assertEquals( "bob", airline1.name);
     }
-
-
-    @Test
-    void testBuildFlightMap() throws NameValidationException, NonUniqueItemException,
-            NotFoundException, FlightInvalidException {
-        Airline airline = new Airline("king");
-        Airline airline1 = new Airline("queen");
-        /* create two flight from lhr to sfo on the same day */
-        Flight flight = new Flight(airline, lhr, sfo, new Date());
-        Flight flight1 = new Flight(airline, lhr, sfo, new Date());
-
-        /* build a key to query */
-        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-        String key = flight.source.name + flight.dest.name + df.format(flight.date);
-
-        /* assert both flights added to the flightMap hashmap at the right key location */
-        assertEquals(Airline.flightMap.get(key).size(), 2);
-
-        /* add another Flight from lhr to sfo but this time with a different Airline */
-        Flight flight2 = new Flight(airline1, lhr, sfo, new Date());
-
-        /* assert that as the fligthMap is static all flights from both airlines are present */
-        assertEquals(Airline.flightMap.get(key).size(), 3);
-        LinkedList<Flight> flights = Airline.flightMap.get(key);
-
-        /* assert that the linked list contains pointers to the Flight object */
-        assert flights.get(0) == flight;
-        assert flights.get(1) == flight1;
-        assert flights.get(2) == flight2;
-    }
-
-    /* Exceptions */
 
     @Test
     public void testThrowsNameValidationException() {

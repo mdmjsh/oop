@@ -1,9 +1,5 @@
 package com.oop.abs;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.LinkedList;
 
 /** an airline has a name that must have a length less than 6.
@@ -19,7 +15,6 @@ public class Airline implements ABSValidator {
     String name;
     static LinkedList<Airline> airlines = new LinkedList<>();
     LinkedList<Flight> flights = new LinkedList<>();
-    public static HashMap<String, LinkedList<Flight>> flightMap = new HashMap<>();
 
 
      public Airline(String name) throws NameValidationException, NonUniqueItemException {
@@ -52,7 +47,7 @@ public class Airline implements ABSValidator {
      * Iterate the static airlines linked list and search for a matching name
      *
      * @param: name - name of the airline being queried
-     * @returns: Airline instance for the linked list
+     * @returns: Airline instance from the airlines linked list
      */
     public static Airline find (String name){
         int i = 0;
@@ -77,33 +72,4 @@ public class Airline implements ABSValidator {
         }
         return true;
     }
-
-    /***
-     * Used to build a HashMap `flightMap` of all of the Flights in the system.
-     * flightMap has is structured: `source~dest~data`: linkedlist of flights with available seats.
-     * This HashMap is then queried by the SystemManager's findAvailableFlights() method.
-     *
-     * @param flight - A Flight instance
-     */
-     static void buildFlightMap(Flight flight){
-         String key = buildFlightMapKey(flight.source.name, flight.dest.name, flight.date);
-
-        /* Perform a look up of the key in the static flightMap */
-        LinkedList<Flight> flights = flightMap.get(key);
-        if (flights == null){
-            /* if the key is not found create a new linkedList */
-            flights = new LinkedList<>();
-        }
-        /* n.b. we don't care if the key is found in the hash map or not,
-        either way we'll add the flight to the tail of the linkedList */
-        flights.add(flight);
-        /* add the linkedList to the flightMap at the corresponding key */
-        flightMap.put(key, flights);
-    }
-
-    private static String buildFlightMapKey(String source, String dest, Date date){
-        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-        return source + dest + df.format(date);
-    }
-
 }

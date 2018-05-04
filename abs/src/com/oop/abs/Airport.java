@@ -12,11 +12,9 @@ public class Airport {
     public static LinkedList<Airport> airports = new LinkedList<>();
 
      Airport(String name) throws NameValidationException, NonUniqueItemException {
-        /* REFACTOR - get rid of the null check if possible */
         if (find(name.toUpperCase()) != null) {
             throw new NonUniqueItemException("Airport", name.toUpperCase());
         }
-
         this.name = validateName(name);
         airports.add(this);
     }
@@ -39,18 +37,17 @@ public class Airport {
         return name.toUpperCase();
     }
 
-    /** static - class method, MAKE_GENERIC_? **/
+    /**
+     * Iterate the static airlines linked list and search for a matching name
+     *
+     * @param: name - name of the airline being queried
+     * @returns: Airport instance for the linked list
+     */
     public static Airport find (String name){
-        /**
-         * Iterate the static airlines linked list and search for a matching name
-         *
-         * @param: name - name of the airline being queried
-         * @returns: Airport instance for the linked list
-         */
         int i = 0;
         while (i < airports.size()) {
             if (airports.get(i).name.equals(name)) {
-                /** return straight away - don't finish the while loop */
+                /* return straight away - don't finish the while loop */
                 return airports.get(i);
             }
             i ++;
@@ -60,7 +57,7 @@ public class Airport {
 
     private boolean isAlphabetic(String name){
         for (int i = 0; i < name.length(); i++) {
-            /*** iterate the characters of the string and return false if any are not letters **/
+            /* iterate the characters of the string and return false if any are not letters */
             char c = name.charAt(i);
             if (! Character.isLetter(c)) {
                return false;

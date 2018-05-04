@@ -60,48 +60,46 @@ class FlightTest {
     }
 
 
-    @Test
-     void testGenerateSeats() throws FlightSectionValidationException, NonUniqueItemException,
-            NotFoundException, FlightInvalidException, NameValidationException {
-        /* test that generating seats from a FlightSection instance
-          generates an array of correctly proportioned seats */
-
-        /* generate a flight section with 5*5 dimensions starting from seat A1 and ending at seat E25 */
-        int rows = 5;
-        int columns = 5;
-        Flight flight = new Flight(airline, lhr, jfk, new Date());
-        FlightSection first = new FlightSection(rows, columns, FlightSection.SeatClass.FIRST);
-        flight.addFlightSection(first);
-        assertEquals(flight.seats.getFirst().id, "A1");
-        assertEquals(flight.seats.getLast().id, "E5");
-        assertEquals(flight.seats.size(), rows * columns);
-        /* assert that the flight and the flightSection 'seats' ll is the same object in the heap */
-        assertEquals(flight.seats, first.seats);
-
-        /* generate another seat section and ensure that the seat numbering is continuous
-        * n.b. the last seat added in the first class section is E5 therefore the first seat added will be F1.
-        * */
-        System.out.println("Last row added: " + flight.seats.getLast().row);
-        rows = 10;
-        columns = 10;
-        FlightSection business = new FlightSection(rows, columns, FlightSection.SeatClass.BUSINESS);
-        flight.addFlightSection(business);
-
-        /* F1 + 100 seats == J15 * - uncomment Flight.161 for print demonstration */
-        assertEquals(flight.seats.getLast().id, "J15");
-    }
+//    @Test
+//     void testGenerateSeats() throws FlightSectionValidationException, NonUniqueItemException,
+//            NotFoundException, FlightInvalidException, NameValidationException {
+//        /* test that generating seats from a FlightSection instance
+//          generates an array of correctly proportioned seats */
+//
+//        /* generate a flight section with 5*5 dimensions starting from seat A1 and ending at seat E25 */
+//        int rows = 5;
+//        int columns = 5;
+//        Flight flight = new Flight(airline, lhr, jfk, new Date());
+//        FlightSection first = new FlightSection(rows, columns, FlightSection.SeatClass.FIRST);
+//        flight.addFlightSection(first);
+//        assertEquals(flight.seats.getFirst().id, "A1");
+//        assertEquals(flight.seats.getLast().id, "E5");
+//        assertEquals(flight.seats.size(), rows * columns);
+//        /* assert that the flight and the flightSection 'seats' ll is the same object in the heap */
+//        assertEquals(flight.seats, first.seats);
+//
+//        /* generate another seat section and ensure that the seat numbering is continuous
+//        * n.b. the last seat added in the first class section is E5 therefore the first seat added will be F1.
+//        * */
+//        System.out.println("Last row added: " + flight.seats.getLast().row);
+//        rows = 10;
+//        columns = 10;
+//        FlightSection business = new FlightSection(rows, columns, FlightSection.SeatClass.BUSINESS);
+//        flight.addFlightSection(business);
+//
+//        /* F1 + 100 seats == J15 * - uncomment Flight.161 for print demonstration */
+//        assertEquals(flight.seats.getLast().id, "J15");
+//    }
 
     @Test
     void testHasAvailableSeats() throws NotFoundException, FlightInvalidException,
             FlightSectionValidationException, NonUniqueItemException, SeatBookedException, NameValidationException {
-        int rows = 1;
-        int columns = 1;
         Flight flight = new Flight(airline, sfo, lhr, new Date());
-        FlightSection first = new FlightSection(rows, columns, FlightSection.SeatClass.FIRST);
-        FlightSection business = new FlightSection(rows, columns, FlightSection.SeatClass.BUSINESS);
+        FlightSection first = new FlightSection(1, 1, FlightSection.SeatClass.FIRST);
+        FlightSection business = new FlightSection(1, 1, FlightSection.SeatClass.BUSINESS);
 
-        flight.addFlightSection(first);
         flight.addFlightSection(business);
+        flight.addFlightSection(first);
 
         /* Seats are available */
         assertEquals(flight.hasAvailableSeats(), true);
@@ -111,18 +109,14 @@ class FlightTest {
 
         /* Seats are available */
         assertEquals(flight.hasAvailableSeats(), true);
+        assertEquals(business.seats.getLast().booked, true);
 
         /* book the only seat in first class */
         first.bookSeat("A2");
 
         /* no Seats are available */
         assertEquals(flight.hasAvailableSeats(), false);
-
-        /* add an economy section and retest */
-        FlightSection eco = new FlightSection(rows, columns, FlightSection.SeatClass.ECONOMY);
-        flight.addFlightSection(eco);
-
-        assertEquals(flight.hasAvailableSeats(), true);
+        assertEquals(business.seats.getLast().booked, true);
     }
 
     /* EXCEPTIONS */

@@ -66,8 +66,8 @@ public class SystemManagerTest {
     static {
         try {
             /* create new static Airline instances to use in the below tests */
-            airline = new Airline("air");
-            airline1 = new Airline("bob");
+            airline = sm.createAirline("air");
+            airline1 = sm.createAirline("bob");
         } catch (NameValidationException | NonUniqueItemException e) {
             e.printStackTrace();
         }
@@ -88,13 +88,13 @@ public class SystemManagerTest {
     static {
         /* create a new static Flight instances to use in the below tests */
         try {
-            flight = new Flight(airline, lhr, sfo, date);
+            flight = sm.createFlight(airline, lhr, sfo, date);
             flight.addFlightSection(first);
         } catch (NotFoundException | FlightInvalidException | NonUniqueItemException e) {
             e.printStackTrace();
         }
         try {
-            flight1 = new Flight(airline1, lhr, sfo, date);
+            flight1 = sm.createFlight(airline1, lhr, sfo, date);
             try {
                 flight1.addFlightSection(first1);
             } catch (NonUniqueItemException e) {
@@ -104,13 +104,13 @@ public class SystemManagerTest {
             e.printStackTrace();
         }
         try {
-            flight2 = new Flight(airline, lhr, jfk, date);
+            flight2 = sm.createFlight(airline, lhr, jfk, date);
             flight2.addFlightSection(first2);
         } catch (NotFoundException | FlightInvalidException | NonUniqueItemException e) {
             e.printStackTrace();
         }
         try {
-            flight3 = new Flight(airline1, lhr, jfk, date);
+            flight3 = sm.createFlight(airline1, lhr, jfk, date);
             flight3.addFlightSection(first3);
         } catch (NotFoundException | FlightInvalidException | NonUniqueItemException e) {
             e.printStackTrace();
@@ -179,6 +179,37 @@ public class SystemManagerTest {
     }
 
     @Test
+    void testBuildFlightMap() throws NameValidationException, NonUniqueItemException,
+            NotFoundException, FlightInvalidException {
+        Airline airline = sm.createAirline("king");
+        Airline airline1 = sm.createAirline("queen");
+        /* create two flight from lhr to sfo on the same day */
+        Flight flight = sm.createFlight(airline, lhr, sfo, new Date());
+        Flight flight1 = sm.createFlight(airline, lhr, sfo, new Date());
+
+        /* build a key to query */
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        String key = flight.source.name + flight.dest.name + df.format(flight.date);
+
+        /* assert both flights added to the flightMap hashmap at the right key location */
+        assertEquals(sm.flightMap.get(key).size(), 2);
+
+        /* add another Flight from lhr to sfo but this time with a different Airline */
+        Flight flight2 = sm.createFlight(airline1, lhr, sfo, new Date());
+
+        /* assert that as the fligthMap is static all flights from both airlines are present */
+        assertEquals(sm.flightMap.get(key).size(), 3);
+        LinkedList<Flight> flights = sm.flightMap.get(key);
+
+        /* assert that the linked list contains pointers to the Flight object */
+        assert flights.get(0) == flight;
+        assert flights.get(1) == flight1;
+        assert flights.get(2) == flight2;
+    }
+
+
+
+    @Test
     void testBookSeat() throws NotFoundException, SeatBookedException {
         for (Seat seat : first.seats){System.out.println(seat.id);}
         Seat seat = first3.getSeatById("A1");
@@ -237,9 +268,11 @@ public class SystemManagerTest {
         assertEquals("No flights from LHR to JFK found on " + df.format(newDate), exception1.getMessage());
         assertEquals(exception1.getClass().toString(), "class com.oop.abs.NotFoundException");
     }
+
     /** this flight exists but the seats are fully booked - raise a notFoundException **/
     @Test
-    void testNotFoundExceptionThrownFullyBookedFlights() throws NameValidationException, NonUniqueItemException, NotFoundException, FlightInvalidException, FlightSectionValidationException, SeatBookedException {
+    void testNotFoundExceptionThrownFullyBookedFlights() throws NameValidationException, NonUniqueItemException,
+            NotFoundException, FlightInvalidException, FlightSectionValidationException, SeatBookedException {
 
         Airline dky = sm.createAirline("DKY");
         Airport prs = sm.createAirport("PRS");

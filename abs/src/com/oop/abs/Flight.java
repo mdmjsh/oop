@@ -22,7 +22,7 @@ public class Flight {
     public Airport source;
     public Airport dest;
     public Date date;
-    public LinkedList<Seat> seats = new LinkedList<>();
+//    public LinkedList<Seat> seats = new LinkedList<>();
 
     /** Associate a flight to an airline or raise an exception **
      *
@@ -52,18 +52,21 @@ public class Flight {
             /* n.b. should dates be validated that they are not in the past? business decision. I think no. */
             this.date = date;
 
-            /* after we've validated all flight info, add the flight to the airline's flights variable **/
+            /* after we've validated all flight info, add the flight to the airline's flights attribute -
+            binary relationship**/
             this.airline.flights.add(this);
-            Airline.buildFlightMap(this);
     }
-    /** convert both names to lowercase and check the source and destination are distinct ***
+
+    /**
+     * convert both names to lowercase and check the source and destination are distinct ***
      *
      * @param: source - An Airport instance
      * @param: dest - An Airport instance
+     * @returns - Boolean (truthy)
      */
     private static boolean validFlight(Airport source, Airport dest){
         /* n.b - here we are interested in comparing the string of the name, not the objects themselves */
-        return !source.name.toLowerCase().equals(dest.name.toLowerCase());
+        return !source.equals(dest);
     }
 
 
@@ -73,30 +76,25 @@ public class Flight {
      *
      * @param: flightSection - a FlightSection instance
      */
-    public void addFlightSection(FlightSection flightSection) throws NonUniqueItemException{
+    public void addFlightSection(FlightSection flightSection) throws NonUniqueItemException, NotFoundException {
 
         if (existingFlightSection(flightSection)){
             throw new NonUniqueItemException("Flight already contains a flight section with seat class " +
                     flightSection.seatClass);
         }
+
+         /* create binary association between flightSection and Flight */
+        flightSection.flight = this;
+        flightSection.generateSeats();
         this.flightSections.add(flightSection);
-
-        /*
-          also associate the Flight instance with the flight attribute of the flightSections item added
-
-          i.e the Flight knows about its FlightSections, and the FlightSection knows about its parent Flight instance.
-          */
-        this.flightSections.getLast().flight = this;
-        generateSeats(flightSection);
     }
-
 
     /**
      * iterate the flight sections linked list
      * and check that the seatClass of the input flightSection hasn't already been added
      *
      * @param: flightSection - FlightSection instance
-     * @return: int, index of next place in the array to be added or -1
+     * @returns: boolean
      *
      * **/
 
@@ -120,39 +118,40 @@ public class Flight {
      *
      * Until fill all of the required seats in the FlightSection.
      *
-     * @param flightSection
+     * @param flightSection - FlightSection instance
      */
-    private void generateSeats(FlightSection flightSection){
-
-        /* n.b could this be moved into flightSection for better encapsulation? */
-            int size = flightSection.rows * flightSection.columns;
-            int column =1;
-            int row;
-
-            try {
-            /*  get the last seat added in the flight so we can continue from
-                where the previous FlightSection left off */
-                row = this.seats.getLast().row +1;
-        } catch (java.util.NoSuchElementException e) {
-                /* if we've not yet added any seats start from row 1 */
-                row = 1;
-            }
-            for (int i=1; i<=size; i++){
-                /* add the Seat object at the given row, column coordinates and move to the next column */
-
-//                System.out.println("iteration " +i + " seat: " + seat.id);
-                this.seats.add(new Seat(column, row, flightSection.seatClass));
-                column ++;
-                /* check if we've added the required number Seats for this row,
-                    and if so move to the next row and reset the column back to 1 */
-                if(column > flightSection.columns){
-                    row ++;
-                    column =1;
-                }
-            }
-            /* Flight section also has awareness of its seats */
-            flightSection.seats = this.seats;
-    }
+//    private void generateSeats(FlightSection flightSection){
+//
+//        /* n.b could this be moved into flightSection for better encapsulation? */
+//            int size = flightSection.rows * flightSection.columns;
+//            int column =1;
+//            int row;
+//
+//            try {
+//            /*  get the last seat added in the flight so we can continue allocating seats
+//                from where the previous FlightSection left off */
+//                row = this.seats.getLast().row +1;
+//        } catch (java.util.NoSuchElementException e) {
+//                /* if we've not yet added any seats start from row 1 */
+//                row = 1;
+//            }
+//            for (int i=1; i<=size; i++){
+//                /* add the Seat object at the given row, column coordinates and move to the next column */
+//
+//                System.out.println("adding seat at row: " + row + " column: " + column);
+//                this.seats.add(new Seat(column, row, flightSection.seatClass));
+//                System.out.println("Created Seat: " + this. seats.getLast().id);
+//                column ++;
+//                /* check if we've added the required number Seats for this row,
+//                    and if so move to the next row and reset the column back to 1 */
+//                if(column > flightSection.columns){
+//                    row ++;
+//                    column =1;
+//                }
+//            }
+//            /* Flight section also has awareness of its seats - binary association */
+//            flightSection.seats = this.seats;
+//    }
 
     /**
      * returns true if any FlightSection on the flight has available seats, otherwise false.

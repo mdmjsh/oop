@@ -4,6 +4,7 @@ import java.lang.reflect.Field;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.LinkedList;
 
 public class SystemManager {
@@ -16,6 +17,7 @@ public class SystemManager {
     public  LinkedList<Airport> airports = new LinkedList<>();
     public LinkedList<Airline> airlines = new LinkedList<>();
     public LinkedList<Flight> flights = new LinkedList<>();
+    public static HashMap<String, LinkedList<Flight>> flightMap = new HashMap<>();
 //    public static HashMap<String, String> ABSMap = new HashMap<>();
 
 
@@ -52,7 +54,7 @@ public class SystemManager {
      **/
     public FlightSection createFlightSection(int rows, int columns,
                                              FlightSection.SeatClass seatClass, Flight flight)
-            throws FlightSectionValidationException, NonUniqueItemException {
+            throws FlightSectionValidationException, NonUniqueItemException, NotFoundException {
         FlightSection flightSection = new FlightSection(rows, columns, seatClass);
         flight.addFlightSection(flightSection);
         return flightSection;
@@ -71,13 +73,14 @@ public class SystemManager {
             throws NotFoundException, FlightInvalidException {
         Flight flight = new Flight(airline, source, dest, date);
         this.flights.add(flight);
+        buildFlightMap(flight);
         return flight;
     }
 
 
 
     /**
-     * Query the Airline.flightMap HashMap of available flights.
+     * Query the static flightMap HashMap of available flights.
      * If flights are found check their availability using flight.hasAvailableSeats
      *
      * @param source - string source Airport name
@@ -90,7 +93,7 @@ public class SystemManager {
         String key = buildFlightMapKey(source, dest, date);
         DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 
-        LinkedList<Flight> flights = Airline.flightMap.get(key);
+        LinkedList<Flight> flights = flightMap.get(key);
         LinkedList<Flight> availableFlights = new LinkedList<>();
 
         if (flights == null) {
@@ -133,10 +136,35 @@ public class SystemManager {
         return seat;
     }
 
-    private static String buildFlightMapKey(String source, String dest, Date date) {
+    /***
+     * Used to build a HashMap `flightMap` of all of the Flights in the system.
+     * flightMap has structured: `source~dest~data`: linkedlist of flights with available seats.
+     * This HashMap is then queried by the SystemManager's findAvailableFlights() method.
+     *
+     * @param flight - A Flight instance
+     */
+    static void buildFlightMap(Flight flight){
+        String key = buildFlightMapKey(flight.source.name, flight.dest.name, flight.date);
+
+        /* Perform a look up of the key in the static flightMap */
+        LinkedList<Flight> flights = flightMap.get(key);
+        if (flights == null){
+            /* if the key is not found create a new linkedList */
+            flights = new LinkedList<>();
+        }
+        /* n.b. we don't care if the key is found in the hash map or not,
+        either way we'll add the flight to the tail of the linkedList */
+        flights.add(flight);
+        /* add the linkedList to the flightMap at the corresponding key */
+        flightMap.put(key, flights);
+    }
+
+    private static String buildFlightMapKey(String source, String dest, Date date){
         DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
         return source + dest + df.format(date);
     }
+
+
 
     /**
      * generic method to take any object and print it's variables
@@ -161,9 +189,9 @@ public class SystemManager {
 //            if (checkABSClass(field.getGenericType().toString()) !=null){
 ////                reflexivePrint(field);
 //                }
-            }
-            System.out.println("\n");
         }
+        System.out.println("\n");
+    }
 
 
     /**
@@ -174,6 +202,7 @@ public class SystemManager {
     public void displaySystemDetails() throws IllegalAccessException {
         this.reflexivePrint(this);
         for(Airport airport : this.airports){this.reflexivePrint(airport);}
+        for(Airline airline : this.airlines){this.reflexivePrint(airline);}
         for(Flight flight : this.flights) {
             this.reflexivePrint(flight);
             this.reflexivePrint(flight.airline);

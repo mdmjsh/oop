@@ -89,22 +89,55 @@ class FlightSectionTest {
         /* assert that A1 and the bookedSeat are pointers to the same object */
         assertEquals(bookedSeat, A1);
     }
+//
+//    @Test
+//    void testGetSeatByID() throws NonUniqueItemException, FlightSectionValidationException, NotFoundException,
+//            FlightInvalidException, SeatBookedException, NameValidationException {
+//        FlightSection first = new FlightSection(1, 2, FlightSection.SeatClass.FIRST);
+//        FlightSection business = new FlightSection(1, 2, FlightSection.SeatClass.BUSINESS);
+//        Flight flight = new Flight(airline, new Airport("LHR"), new Airport("GBK"), new Date());
+//        flight.addFlightSection(first);
+//        flight.addFlightSection(business);
+//
+//        Seat A1 = first.getSeatById("A1");
+//        /* assert that the correct ID has been matched */
+//        assertEquals(A1.id, "A1");
+//        /* assert that the seat returned is the actual seat object in the flight */
+//        assertEquals(A1, flight.seats.getFirst());
+//        }
 
     @Test
-    void testGetSeatByID() throws NonUniqueItemException, FlightSectionValidationException, NotFoundException,
-            FlightInvalidException, SeatBookedException, NameValidationException {
-        FlightSection first = new FlightSection(1, 2, FlightSection.SeatClass.FIRST);
-        FlightSection business = new FlightSection(1, 2, FlightSection.SeatClass.BUSINESS);
-        Flight flight = new Flight(airline, new Airport("LHR"), new Airport("GBK"), new Date());
+    void testGenerateSeats() throws FlightSectionValidationException, NonUniqueItemException,
+            NotFoundException, FlightInvalidException, NameValidationException {
+        /* test that generating seats from a FlightSection instance
+          generates an array of correctly proportioned seats */
+
+        /* generate a flight section with 5 * 5 dimensions starting from seat A1 and ending at seat E25 */
+        int rows = 5;
+        int columns = 5;
+        Flight flight = new Flight(airline, new Airport("LGW"), new Airport("MMR"), new Date());
+        FlightSection first = new FlightSection(5, 5, FlightSection.SeatClass.FIRST);
         flight.addFlightSection(first);
+
+        assertEquals(first.seats.getFirst().id, "A1");
+        assertEquals(first.seats.getLast().id, "E5");
+        /* assert that the correct number of Seats have been generated and added to the seats LinkedList */
+        assertEquals(first.seats.size(), rows * columns);
+        /* assert that the flight and the flightSection 'seats' ll is the same object in the heap */
+        assertEquals(first.seats, first.seats);
+
+        /* generate another seat section and ensure that the seat numbering is continuous
+         * n.b. the last seat added in the first class section is E5 therefore the first seat added will be F1.
+         * */
+        rows = 10;
+        columns = 10;
+        FlightSection business = new FlightSection(rows, columns, FlightSection.SeatClass.BUSINESS);
         flight.addFlightSection(business);
 
-        Seat A1 = first.getSeatById("A1");
-        /* assert that the correct ID has been matched */
-        assertEquals(A1.id, "A1");
-        /* assert that the seat returned is the actual seat object in the flight */
-        assertEquals(A1, flight.seats.getFirst());
+        assertEquals(business.seats.getLast().id, "J15");
     }
+
+
 
     /* Exceptions */
 
