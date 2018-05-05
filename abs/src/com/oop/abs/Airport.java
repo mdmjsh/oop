@@ -65,4 +65,10 @@ public class Airport {
         }
         return true;
     }
+
+     static void printAttributes(){
+        /* here we would actually print all of the attribute values of the class */
+        System.out.println("hello bob!");
+
+    }
 }

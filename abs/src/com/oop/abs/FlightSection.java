@@ -101,7 +101,6 @@ public class FlightSection {
      */
     public void generateSeats() throws NotFoundException {
 
-        /* n.b could this be moved into flightSection for better encapsulation? */
         int size = this.rows * this.columns;
         int column = 1;
         int row;
@@ -122,16 +121,16 @@ public class FlightSection {
         for (int i = 1; i <= size; i++) {
             /* add the Seat object at the given row, column coordinates and move to the next column */
 
-//            System.out.println("adding seat at row: " + row + " column: " + column);
+            System.out.println("adding seat at row: " + row + " column: " + column);
             this.seats.add(new Seat(column, row, this.seatClass));
 //            System.out.println("Created Seat: " + this.seats.getLast().id);
-            column++;
                 /* check if we've added the required number Seats for this row,
                     and if so move to the next row and reset the column back to 1 */
-            if (column > this.columns) {
+            if (column == this.columns) {
                 row++;
                 column = 1;
             }
+            else {column++;}
         }
     }
 }

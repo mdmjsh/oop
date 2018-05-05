@@ -16,13 +16,10 @@ import java.util.UUID;
 public class Flight {
     public UUID id;
     public Airline airline;
-    /* n.b. discussion_point - could have used FlightSection.SeatClass.values().length to make an array of length of
-    flight sectionEnums **/
     public LinkedList <FlightSection> flightSections = new LinkedList<>();
     public Airport source;
     public Airport dest;
     public Date date;
-//    public LinkedList<Seat> seats = new LinkedList<>();
 
     /** Associate a flight to an airline or raise an exception **
      *
@@ -111,15 +108,29 @@ public class Flight {
     }
 
     /**
-     * Calculate the size of the size of the flight section and then iteratively add Seat objects to this.seats ll.
-     *
-     * If the number of iterations == the size of this.column, we've added all required seats in the current row and
-     * need to move to the next row by incrementing the row number.
-     *
-     * Until fill all of the required seats in the FlightSection.
-     *
-     * @param flightSection - FlightSection instance
+     * returns true if any FlightSection on the flight has available seats, otherwise false.
+     * @return boolean
      */
+    public boolean hasAvailableSeats(){
+        for (FlightSection flightSection : this.flightSections){
+            if (flightSection.hasAvailableSeats()){
+                return true;
+            }
+        }
+        return false;
+    }
+}
+
+/**
+ * Calculate the size of the size of the flight section and then iteratively add Seat objects to this.seats ll.
+ *
+ * If the number of iterations == the size of this.column, we've added all required seats in the current row and
+ * need to move to the next row by incrementing the row number.
+ *
+ * Until fill all of the required seats in the FlightSection.
+ *
+ * @param flightSection - FlightSection instance
+ */
 //    private void generateSeats(FlightSection flightSection){
 //
 //        /* n.b could this be moved into flightSection for better encapsulation? */
@@ -152,17 +163,3 @@ public class Flight {
 //            /* Flight section also has awareness of its seats - binary association */
 //            flightSection.seats = this.seats;
 //    }
-
-    /**
-     * returns true if any FlightSection on the flight has available seats, otherwise false.
-     * @return boolean
-     */
-    public boolean hasAvailableSeats(){
-        for (FlightSection flightSection : this.flightSections){
-            if (flightSection.hasAvailableSeats()){
-                return true;
-            }
-        }
-        return false;
-    }
-}

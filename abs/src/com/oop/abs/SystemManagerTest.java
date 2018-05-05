@@ -192,14 +192,18 @@ public class SystemManagerTest {
         String key = flight.source.name + flight.dest.name + df.format(flight.date);
 
         /* assert both flights added to the flightMap hashmap at the right key location */
-        assertEquals(sm.flightMap.get(key).size(), 2);
+        System.out.println(key);
+        System.out.println(sm.flightMap.get(key));
+        assertEquals(sm.flightMap.get(key).size(), 4);
 
         /* add another Flight from lhr to sfo but this time with a different Airline */
         Flight flight2 = sm.createFlight(airline1, lhr, sfo, new Date());
 
         /* assert that as the fligthMap is static all flights from both airlines are present */
-        assertEquals(sm.flightMap.get(key).size(), 3);
+        assertEquals(sm.flightMap.get(key).size(), 5);
         LinkedList<Flight> flights = sm.flightMap.get(key);
+        System.out.println(sm.flightMap.get(key));
+        assertEquals(sm.flightMap.get(key).size(), 5);
 
         /* assert that the linked list contains pointers to the Flight object */
         assert flights.get(0) == flight;

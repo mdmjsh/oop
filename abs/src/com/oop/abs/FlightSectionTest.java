@@ -115,6 +115,8 @@ class FlightSectionTest {
         /* generate a flight section with 5 * 5 dimensions starting from seat A1 and ending at seat E25 */
         int rows = 5;
         int columns = 5;
+        System.out.println("FIRST CLASS:");
+
         Flight flight = new Flight(airline, new Airport("LGW"), new Airport("MMR"), new Date());
         FlightSection first = new FlightSection(5, 5, FlightSection.SeatClass.FIRST);
         flight.addFlightSection(first);
@@ -129,12 +131,18 @@ class FlightSectionTest {
         /* generate another seat section and ensure that the seat numbering is continuous
          * n.b. the last seat added in the first class section is E5 therefore the first seat added will be F1.
          * */
-        rows = 10;
-        columns = 10;
+        System.out.println("BUSINESS CLASS:");
         FlightSection business = new FlightSection(rows, columns, FlightSection.SeatClass.BUSINESS);
         flight.addFlightSection(business);
 
-        assertEquals(business.seats.getLast().id, "J15");
+        assertEquals(business.seats.getLast().id, "E10");
+
+
+        System.out.println("FIRST CLASS:");
+        FlightSection eco = new FlightSection(rows, columns, FlightSection.SeatClass.ECONOMY);
+        flight.addFlightSection(eco);
+        assertEquals(eco.seats.getLast().id, "E15");
+
     }
 
 

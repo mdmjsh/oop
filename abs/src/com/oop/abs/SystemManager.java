@@ -14,11 +14,11 @@ public class SystemManager {
      * When it is created, the SystemManager has no airport or airline objects linked to it.
      **/
 
-    public  LinkedList<Airport> airports = new LinkedList<>();
+    public LinkedList<Airport> airports = new LinkedList<>();
     public LinkedList<Airline> airlines = new LinkedList<>();
     public LinkedList<Flight> flights = new LinkedList<>();
     public static HashMap<String, LinkedList<Flight>> flightMap = new HashMap<>();
-//    public static HashMap<String, String> ABSMap = new HashMap<>();
+    public static HashMap<String, String> ABSMap = new HashMap<>();
 
 
     /**
@@ -55,6 +55,7 @@ public class SystemManager {
     public FlightSection createFlightSection(int rows, int columns,
                                              FlightSection.SeatClass seatClass, Flight flight)
             throws FlightSectionValidationException, NonUniqueItemException, NotFoundException {
+
         FlightSection flightSection = new FlightSection(rows, columns, seatClass);
         flight.addFlightSection(flightSection);
         return flightSection;
@@ -186,8 +187,9 @@ public class SystemManager {
             System.out.println(object.getClass().getPackage());
 //
 //            String field_class = checkABSClass(field.getGenericType().toString());
-//            if (checkABSClass(field.getGenericType().toString()) !=null){
-////                reflexivePrint(field);
+//            System.out.println(field);
+//            if (object.getClass().getPackage().toString().equals("package com.oop.abs")){
+//                reflexivePrint(field);
 //                }
         }
         System.out.println("\n");
@@ -200,64 +202,37 @@ public class SystemManager {
      * @throws IllegalAccessException - thrown if field.get(object)) fails in the above method
      */
     public void displaySystemDetails() throws IllegalAccessException {
-        this.reflexivePrint(this);
-        for(Airport airport : this.airports){this.reflexivePrint(airport);}
-        for(Airline airline : this.airlines){this.reflexivePrint(airline);}
+        reflexivePrint(this);
+        for(Airport airport : this.airports){reflexivePrint(airport);}
+        for(Airline airline : this.airlines){reflexivePrint(airline);}
         for(Flight flight : this.flights) {
-            this.reflexivePrint(flight);
-            this.reflexivePrint(flight.airline);
-            this.reflexivePrint(flight.source);
-            this.reflexivePrint(flight.dest);
+            reflexivePrint(flight);
+            reflexivePrint(flight.airline);
+            reflexivePrint(flight.source);
+            reflexivePrint(flight.dest);
             for (FlightSection flightSection : flight.flightSections) {
-                this.reflexivePrint(flightSection);
+                reflexivePrint(flightSection);
                 for (Seat seat : flightSection.seats){
-                    this.reflexivePrint(seat);
+                    reflexivePrint(seat);
                 }
             }
-
         }
     }
 
-//    /** used to assert if a field is from the ABS package or outside - i.e. field.getGenericType()
-//     * String field - string representation of the field type
-//     * **/
-//    private String checkABSClass(String field ){
+    public <E extends Airport> void displaySystemDetailsPolymorphic(E object){ E.printAttributes();}
+
+    /** used to assert if a field is from the ABS package or outside - i.e. field.getGenericType()
+     * String field - string representation of the field type
+     * **/
+    private String checkABSClass(String field ){
 //        ABSMap.put("class com.oop.abs.Airport", "Airport");
 //        ABSMap.put("class com.oop.abs.Airline", "Airline");
 //        ABSMap.put("class com.oop.abs.Flight", "Flight");
 //        ABSMap.put("class com.oop.abs.FlightSection", "FlightSection");
 //        ABSMap.put("class com.oop.abs.Seat", "Seat");
 //        ABSMap.put("class com.oop.abs.SeatClass", "SeatClass");
-//        ABSMap.put("java.util.LinkedList<com.oop.abs.Seat>", "Seat");
-//        return ABSMap.get(field);
-//    }
-
-
-    /*
-     * generic method to take any object and print it's variables
-     * n.b. this method uses type B polymorhpism to print all object attributes, such that:
-     *
-     *  protected static <E> void displaySystemDetails(E object) throws IllegalAccessException {
-     *       E.print();
-     *
-     * And then implement a print() method on each Object in the system which would iterate its own attributes.
-     * However, the above will not compile as Java is statically typed, the compile is unaware at compile time what is
-     * due to the dynamic binding of the Generic type. It is impossible for the compiler to know if E will have a print()
-     * method at runtime.
-     *
-     * A way around this would be to make the Generic extend a the class that is being called to print. Such that:
-     *
-     * protected static <E extends Airport> void displaySystemDetails(E object) throws IllegalAccessException {
-     *
-     * This would be an ideal implementation if there was an inhertance hierarchy with one common superclass. This way
-     * the given a superclass C the following syntax would enable for calling the print method on any subclass of C.
-     *
-     * protected static <E extends C> void displaySystemDetails(E object)
-     *
-     * However, as this implemention contains no such inheritance hierarchy for the reasons as discuss in section xx
-     * there would be no superclass to extend in this convient way. As a result, to implement polymorphic system printing
-     * would require a generic method for every object type in the system. This verbosity arguably defeats the purpose of
-     * using generics.
-     */
+        ABSMap.put("java.util.LinkedList<com.oop.abs.Seat>", "Seat");
+        return ABSMap.get(field);
+    }
 
 }
