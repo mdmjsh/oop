@@ -29,10 +29,14 @@ public class Plane implements Comparable<Plane> {
         }
         this.available = false;
     }
-    void makeAvailable(){
-        this.available = true;
+
+    /** toggle a plane's availability status **/
+    void toggleAvailabity(){
+        this.available = !(this.available);
     }
 
+
+    /** implemention of the comparable to enable planes to be compared by their capacity **/
     @Override
     public int compareTo(Plane other) {
         if (this.capacity < other.capacity) return -1;

@@ -19,7 +19,6 @@ public class SystemManager {
     public LinkedList<Flight> flights = new LinkedList<>();
     public LinkedList<Plane> planes = new LinkedList<>();
     public static HashMap<String, LinkedList<Flight>> flightMap = new HashMap<>();
-    public static HashMap<String, String> ABSMap = new HashMap<>();
 
 
     /**
@@ -51,8 +50,18 @@ public class SystemManager {
         return plane;
     }
 
-    public BalancedBinaryTree planeTree(LinkedList planes){
-        return new BalancedBinaryTree(planes);
+    public Plane associateFlightToPlane(Flight flight) throws NotFoundException {
+        try {
+            Plane plane = findAvailablePlane(flight.totalSeats);
+            flight.setPlane(plane); // call setter on private attribute //
+            plane.toggleAvailabity();
+            return plane;
+
+        /* this plane.toggleAvailabity() will fail with a NPE if not found hence this catch */
+        }catch (NotFoundException | NullPointerException e) {
+            throw new NotFoundException("WARNING! no available Planes found for Flight. " +
+                    "Flight is not currently associated with any Plane");
+        }
     }
 
     /**
@@ -138,6 +147,7 @@ public class SystemManager {
                 seat = flightSection.bookSeat(seatId);
                 return seat;
                 } catch (SeatBookedException e) {
+                    flight.checkWaitingList();
                     throw new SeatBookedException(seatId, flight);
                 }
                 /* if we get to here we've looped all the flightSections and didn't find the seat */
@@ -175,7 +185,6 @@ public class SystemManager {
     }
 
 
-
     /**
      * generic method to take any object and print it's variables
      * n.b. this method uses reflection to inspect the class of the generic input and iterate its values
@@ -194,12 +203,6 @@ public class SystemManager {
             System.out.println(field.getName() + ": " + field.get(object));
             System.out.println("Type: " + field.getGenericType());
             System.out.println(object.getClass().getPackage());
-//
-//            String field_class = checkABSClass(field.getGenericType().toString());
-//            System.out.println(field);
-//            if (object.getClass().getPackage().toString().equals("package com.oop.abs")){
-//                reflexivePrint(field);
-//                }
         }
         System.out.println("\n");
     }
@@ -212,7 +215,7 @@ public class SystemManager {
      */
     public void displaySystemDetails() throws IllegalAccessException {
         reflexivePrint(this);
-        reflexivePrint(planes);
+        for(Plane plane : this.planes){reflexivePrint(plane);}
         for(Airport airport : this.airports){reflexivePrint(airport);}
         for(Airline airline : this.airlines){reflexivePrint(airline);}
         for(Flight flight : this.flights) {
@@ -229,20 +232,28 @@ public class SystemManager {
         }
     }
 
-    public <E extends Airport> void displaySystemDetailsPolymorphic(E object){ E.printAttributes();}
-
-    /** used to assert if a field is from the ABS package or outside - i.e. field.getGenericType()
-     * String field - string representation of the field type
-     * **/
-    private String checkABSClass(String field ){
-//        ABSMap.put("class com.oop.abs.Airport", "Airport");
-//        ABSMap.put("class com.oop.abs.Airline", "Airline");
-//        ABSMap.put("class com.oop.abs.Flight", "Flight");
-//        ABSMap.put("class com.oop.abs.FlightSection", "FlightSection");
-//        ABSMap.put("class com.oop.abs.Seat", "Seat");
-//        ABSMap.put("class com.oop.abs.SeatClass", "SeatClass");
-        ABSMap.put("java.util.LinkedList<com.oop.abs.Seat>", "Seat");
-        return ABSMap.get(field);
+    /* Turn the planes LinkedList into a balanced binary tree for searching */
+    public BalancedBinaryTree planesBST(LinkedList planes){
+        return new BalancedBinaryTree(planes);
     }
+
+    /**
+     * Search a balanced binary tree for planes with matching the capacity.
+     * Only returns the plane is it is available
+     * @param capacity - required capacity of the Plane
+     * @return
+     */
+    public Plane findAvailablePlane(int capacity) throws NotFoundException {
+        BalancedBinaryTree planes = planesBST(this.planes);
+        try {
+             return planes.searchCapacity(planes.bst, capacity);
+        } catch (NotFoundException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    /** polymorphic print example method - not implemented in this program **/
+    public <E extends Airport> void displaySystemDetailsPolymorphic(E object){ E.printAttributes();}
 
 }

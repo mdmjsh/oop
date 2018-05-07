@@ -131,35 +131,3 @@ class FlightTest {
 
 }
 
-
-//    @Test
-//     void testGenerateSeats() throws FlightSectionValidationException, NonUniqueItemException,
-//            NotFoundException, FlightInvalidException, NameValidationException {
-//        /* test that generating seats from a FlightSection instance
-//          generates an array of correctly proportioned seats */
-//
-//        /* generate a flight section with 5*5 dimensions starting from seat A1 and ending at seat E25 */
-//        int rows = 5;
-//        int columns = 5;
-//        Flight flight = new Flight(airline, lhr, jfk, new Date());
-//        FlightSection first = new FlightSection(rows, columns, FlightSection.SeatClass.FIRST);
-//        flight.addFlightSection(first);
-//        assertEquals(flight.seats.getFirst().id, "A1");
-//        assertEquals(flight.seats.getLast().id, "E5");
-//        assertEquals(flight.seats.size(), rows * columns);
-//        /* assert that the flight and the flightSection 'seats' ll is the same object in the heap */
-//        assertEquals(flight.seats, first.seats);
-//
-//        /* generate another seat section and ensure that the seat numbering is continuous
-//        * n.b. the last seat added in the first class section is E5 therefore the first seat added will be F1.
-//        * */
-//        System.out.println("Last row added: " + flight.seats.getLast().row);
-//        rows = 10;
-//        columns = 10;
-//        FlightSection business = new FlightSection(rows, columns, FlightSection.SeatClass.BUSINESS);
-//        flight.addFlightSection(business);
-//
-//        /* F1 + 100 seats == J15 * - uncomment Flight.161 for print demonstration */
-//        assertEquals(flight.seats.getLast().id, "J15");
-//    }
-

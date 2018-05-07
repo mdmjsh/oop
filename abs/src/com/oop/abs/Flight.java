@@ -16,42 +16,52 @@ import java.util.UUID;
 public class Flight {
     public UUID id;
     public Airline airline;
-    public LinkedList <FlightSection> flightSections = new LinkedList<>();
+    public LinkedList<FlightSection> flightSections = new LinkedList<>();
     public Airport source;
     public Airport dest;
     public Date date;
+    public int totalSeats;
+    private int waitingList = 0;
+    private Plane plane;
 
-    /** Associate a flight to an airline or raise an exception **
+    /**
+     * Associate a flight to an airline or raise an exception **
      *
      * @param: airline - An Airline instance
      * @param: source - An Airport instance
      * @param: dest - An airport instance
      * @param: date - A Java.util.Date instance
-     *
-     * */
-        Flight(Airline airline, Airport source, Airport dest, Date date) throws NotFoundException,
-                FlightInvalidException{
+     */
+    Flight(Airline airline, Airport source, Airport dest, Date date) throws NotFoundException, FlightInvalidException {
 
-            /* n.b handles edge case where client doesn't know that the airline object has been deleted...*/
-            if (Airline.find(airline.name) == null){
-                throw new NotFoundException("Airline", airline.name);
-            }
-            this.airline = airline;
+        /* n.b handles edge case where client doesn't know that the airline object has been deleted...*/
+        if (Airline.find(airline.name) == null) {
+            throw new NotFoundException("Airline", airline.name);
+        }
+        this.airline = airline;
 
-            /* possible refactor - this is not 100% guaranteed for uniqueness */
-            this.id = UUID.randomUUID();
+        /* possible refactor - this is not 100% guaranteed for uniqueness */
+        this.id = UUID.randomUUID();
 
-            if (!validFlight(source, dest)){
-                throw new FlightInvalidException("Source and Destination of flight cannot be the same");
-            }
-            this.source = source;
-            this.dest = dest;
-            /* n.b. should dates be validated that they are not in the past? business decision. I think no. */
-            this.date = date;
+        if (!validFlight(source, dest)) {
+            throw new FlightInvalidException("Source and Destination of flight cannot be the same");
+        }
+        this.source = source;
+        this.dest = dest;
+        /* n.b. should dates be validated that they are not in the past? business decision. I think no. */
+        this.date = date;
 
             /* after we've validated all flight info, add the flight to the airline's flights attribute -
             binary relationship**/
-            this.airline.flights.add(this);
+        this.airline.flights.add(this);
+    }
+
+    public void setPlane(Plane plane){
+        this.plane = plane;
+    }
+
+    public Plane getPlane(){
+        return this.plane;
     }
 
     /**
@@ -61,7 +71,7 @@ public class Flight {
      * @param: dest - An Airport instance
      * @returns - Boolean (truthy)
      */
-    private static boolean validFlight(Airport source, Airport dest){
+    private static boolean validFlight(Airport source, Airport dest) {
         /* n.b - here we are interested in comparing the string of the name, not the objects themselves */
         return !source.equals(dest);
     }
@@ -75,15 +85,15 @@ public class Flight {
      */
     public void addFlightSection(FlightSection flightSection) throws NonUniqueItemException, NotFoundException {
 
-        if (existingFlightSection(flightSection)){
-            throw new NonUniqueItemException("Flight already contains a flight section with seat class " +
-                    flightSection.seatClass);
+        if (existingFlightSection(flightSection)) {
+            throw new NonUniqueItemException("Flight already contains a flight section with seat class " + flightSection.seatClass);
         }
 
-         /* create binary association between flightSection and Flight */
+        /* create binary association between flightSection and Flight */
         flightSection.flight = this;
         flightSection.generateSeats();
-        this.flightSections.add(flightSection);
+        flightSections.add(flightSection);
+        totalSeats += flightSection.rows * flightSection.columns;
     }
 
     /**
@@ -92,74 +102,45 @@ public class Flight {
      *
      * @param: flightSection - FlightSection instance
      * @returns: boolean
-     *
-     * **/
+     **/
 
-    private boolean existingFlightSection(FlightSection flightSection){
+    private boolean existingFlightSection(FlightSection flightSection) {
         int i = 0;
-        while (i < this.flightSections.size()) {
-            if (this.flightSections.get(i).seatClass.equals(flightSection.seatClass)) {
+        while (i < flightSections.size()) {
+            if (flightSections.get(i).seatClass.equals(flightSection.seatClass)) {
                 /* return straight away - don't finish the while loop */
                 return true;
             }
-            i ++;
+            i++;
         }
         return false;
     }
 
     /**
      * returns true if any FlightSection on the flight has available seats, otherwise false.
+     *
      * @return boolean
      */
-    public boolean hasAvailableSeats(){
-        for (FlightSection flightSection : this.flightSections){
-            if (flightSection.hasAvailableSeats()){
+    public boolean hasAvailableSeats() {
+        for (FlightSection flightSection : flightSections) {
+            if (flightSection.hasAvailableSeats()) {
                 return true;
             }
         }
         return false;
     }
+
+    /**
+     * checks if there are any seats available in the flight, if not increment the waiting list.
+     *
+     * @return waitingList - int
+     */
+    public int checkWaitingList() {
+        if (!hasAvailableSeats()) {
+            this.waitingList++;
+        }
+        return this.waitingList;
+    }
 }
 
-/**
- * Calculate the size of the size of the flight section and then iteratively add Seat objects to this.seats ll.
- *
- * If the number of iterations == the size of this.column, we've added all required seats in the current row and
- * need to move to the next row by incrementing the row number.
- *
- * Until fill all of the required seats in the FlightSection.
- *
- * @param flightSection - FlightSection instance
- */
-//    private void generateSeats(FlightSection flightSection){
-//
-//        /* n.b could this be moved into flightSection for better encapsulation? */
-//            int size = flightSection.rows * flightSection.columns;
-//            int column =1;
-//            int row;
-//
-//            try {
-//            /*  get the last seat added in the flight so we can continue allocating seats
-//                from where the previous FlightSection left off */
-//                row = this.seats.getLast().row +1;
-//        } catch (java.util.NoSuchElementException e) {
-//                /* if we've not yet added any seats start from row 1 */
-//                row = 1;
-//            }
-//            for (int i=1; i<=size; i++){
-//                /* add the Seat object at the given row, column coordinates and move to the next column */
-//
-//                System.out.println("adding seat at row: " + row + " column: " + column);
-//                this.seats.add(new Seat(column, row, flightSection.seatClass));
-//                System.out.println("Created Seat: " + this. seats.getLast().id);
-//                column ++;
-//                /* check if we've added the required number Seats for this row,
-//                    and if so move to the next row and reset the column back to 1 */
-//                if(column > flightSection.columns){
-//                    row ++;
-//                    column =1;
-//                }
-//            }
-//            /* Flight section also has awareness of its seats - binary association */
-//            flightSection.seats = this.seats;
-//    }
+

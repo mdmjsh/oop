@@ -145,8 +145,6 @@ class FlightSectionTest {
 
     }
 
-
-
     /* Exceptions */
 
     @Test
@@ -189,7 +187,7 @@ class FlightSectionTest {
             new FlightSection(0, 11, FlightSection.SeatClass.FIRST);
         });
         assertEquals("Flight section must have at least one seat, and at most 100 rows and 10 columns",
-                exception.getMessage());
+                exception2.getMessage());
 
         /* 0 columns **/
         Throwable exception3 = assertThrows(FlightSectionValidationException.class, () -> {
@@ -197,7 +195,7 @@ class FlightSectionTest {
         });
         assertEquals("Flight section must have at least one seat, and at most 100 rows and 10 columns",
                 exception.getMessage());
-        assertEquals(exception.getClass().toString(), "class com.oop.abs.FlightSectionValidationException");
+        assertEquals(exception3.getClass().toString(), "class com.oop.abs.FlightSectionValidationException");
 
     }
 

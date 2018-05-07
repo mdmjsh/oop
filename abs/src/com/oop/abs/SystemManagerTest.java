@@ -211,8 +211,6 @@ public class SystemManagerTest {
         assert flights.get(2) == flight2;
     }
 
-
-
     @Test
     void testBookSeat() throws NotFoundException, SeatBookedException {
         for (Seat seat : first.seats){System.out.println(seat.id);}
@@ -224,6 +222,43 @@ public class SystemManagerTest {
         assertEquals(seat.booked, true);
     }
 
+    @Test
+    void testPlane() throws NotFoundException, CapacityValidationException {
+        Plane one = sm.createPlane("one", 1);
+        Plane two = sm.createPlane("two", 2);
+        Plane result = sm.findAvailablePlane(1);
+        assertEquals(result, one);
+        result = sm.findAvailablePlane(2);
+        assertEquals(result, two);
+    }
+
+    @Test
+    void testAssociationPlaneToFlight() throws CapacityValidationException, NotFoundException,
+            FlightInvalidException, FlightSectionValidationException, NonUniqueItemException {
+        Plane one = sm.createPlane("one", 1);
+        Plane two = sm.createPlane("two", 2);
+        flight = sm.createFlight(airline1, lhr, sfo, date);
+
+        /* create a flight with 2 seats and associate it to the Plane with two seats */
+        sm.createFlightSection(1,2, FlightSection.SeatClass.BUSINESS, flight);
+        sm.associateFlightToPlane(flight);
+
+        /* assert that the correct Plane was chosen based on its capacity */
+        assertEquals(flight.getPlane(), two);
+
+        /* assert the Plane two is no longer available */
+        assertEquals(two.available, false);
+
+        flight1 = sm.createFlight(airline1, lhr, sfo, date);
+        sm.createFlightSection(1,2, FlightSection.SeatClass.BUSINESS, flight1);
+
+        /* assert Exception raised if trying to book on a Plane of capcity 2 again */
+        Throwable exception = assertThrows(NotFoundException.class, () -> {
+            sm.associateFlightToPlane(flight1);
+        });
+        assertEquals("WARNING! no available Planes found for Flight. Flight is not currently" +
+                " associated with any Plane", exception.getMessage());
+    }
 
     /* Exceptions */
 
@@ -294,7 +329,6 @@ public class SystemManagerTest {
                 exception2.getMessage());
         assertEquals(exception2.getClass().toString(), "class com.oop.abs.NotFoundException");
     }
-
 
     /** helper method to create additional test data **/
     void createData(SystemManager sysManager, String airlineName, String airlineName1,

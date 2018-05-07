@@ -9,24 +9,26 @@ public class ABSClient {
         SystemManager sm = new SystemManager();
 
         /* Planes */
-        sm.createPlane("two", 5);
-        sm.createPlane("one", 7);
-        sm.createPlane("three", 9);
-        sm.createPlane("three", 10);
-        sm.createPlane("three", 12);
+        sm.createPlane("one", 1);
+        sm.createPlane("two", 2);
+        sm.createPlane("three", 3);
+        sm.createPlane("four", 4);
+        sm.createPlane("five", 5);
+        sm.createPlane("six", 6);
+        sm.createPlane("seven", 7);
 //        sm.displaySystemDetails();
-        BalancedBinaryTree tree = new BalancedBinaryTree(sm.planes);
 
 
 
         /* Airports */
-
+//
 //        sm.createAirport("DEN");
 //        sm.createAirport("DFW");
 //        sm.createAirport("LON");
 //        sm.createAirport("JPN");
 //        sm.createAirport("DEH");
 //        sm.createAirport("NCE");
+
 //
 ////        sm.displaySystemDetails();
 //
