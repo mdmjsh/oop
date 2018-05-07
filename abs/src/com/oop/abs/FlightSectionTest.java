@@ -90,21 +90,23 @@ class FlightSectionTest {
         assertEquals(bookedSeat, A1);
     }
 //
-//    @Test
-//    void testGetSeatByID() throws NonUniqueItemException, FlightSectionValidationException, NotFoundException,
-//            FlightInvalidException, SeatBookedException, NameValidationException {
-//        FlightSection first = new FlightSection(1, 2, FlightSection.SeatClass.FIRST);
-//        FlightSection business = new FlightSection(1, 2, FlightSection.SeatClass.BUSINESS);
-//        Flight flight = new Flight(airline, new Airport("LHR"), new Airport("GBK"), new Date());
-//        flight.addFlightSection(first);
-//        flight.addFlightSection(business);
-//
-//        Seat A1 = first.getSeatById("A1");
-//        /* assert that the correct ID has been matched */
-//        assertEquals(A1.id, "A1");
-//        /* assert that the seat returned is the actual seat object in the flight */
-//        assertEquals(A1, flight.seats.getFirst());
-//        }
+    @Test
+    void testGetSeatByID() throws NonUniqueItemException, FlightSectionValidationException, NotFoundException,
+            FlightInvalidException, SeatBookedException, NameValidationException {
+        FlightSection first = new FlightSection(1, 2, FlightSection.SeatClass.FIRST);
+        FlightSection business = new FlightSection(1, 2, FlightSection.SeatClass.BUSINESS);
+        Flight flight = new Flight(airline, new Airport("LHR"), new Airport("GBK"), new Date());
+        flight.addFlightSection(first);
+        flight.addFlightSection(business);
+
+        Seat A1 = first.getSeatById("A1");
+
+        /* assert that the correct ID has been matched */
+        assertEquals(A1.id, "A1");
+
+        /* assert that the seat returned is the actual seat object in the flight */
+        assertEquals(A1, flight.flightSections.getFirst().seats.getFirst());
+        }
 
     @Test
     void testGenerateSeats() throws FlightSectionValidationException, NonUniqueItemException,

@@ -105,7 +105,7 @@ public class BalancedBinaryTree {
     public Plane searchCapacity(Node root, int capacity) throws NotFoundException {
         Node result = find(root, capacity);
         if (result == null){
-            throw new NotFoundException("No Plane with capacity: " + capacity + " found");
+            return null;
         }
         return result.data;
     }
@@ -121,9 +121,9 @@ public class BalancedBinaryTree {
         if(root.left != null) {
             result = find(root.left, capacity);
         }
-        if(root.data.capacity == capacity)
+        if(root.data.capacity >= capacity)
             return root;
-        if(result ==null && root.right != null)
+        if(result == null && root.right != null)
             result = find(root.right, capacity);
         if (result != null && result.data.available) {
             return result;

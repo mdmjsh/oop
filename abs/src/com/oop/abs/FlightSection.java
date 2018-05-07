@@ -75,6 +75,9 @@ public class FlightSection {
     }
 
     /**
+     * find a seat by matching Seat id
+     * @param - id - string
+     * @returns - seat - a Seat instance
      **/
     public Seat getSeatById(String id) {
         /* return a seat by the id or throw NotFoundException */

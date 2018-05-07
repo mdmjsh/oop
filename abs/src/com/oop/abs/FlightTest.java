@@ -87,6 +87,7 @@ class FlightTest {
         assertEquals(business.seats.getLast().booked, true);
     }
 
+
     /* EXCEPTIONS */
     @Test
     void testNotFoundExceptionThrown() throws NotFoundException, FlightInvalidException {

@@ -19,7 +19,7 @@ public class SystemManager {
     public LinkedList<Flight> flights = new LinkedList<>();
     public LinkedList<Plane> planes = new LinkedList<>();
     public static HashMap<String, LinkedList<Flight>> flightMap = new HashMap<>();
-
+    public static LinkedList<Plane> overbookedFlights = new LinkedList<>();
 
     /**
      * create a new Airport instance
@@ -44,25 +44,20 @@ public class SystemManager {
         return airline;
     }
 
+    /**
+     * create a new Plane instance
+     * @param name - string
+     * @param capacity - int
+     * @return
+     * @throws CapacityValidationException
+     */
+
     public Plane createPlane(String name, int capacity) throws CapacityValidationException {
         Plane plane = new Plane(name, capacity);
         this.planes.add(plane);
         return plane;
     }
 
-    public Plane associateFlightToPlane(Flight flight) throws NotFoundException {
-        try {
-            Plane plane = findAvailablePlane(flight.totalSeats);
-            flight.setPlane(plane); // call setter on private attribute //
-            plane.toggleAvailabity();
-            return plane;
-
-        /* this plane.toggleAvailabity() will fail with a NPE if not found hence this catch */
-        }catch (NotFoundException | NullPointerException e) {
-            throw new NotFoundException("WARNING! no available Planes found for Flight. " +
-                    "Flight is not currently associated with any Plane");
-        }
-    }
 
     /**
      * create a new Flight instance
@@ -147,7 +142,7 @@ public class SystemManager {
                 seat = flightSection.bookSeat(seatId);
                 return seat;
                 } catch (SeatBookedException e) {
-                    flight.checkWaitingList();
+                    flight.updateWaitingList();
                     throw new SeatBookedException(seatId, flight);
                 }
                 /* if we get to here we've looped all the flightSections and didn't find the seat */
@@ -252,6 +247,56 @@ public class SystemManager {
         }
         return null;
     }
+
+    /**
+     * Associate a Plane to a Flight if a suitable Plane is available
+     *
+     * @param flight - Flight instance
+     * @return plane - Plane instance associated to the Flight
+     * @throws NotFoundException
+     */
+    public Plane associateFlightToPlane(Flight flight) throws NotFoundException {
+        Plane plane = null;
+        try {
+            plane = findAvailablePlane(flight.totalSeats);
+            if (plane != null) {
+                flight.setPlane(plane); // call setter on private attribute //
+                plane.toggleAvailabity();
+                return plane;
+            }
+
+        } catch (NotFoundException e) {
+            /* n.b. re-raising the exception with a more urgent message */
+            throw new NotFoundException("WARNING! no available Planes found for Flight. " +
+                    "Flight is not currently associated with any Plane");
+
+        }
+        throw new NotFoundException("WARNING! no available Planes found for Flight. " +
+                "Flight is not currently associated with any Plane");
+    }
+
+
+
+    /** check all Flights in the system to make sure they are not overcapacity
+     * any Flights which are over capacity should try to be moved to another plane
+      */
+    void replaceOverbookedFlights() throws NotFoundException {
+        for (Flight flight : flights)
+            if (flight.replacementPlaneRequired()) {
+                try {
+                    Plane plane = findAvailablePlane(flight.totalSeats + flight.getWaitingList());
+                    if (plane != null){
+                        flight.getPlane().toggleAvailabity(); // make the current plane available
+                        flight.setPlane(plane);
+                        flight.setWaitingList(0);
+                        flight.getPlane().toggleAvailabity(); // set the new plane as unavailable
+                    }
+                } catch (NotFoundException e) {
+                    e.printStackTrace();
+                }
+            }
+    }
+
 
     /** polymorphic print example method - not implemented in this program **/
     public <E extends Airport> void displaySystemDetailsPolymorphic(E object){ E.printAttributes();}

@@ -247,17 +247,17 @@ public class SystemManagerTest {
         assertEquals(flight.getPlane(), two);
 
         /* assert the Plane two is no longer available */
-        assertEquals(two.available, false);
-
+//        assertEquals(two.available, false);
+//
         flight1 = sm.createFlight(airline1, lhr, sfo, date);
         sm.createFlightSection(1,2, FlightSection.SeatClass.BUSINESS, flight1);
-
-        /* assert Exception raised if trying to book on a Plane of capcity 2 again */
+//
+//        /* assert Exception raised if trying to book on a Plane of capcity 2 again */
         Throwable exception = assertThrows(NotFoundException.class, () -> {
             sm.associateFlightToPlane(flight1);
         });
-        assertEquals("WARNING! no available Planes found for Flight. Flight is not currently" +
-                " associated with any Plane", exception.getMessage());
+        assertEquals("WARNING! no available Planes found for Flight. " +
+                "Flight is not currently associated with any Plane", exception.getMessage());
     }
 
     /* Exceptions */
@@ -271,15 +271,13 @@ public class SystemManagerTest {
                     () -> { sm.bookSeat(flight3, "A1");});
             assertEquals("Seat: A1 on flight: " + flight3.id + " already booked",
                     exception.getMessage());
-            assertEquals(exception.getClass().toString(), "class com.oop.abs.SeatBookedException");
         }
         else {
             sm.bookSeat(flight3, "A1");
-            Throwable exception = assertThrows(SeatBookedException.class, () -> {
+            Throwable exception1 = assertThrows(SeatBookedException.class, () -> {
                 sm.bookSeat(flight3, "A1");
             });
-            assertEquals("Seat: A1 on flight: " + flight3.id + " already booked", exception.getMessage());
-            assertEquals(exception.getClass().toString(), "class com.oop.abs.SeatBookedException");
+            assertEquals("Seat: A1 on flight: " + flight3.id + " already booked", exception1.getMessage());
         }
     }
 
@@ -298,14 +296,12 @@ public class SystemManagerTest {
             sm.findAvailableFlights("BWT", "JFK", date);
         });
         assertEquals("No flights from BWT to JFK found on " + df.format(date), exception.getMessage());
-        assertEquals(exception.getClass().toString(), "class com.oop.abs.NotFoundException");
-//
+
         /* this flight exists but not on the given date */
         Throwable exception1 = assertThrows(NotFoundException.class, () -> {
             sm.findAvailableFlights("LHR", "JFK", newDate);
         });
         assertEquals("No flights from LHR to JFK found on " + df.format(newDate), exception1.getMessage());
-        assertEquals(exception1.getClass().toString(), "class com.oop.abs.NotFoundException");
     }
 
     /** this flight exists but the seats are fully booked - raise a notFoundException **/
@@ -327,8 +323,74 @@ public class SystemManagerTest {
         });
         assertEquals("No seats available from JFK to PRS found on " + df.format(date),
                 exception2.getMessage());
-        assertEquals(exception2.getClass().toString(), "class com.oop.abs.NotFoundException");
+
+        /* Test the waiting list whilst we're here, try to book a booked seat */
+        assertThrows(SeatBookedException.class, () -> { sm.bookSeat(flight, "A1");});
+
+        /* assert that doing so has incremented the waiting list */
+        assertEquals(flight.getWaitingList(), 1);
+
+        /* Make another request to book a seat */
+        assertThrows(SeatBookedException.class, () -> { sm.bookSeat(flight, "A1");});
+
+        /* assert the waiting list has been updated again */
+        assertEquals(flight.getWaitingList(), 2);
     }
+
+    @Test
+    void testReplaceOverbookedFlights() throws NameValidationException, NonUniqueItemException, NotFoundException,
+            FlightInvalidException, FlightSectionValidationException, SeatBookedException, CapacityValidationException {
+
+        Airline dky = sm.createAirline("DKY");
+        Airport prs = sm.createAirport("PRS");
+        Date date = new Date();
+        flight = sm.createFlight(dky, jfk, prs, new Date());
+        first = new FlightSection(1, 1, FlightSection.SeatClass.FIRST);
+        flight.addFlightSection(first);
+        sm.bookSeat(flight, "A1");
+
+        Plane one = sm.createPlane("one", 1);
+        sm.associateFlightToPlane(flight);
+
+        /* Test the waiting list whilst we're here, try to book a booked seat */
+        assertThrows(SeatBookedException.class, () -> { sm.bookSeat(flight, "A1");});
+
+        /* assert that doing so has incremented the waiting list */
+        assertEquals(flight.getWaitingList(), 1);
+
+        /* Make another request to book a seat */
+        assertThrows(SeatBookedException.class, () -> { sm.bookSeat(flight, "A1");});
+
+        /* assert the waiting list has been updated again */
+        assertEquals(flight.getWaitingList(), 2);
+
+        /* one more time... */
+        assertThrows(SeatBookedException.class, () -> { sm.bookSeat(flight, "A1");});
+        /* assert the waiting list has been updated again */
+        assertEquals(flight.getWaitingList(), 3);
+
+        /* This flight is now very oversubscribed */
+        assertEquals(flight.replacementPlaneRequired(), true);
+
+
+        /* one is not available */
+        assertEquals(one.available, false);
+
+        Plane two = sm.createPlane("two", 5);
+        sm.replaceOverbookedFlights();
+
+        /* flight will now use Plane two */
+        assertEquals(flight.getPlane().name, "two");
+
+        /* as a result Plane one is now available and two unavailable */
+        assertEquals(one.available, true);
+        assertEquals(two.available, false);
+
+        /* waiting list has been booked */
+        assertEquals(flight.getWaitingList(), 0);
+    }
+
+
 
     /** helper method to create additional test data **/
     void createData(SystemManager sysManager, String airlineName, String airlineName1,

@@ -135,12 +135,34 @@ public class Flight {
      *
      * @return waitingList - int
      */
-    public int checkWaitingList() {
+    public int updateWaitingList() {
         if (!hasAvailableSeats()) {
             this.waitingList++;
         }
         return this.waitingList;
     }
+
+    /** getter for private waiting list **/
+    public int getWaitingList(){
+        return this.waitingList;
+    }
+
+    /** getter for private waiting list **/
+    public int setWaitingList(int value){
+        return this.waitingList = value;
+    }
+
+
+    /** if the waiting list is >= 125% seating capacity of Flight see if there is a bigger Plane available
+     * returns boolean
+     * **/
+    public boolean replacementPlaneRequired(){
+        if (this.waitingList >= this.totalSeats *1.25){
+            return true;
+        }
+        return false;
+    }
+
 }
 
 
