@@ -17,6 +17,7 @@ public class SystemManager {
     public LinkedList<Airport> airports = new LinkedList<>();
     public LinkedList<Airline> airlines = new LinkedList<>();
     public LinkedList<Flight> flights = new LinkedList<>();
+    public LinkedList<Plane> planes = new LinkedList<>();
     public static HashMap<String, LinkedList<Flight>> flightMap = new HashMap<>();
     public static HashMap<String, String> ABSMap = new HashMap<>();
 
@@ -44,23 +45,15 @@ public class SystemManager {
         return airline;
     }
 
-    /**
-     * create a new FlightSection instance
-     *
-     * @param rows      - int, must abide by the validation of Flight section
-     * @param columns   - int, must abide by the validation of Flight section
-     * @param seatClass - FlightSection.SeatClass enumerator
-     * @param flight - Flight instance
-     **/
-    public FlightSection createFlightSection(int rows, int columns,
-                                             FlightSection.SeatClass seatClass, Flight flight)
-            throws FlightSectionValidationException, NonUniqueItemException, NotFoundException {
-
-        FlightSection flightSection = new FlightSection(rows, columns, seatClass);
-        flight.addFlightSection(flightSection);
-        return flightSection;
+    public Plane createPlane(String name, int capacity) throws CapacityValidationException {
+        Plane plane = new Plane(name, capacity);
+        this.planes.add(plane);
+        return plane;
     }
 
+    public BalancedBinaryTree planeTree(LinkedList planes){
+        return new BalancedBinaryTree(planes);
+    }
 
     /**
      * create a new Flight instance
@@ -78,6 +71,22 @@ public class SystemManager {
         return flight;
     }
 
+    /**
+     * create a new FlightSection instance
+     *
+     * @param rows      - int, must abide by the validation of Flight section
+     * @param columns   - int, must abide by the validation of Flight section
+     * @param seatClass - FlightSection.SeatClass enumerator
+     * @param flight - Flight instance
+     **/
+    public FlightSection createFlightSection(int rows, int columns,
+                                             FlightSection.SeatClass seatClass, Flight flight)
+            throws FlightSectionValidationException, NonUniqueItemException, NotFoundException {
+
+        FlightSection flightSection = new FlightSection(rows, columns, seatClass);
+        flight.addFlightSection(flightSection);
+        return flightSection;
+    }
 
 
     /**
@@ -203,6 +212,7 @@ public class SystemManager {
      */
     public void displaySystemDetails() throws IllegalAccessException {
         reflexivePrint(this);
+        reflexivePrint(planes);
         for(Airport airport : this.airports){reflexivePrint(airport);}
         for(Airline airline : this.airlines){reflexivePrint(airline);}
         for(Flight flight : this.flights) {
