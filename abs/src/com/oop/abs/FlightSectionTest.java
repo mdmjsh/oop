@@ -119,7 +119,7 @@ class FlightSectionTest {
         int columns = 5;
         System.out.println("FIRST CLASS:");
 
-        Flight flight = new Flight(airline, new Airport("LGW"), new Airport("MMR"), new Date());
+        Flight flight = new Flight(airline, new Airport("GBR"), new Airport("PLC"), new Date());
         FlightSection first = new FlightSection(5, 5, FlightSection.SeatClass.FIRST);
         flight.addFlightSection(first);
 

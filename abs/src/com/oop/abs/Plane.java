@@ -17,18 +17,6 @@ public class Plane implements Comparable<Plane> {
             throw new CapacityValidationException("Plane capacity must be between 1-3000 seats.");
         return capacity;
     }
-    void setFlight(Flight flight) throws CapacityValidationException {
-        int requiredSeats = 0;
-        for (FlightSection flightSetcion: flight.flightSections){
-            /* work out the size of the flight */
-            requiredSeats += flightSetcion.columns * flightSetcion.rows;
-        }
-        if (requiredSeats > capacity){
-            throw new CapacityValidationException("Cannot assign Flight to this Plane. Seats available on plane: "
-                    + capacity + "seats required by Flight: " + requiredSeats);
-        }
-        this.available = false;
-    }
 
     /** toggle a plane's availability status **/
     void toggleAvailabity(){

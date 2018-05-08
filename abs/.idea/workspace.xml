@@ -40,25 +40,33 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="SystemManager.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/oop/abs/SystemManager.java">
+      <file leaf-file-name="AirlineTest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/oop/abs/AirlineTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="561">
-              <caret line="293" column="47" lean-forward="true" selection-start-line="293" selection-start-column="47" selection-end-line="293" selection-end-column="47" />
+            <state relative-caret-position="255">
+              <caret line="55" column="23" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="81" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#8990#8991#0" expanded="true" />
-                <element signature="e#9043#9044#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BalancedBinaryTree.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/oop/abs/BalancedBinaryTree.java">
+      <file leaf-file-name="AirportTest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/oop/abs/AirportTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="411">
-              <caret line="119" column="23" lean-forward="true" selection-start-line="119" selection-start-column="23" selection-end-line="119" selection-end-column="23" />
+            <state relative-caret-position="160">
+              <caret line="23" column="12" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="65" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BinarySearchTreeTest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/oop/abs/BinarySearchTreeTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="375">
+              <caret line="25" column="35" lean-forward="true" selection-start-line="25" selection-start-column="35" selection-end-line="25" selection-end-column="35" />
               <folding />
             </state>
           </provider>
@@ -67,28 +75,19 @@
       <file leaf-file-name="SystemManagerTest.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/oop/abs/SystemManagerTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="278">
-              <caret line="349" column="34" lean-forward="true" selection-start-line="349" selection-start-column="34" selection-end-line="349" selection-end-column="34" />
+            <state relative-caret-position="393">
+              <caret line="180" column="33" lean-forward="true" selection-start-line="180" selection-start-column="33" selection-end-line="180" selection-end-column="33" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Flight.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/oop/abs/Flight.java">
+      <file leaf-file-name="FlightSectionTest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/oop/abs/FlightSectionTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="529">
-              <caret line="152" column="5" lean-forward="true" selection-start-line="152" selection-start-column="5" selection-end-line="152" selection-end-column="5" />
-              <folding>
-                <element signature="e#2087#2088#0" expanded="true" />
-                <element signature="e#2121#2122#0" expanded="true" />
-                <element signature="e#2151#2152#0" expanded="true" />
-                <element signature="e#2184#2185#0" expanded="true" />
-                <element signature="e#4828#4829#0" expanded="true" />
-                <element signature="e#4867#4868#0" expanded="true" />
-                <element signature="e#4954#4955#0" expanded="true" />
-                <element signature="e#5001#5002#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="296">
+              <caret line="94" column="27" lean-forward="false" selection-start-line="94" selection-start-column="27" selection-end-line="94" selection-end-column="27" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -96,18 +95,50 @@
       <file leaf-file-name="FlightTest.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/oop/abs/FlightTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-98">
-              <caret line="88" column="0" lean-forward="false" selection-start-line="88" selection-start-column="0" selection-end-line="88" selection-end-column="0" />
+            <state relative-caret-position="285">
+              <caret line="101" column="5" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="134" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FlightSection.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/oop/abs/FlightSection.java">
+      <file leaf-file-name="PlaneTest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/oop/abs/PlaneTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="227">
-              <caret line="61" column="27" lean-forward="false" selection-start-line="61" selection-start-column="20" selection-end-line="61" selection-end-column="27" />
+            <state relative-caret-position="431">
+              <caret line="29" column="0" lean-forward="true" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ABSClient.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/oop/abs/ABSClient.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="330">
+              <caret line="22" column="0" lean-forward="true" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SeatBookedException.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/oop/abs/SeatBookedException.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="90">
+              <caret line="6" column="1" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="6" selection-end-column="1" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SeatClassFullException.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/oop/abs/SeatClassFullException.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="120">
+              <caret line="8" column="1" lean-forward="true" selection-start-line="8" selection-start-column="1" selection-end-line="8" selection-end-column="1" />
               <folding />
             </state>
           </provider>
@@ -119,21 +150,13 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="JUnit4 Test Class" />
-        <option value="JUnit5 Test Class" />
         <option value="Class" />
+        <option value="JUnit5 Test Class" />
       </list>
     </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>validFlight</find>
-      <find>Last row added:</find>
-      <find>seat create</find>
-      <find>row:</find>
-      <find>FlightInvalidException</find>
-      <find>System.out.println</find>
-      <find>buildFlightMap</find>
-      <find>findAv</find>
       <find>createFlig</find>
       <find>size</find>
       <find>LinkedList&lt;&gt;</find>
@@ -146,16 +169,24 @@
       <find>|</find>
       <find>asso</find>
       <find>find</find>
-      <find>bookSea</find>
       <find>checkWait</find>
-      <find>hasA</find>
       <find>up</find>
       <find>plane</find>
       <find>book</find>
       <find>I did nothing useful</find>
       <find>I found a plane</find>
-      <find>Plane</find>
       <find>ass</find>
+      <find>adding seat at row</find>
+      <find>addFligh</find>
+      <find>Plane</find>
+      <find>DKY</find>
+      <find>dky</find>
+      <find>adding seat</find>
+      <find>hasA</find>
+      <find>bookSea</find>
+      <find>LGW</find>
+      <find>createFligh</find>
+      <find>assoc</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -192,28 +223,29 @@
         <option value="$PROJECT_DIR$/src/com/oop/abs/NotFoundException.java" />
         <option value="$PROJECT_DIR$/src/com/oop/abs/Seat.java" />
         <option value="$PROJECT_DIR$/src/com/oop/abs/AirportTest.java" />
-        <option value="$PROJECT_DIR$/src/com/oop/abs/AirlineTest.java" />
         <option value="$PROJECT_DIR$/src/com/oop/abs/Airline.java" />
         <option value="$PROJECT_DIR$/src/com/oop/abs/ABSValidator.java" />
         <option value="$PROJECT_DIR$/src/com/oop/abs/Airport.java" />
         <option value="$PROJECT_DIR$/src/com/oop/abs/SeatBookedException.java" />
         <option value="$PROJECT_DIR$/src/com/oop/abs/CapacityValidationException.java" />
         <option value="$PROJECT_DIR$/src/com/oop/abs/EmptyBinaryTree.java" />
-        <option value="$PROJECT_DIR$/src/com/oop/abs/Tree.java" />
         <option value="$PROJECT_DIR$/src/com/oop/abs/EmptyTree.java" />
         <option value="$PROJECT_DIR$/src/com/oop/abs/NonEmptyTree.java" />
         <option value="$PROJECT_DIR$/src/com/oop/abs/BinaryTree.java" />
         <option value="$PROJECT_DIR$/src/com/oop/abs/BinarySearchTree.java" />
-        <option value="$PROJECT_DIR$/src/com/oop/abs/ABSClient.java" />
-        <option value="$PROJECT_DIR$/src/com/oop/abs/Plane.java" />
-        <option value="$PROJECT_DIR$/src/com/oop/abs/BinarySearchTreeTest.java" />
         <option value="$PROJECT_DIR$/src/com/oop/abs/FlightTest.java" />
-        <option value="$PROJECT_DIR$/src/com/oop/abs/FlightSectionTest.java" />
-        <option value="$PROJECT_DIR$/src/com/oop/abs/FlightSection.java" />
         <option value="$PROJECT_DIR$/src/com/oop/abs/Flight.java" />
-        <option value="$PROJECT_DIR$/src/com/oop/abs/BalancedBinaryTree.java" />
         <option value="$PROJECT_DIR$/src/com/oop/abs/SystemManager.java" />
+        <option value="$PROJECT_DIR$/src/com/oop/abs/FlightSectionTest.java" />
+        <option value="$PROJECT_DIR$/src/com/oop/abs/Plane.java" />
+        <option value="$PROJECT_DIR$/src/com/oop/abs/PlaneTest.java" />
+        <option value="$PROJECT_DIR$/src/com/oop/abs/Tree.java" />
         <option value="$PROJECT_DIR$/src/com/oop/abs/SystemManagerTest.java" />
+        <option value="$PROJECT_DIR$/src/com/oop/abs/AirlineTest.java" />
+        <option value="$PROJECT_DIR$/src/com/oop/abs/ABSClient.java" />
+        <option value="$PROJECT_DIR$/src/com/oop/abs/BalancedBinaryTree.java" />
+        <option value="$PROJECT_DIR$/src/com/oop/abs/BinarySearchTreeTest.java" />
+        <option value="$PROJECT_DIR$/src/com/oop/abs/FlightSection.java" />
       </list>
     </option>
   </component>
@@ -298,13 +330,32 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.SystemManagerTest.testReplaceOverbookedFlights">
+  <component name="RunManager" selected="JUnit.BinarySearchTreeTest.testBSTOperations">
     <configuration default="true" type="Applet" factoryName="Applet">
       <option name="HTML_USED" value="false" />
       <option name="WIDTH" value="400" />
       <option name="HEIGHT" value="300" />
       <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
       <module />
+    </configuration>
+    <configuration name="ABSClient" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="com.oop.abs.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="MAIN_CLASS_NAME" value="com.oop.abs.ABSClient" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="ABS" />
+      <envs />
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
@@ -320,7 +371,7 @@
       <module name="" />
       <envs />
     </configuration>
-    <configuration name="FlightSectionTest.testGenerateSeats" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="BinarySearchTreeTest.testBSTOperations" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
           <option name="PATTERN" value="com.oop.abs.*" />
@@ -331,8 +382,8 @@
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="PACKAGE_NAME" value="com.oop.abs" />
-      <option name="MAIN_CLASS_NAME" value="com.oop.abs.FlightSectionTest" />
-      <option name="METHOD_NAME" value="testGenerateSeats" />
+      <option name="MAIN_CLASS_NAME" value="com.oop.abs.BinarySearchTreeTest" />
+      <option name="METHOD_NAME" value="testBSTOperations" />
       <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
@@ -345,7 +396,7 @@
       <envs />
       <patterns />
     </configuration>
-    <configuration name="FlightSectionTest.testGetSeatByID" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="PlaneTest.testCompareTo" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
           <option name="PATTERN" value="com.oop.abs.*" />
@@ -356,8 +407,8 @@
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="PACKAGE_NAME" value="com.oop.abs" />
-      <option name="MAIN_CLASS_NAME" value="com.oop.abs.FlightSectionTest" />
-      <option name="METHOD_NAME" value="testGetSeatByID" />
+      <option name="MAIN_CLASS_NAME" value="com.oop.abs.PlaneTest" />
+      <option name="METHOD_NAME" value="testCompareTo" />
       <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
@@ -370,7 +421,7 @@
       <envs />
       <patterns />
     </configuration>
-    <configuration name="SystemManagerTest.testNotFoundExceptionThrownFullyBookedFlights" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="SystemManagerTest.testAssociationPlaneToFlight" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
           <option name="PATTERN" value="com.oop.abs.*" />
@@ -382,7 +433,7 @@
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="PACKAGE_NAME" value="com.oop.abs" />
       <option name="MAIN_CLASS_NAME" value="com.oop.abs.SystemManagerTest" />
-      <option name="METHOD_NAME" value="testNotFoundExceptionThrownFullyBookedFlights" />
+      <option name="METHOD_NAME" value="testAssociationPlaneToFlight" />
       <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
@@ -408,31 +459,6 @@
       <option name="PACKAGE_NAME" value="com.oop.abs" />
       <option name="MAIN_CLASS_NAME" value="com.oop.abs.SystemManagerTest" />
       <option name="METHOD_NAME" value="testReplaceOverbookedFlights" />
-      <option name="TEST_OBJECT" value="method" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <envs />
-      <patterns />
-    </configuration>
-    <configuration name="SystemManagerTest.testSeatBookedExceptionThrown" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="com.oop.abs.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <module name="ABS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="com.oop.abs" />
-      <option name="MAIN_CLASS_NAME" value="com.oop.abs.SystemManagerTest" />
-      <option name="METHOD_NAME" value="testSeatBookedExceptionThrown" />
       <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
@@ -506,19 +532,19 @@
       <predefined_log_file id="idea.log" enabled="true" />
     </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="JUnit.FlightSectionTest.testGetSeatByID" />
-      <item index="1" class="java.lang.String" itemvalue="JUnit.FlightSectionTest.testGenerateSeats" />
-      <item index="2" class="java.lang.String" itemvalue="JUnit.SystemManagerTest.testNotFoundExceptionThrownFullyBookedFlights" />
-      <item index="3" class="java.lang.String" itemvalue="JUnit.SystemManagerTest.testSeatBookedExceptionThrown" />
-      <item index="4" class="java.lang.String" itemvalue="JUnit.SystemManagerTest.testReplaceOverbookedFlights" />
+      <item index="0" class="java.lang.String" itemvalue="JUnit.SystemManagerTest.testReplaceOverbookedFlights" />
+      <item index="1" class="java.lang.String" itemvalue="JUnit.PlaneTest.testCompareTo" />
+      <item index="2" class="java.lang.String" itemvalue="JUnit.BinarySearchTreeTest.testBSTOperations" />
+      <item index="3" class="java.lang.String" itemvalue="Application.ABSClient" />
+      <item index="4" class="java.lang.String" itemvalue="JUnit.SystemManagerTest.testAssociationPlaneToFlight" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="JUnit.SystemManagerTest.testReplaceOverbookedFlights" />
-        <item index="1" class="java.lang.String" itemvalue="JUnit.SystemManagerTest.testNotFoundExceptionThrownFullyBookedFlights" />
-        <item index="2" class="java.lang.String" itemvalue="JUnit.SystemManagerTest.testSeatBookedExceptionThrown" />
-        <item index="3" class="java.lang.String" itemvalue="JUnit.FlightSectionTest.testGenerateSeats" />
-        <item index="4" class="java.lang.String" itemvalue="JUnit.FlightSectionTest.testGetSeatByID" />
+        <item index="0" class="java.lang.String" itemvalue="JUnit.BinarySearchTreeTest.testBSTOperations" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.SystemManagerTest.testAssociationPlaneToFlight" />
+        <item index="2" class="java.lang.String" itemvalue="JUnit.SystemManagerTest.testReplaceOverbookedFlights" />
+        <item index="3" class="java.lang.String" itemvalue="Application.ABSClient" />
+        <item index="4" class="java.lang.String" itemvalue="JUnit.PlaneTest.testCompareTo" />
       </list>
     </recent_temporary>
   </component>
@@ -536,34 +562,34 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="SystemManagerTest_testReplaceOverbookedFlights - 2018.05.08 at 00h 28m 30s.xml">
+    <history-entry file="BinarySearchTreeTest_testBSTOperations - 2018.05.08 at 02h 14m 39s.xml">
+      <configuration name="BinarySearchTreeTest.testBSTOperations" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="BinarySearchTreeTest_testBSTOperations - 2018.05.08 at 02h 15m 39s.xml">
+      <configuration name="BinarySearchTreeTest.testBSTOperations" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="BinarySearchTreeTest_testBSTOperations - 2018.05.08 at 02h 16m 59s.xml">
+      <configuration name="BinarySearchTreeTest.testBSTOperations" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="BinarySearchTreeTest_testBSTOperations - 2018.05.08 at 02h 36m 12s.xml">
+      <configuration name="BinarySearchTreeTest.testBSTOperations" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="BinarySearchTreeTest_testBSTOperations - 2018.05.08 at 02h 37m 11s.xml">
+      <configuration name="BinarySearchTreeTest.testBSTOperations" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="SystemManagerTest_testAssociationPlaneToFlight - 2018.05.08 at 02h 35m 55s.xml">
+      <configuration name="SystemManagerTest.testAssociationPlaneToFlight" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="SystemManagerTest_testReplaceOverbookedFlights - 2018.05.08 at 02h 18m 54s.xml">
       <configuration name="SystemManagerTest.testReplaceOverbookedFlights" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="SystemManagerTest_testReplaceOverbookedFlights - 2018.05.08 at 00h 28m 51s.xml">
+    <history-entry file="SystemManagerTest_testReplaceOverbookedFlights - 2018.05.08 at 02h 19m 11s.xml">
       <configuration name="SystemManagerTest.testReplaceOverbookedFlights" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="SystemManagerTest_testReplaceOverbookedFlights - 2018.05.08 at 00h 39m 24s.xml">
+    <history-entry file="SystemManagerTest_testReplaceOverbookedFlights - 2018.05.08 at 02h 23m 13s.xml">
       <configuration name="SystemManagerTest.testReplaceOverbookedFlights" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="SystemManagerTest_testReplaceOverbookedFlights - 2018.05.08 at 00h 43m 17s.xml">
-      <configuration name="SystemManagerTest.testReplaceOverbookedFlights" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="SystemManagerTest_testReplaceOverbookedFlights - 2018.05.08 at 00h 43m 48s.xml">
-      <configuration name="SystemManagerTest.testReplaceOverbookedFlights" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="SystemManagerTest_testReplaceOverbookedFlights - 2018.05.08 at 00h 46m 46s.xml">
-      <configuration name="SystemManagerTest.testReplaceOverbookedFlights" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="SystemManagerTest_testReplaceOverbookedFlights - 2018.05.08 at 00h 47m 20s.xml">
-      <configuration name="SystemManagerTest.testReplaceOverbookedFlights" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="SystemManagerTest_testReplaceOverbookedFlights - 2018.05.08 at 00h 48m 05s.xml">
-      <configuration name="SystemManagerTest.testReplaceOverbookedFlights" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="SystemManagerTest_testReplaceOverbookedFlights - 2018.05.08 at 00h 53m 33s.xml">
-      <configuration name="SystemManagerTest.testReplaceOverbookedFlights" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="SystemManagerTest_testReplaceOverbookedFlights - 2018.05.08 at 00h 53m 45s.xml">
+    <history-entry file="SystemManagerTest_testReplaceOverbookedFlights - 2018.05.08 at 02h 35m 49s.xml">
       <configuration name="SystemManagerTest.testReplaceOverbookedFlights" configurationId="JUnit" />
     </history-entry>
   </component>
@@ -579,7 +605,7 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3211876" sideWeight="0.50277776" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.6984127" sideWeight="0.49583334" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.44179896" sideWeight="0.49583334" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -591,7 +617,7 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39550266" sideWeight="0.49722221" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.86243385" sideWeight="0.49722221" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -645,7 +671,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/oop/abs/ABSClient.java</url>
-          <line>5</line>
+          <line>7</line>
           <properties />
           <option name="timeStamp" value="53" />
         </line-breakpoint>
@@ -655,14 +681,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/com/oop/abs/NameValidationException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="7" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/oop/abs/Seat.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
@@ -703,8 +721,8 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#8990#8991#0" expanded="true" />
-            <element signature="e#9043#9044#0" expanded="true" />
+            <element signature="e#8914#8915#0" expanded="true" />
+            <element signature="e#8967#8968#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -755,34 +773,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/oop/abs/FlightSectionValidationException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/oop/abs/FlightInvalidException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/junit/jupiter/junit-jupiter-api/5.0.0/junit-jupiter-api-5.0.0.jar!/org/junit/jupiter/api/function/Executable.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
           <caret line="16" column="9" lean-forward="false" selection-start-line="16" selection-start-column="9" selection-end-line="16" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/oop/abs/AirportTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="810">
-          <caret line="57" column="19" lean-forward="true" selection-start-line="57" selection-start-column="19" selection-end-line="57" selection-end-column="19" />
           <folding />
         </state>
       </provider>
@@ -811,74 +805,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/oop/abs/Seat.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="29" column="29" lean-forward="true" selection-start-line="20" selection-start-column="7" selection-end-line="29" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/oop/abs/ABSValidator.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
           <caret line="5" column="68" lean-forward="false" selection-start-line="5" selection-start-column="68" selection-end-line="5" selection-end-column="68" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/oop/abs/Airport.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="40" column="69" lean-forward="false" selection-start-line="40" selection-start-column="69" selection-end-line="40" selection-end-column="69" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/oop/abs/Airline.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-9">
-          <caret line="19" column="89" lean-forward="true" selection-start-line="19" selection-start-column="4" selection-end-line="19" selection-end-column="89" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/oop/abs/NotFoundException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="20" lean-forward="false" selection-start-line="7" selection-start-column="20" selection-end-line="7" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/oop/abs/NonUniqueItemException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="27" lean-forward="false" selection-start-line="7" selection-start-column="27" selection-end-line="7" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/oop/abs/NameValidationException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/oop/abs/SeatClassFullException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="1" lean-forward="true" selection-start-line="8" selection-start-column="1" selection-end-line="8" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/oop/abs/CapacityValidationException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="9" column="0" lean-forward="true" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -939,82 +869,76 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/oop/abs/Tree.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="1" lean-forward="true" selection-start-line="9" selection-start-column="1" selection-end-line="9" selection-end-column="1" />
+        <state relative-caret-position="45">
+          <caret line="3" column="2" lean-forward="false" selection-start-line="3" selection-start-column="2" selection-end-line="3" selection-end-column="2" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/oop/abs/AirlineTest.java">
+    <entry file="file://$PROJECT_DIR$/src/com/oop/abs/Airline.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="60" />
+        <state relative-caret-position="180">
+          <caret line="30" column="47" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="74" selection-end-column="1" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/oop/abs/ABSClient.java">
+    <entry file="file://$PROJECT_DIR$/src/com/oop/abs/SystemManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="18" column="36" lean-forward="false" selection-start-line="18" selection-start-column="36" selection-end-line="18" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/oop/abs/Plane.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-41">
-          <caret line="4" column="16" lean-forward="false" selection-start-line="4" selection-start-column="16" selection-end-line="4" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/oop/abs/SeatBookedException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="1" lean-forward="true" selection-start-line="6" selection-start-column="1" selection-end-line="6" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/oop/abs/BinarySearchTreeTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="113">
-          <caret line="20" column="49" lean-forward="true" selection-start-line="20" selection-start-column="49" selection-end-line="20" selection-end-column="49" />
+        <state relative-caret-position="167">
+          <caret line="92" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="302" selection-end-column="1" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#8914#8915#0" expanded="true" />
+            <element signature="e#8967#8968#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/oop/abs/FlightSectionTest.java">
+    <entry file="file://$PROJECT_DIR$/src/com/oop/abs/Airport.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1440">
-          <caret line="102" column="0" lean-forward="true" selection-start-line="102" selection-start-column="0" selection-end-line="102" selection-end-column="0" />
+        <state relative-caret-position="577">
+          <caret line="70" column="41" lean-forward="true" selection-start-line="70" selection-start-column="41" selection-end-line="70" selection-end-column="41" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/oop/abs/FlightSection.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="227">
-          <caret line="61" column="27" lean-forward="false" selection-start-line="61" selection-start-column="20" selection-end-line="61" selection-end-column="27" />
+        <state relative-caret-position="302">
+          <caret line="66" column="40" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="139" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/oop/abs/FlightTest.java">
+    <entry file="file://$PROJECT_DIR$/src/com/oop/abs/BalancedBinaryTree.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-98">
-          <caret line="88" column="0" lean-forward="false" selection-start-line="88" selection-start-column="0" selection-end-line="88" selection-end-column="0" />
+        <state relative-caret-position="225">
+          <caret line="17" column="0" lean-forward="true" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/oop/abs/Seat.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="525">
+          <caret line="35" column="23" lean-forward="true" selection-start-line="35" selection-start-column="23" selection-end-line="35" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/oop/abs/Plane.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="24" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/oop/abs/Flight.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="529">
-          <caret line="152" column="5" lean-forward="true" selection-start-line="152" selection-start-column="5" selection-end-line="152" selection-end-column="5" />
+        <state relative-caret-position="255">
+          <caret line="19" column="26" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="168" selection-end-column="0" />
           <folding>
             <element signature="e#2087#2088#0" expanded="true" />
             <element signature="e#2121#2122#0" expanded="true" />
@@ -1028,30 +952,134 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/oop/abs/BalancedBinaryTree.java">
+    <entry file="file://$PROJECT_DIR$/src/com/oop/abs/CapacityValidationException.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="411">
-          <caret line="119" column="23" lean-forward="true" selection-start-line="119" selection-start-column="23" selection-end-line="119" selection-end-column="23" />
+        <state relative-caret-position="90">
+          <caret line="9" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/oop/abs/SystemManager.java">
+    <entry file="file://$PROJECT_DIR$/src/com/oop/abs/FlightInvalidException.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="561">
-          <caret line="293" column="47" lean-forward="true" selection-start-line="293" selection-start-column="47" selection-end-line="293" selection-end-column="47" />
+        <state relative-caret-position="90">
+          <caret line="9" column="0" lean-forward="true" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/oop/abs/FlightSectionValidationException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="8" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/oop/abs/NameValidationException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="10" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/oop/abs/NonUniqueItemException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="10" column="1" lean-forward="true" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/oop/abs/NotFoundException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="11" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/oop/abs/SeatBookedException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="1" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="6" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/oop/abs/SeatClassFullException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="1" lean-forward="true" selection-start-line="8" selection-start-column="1" selection-end-line="8" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/oop/abs/ABSClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="22" column="0" lean-forward="true" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/oop/abs/AirlineTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="55" column="23" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="81" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#8990#8991#0" expanded="true" />
-            <element signature="e#9043#9044#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/oop/abs/AirportTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="23" column="12" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="65" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/oop/abs/BinarySearchTreeTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="25" column="35" lean-forward="true" selection-start-line="25" selection-start-column="35" selection-end-line="25" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/oop/abs/FlightSectionTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="296">
+          <caret line="94" column="27" lean-forward="false" selection-start-line="94" selection-start-column="27" selection-end-line="94" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/oop/abs/FlightTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="101" column="5" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="134" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/oop/abs/PlaneTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="431">
+          <caret line="29" column="0" lean-forward="true" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/oop/abs/SystemManagerTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="278">
-          <caret line="349" column="34" lean-forward="true" selection-start-line="349" selection-start-column="34" selection-end-line="349" selection-end-column="34" />
+        <state relative-caret-position="393">
+          <caret line="180" column="33" lean-forward="true" selection-start-line="180" selection-start-column="33" selection-end-line="180" selection-end-column="33" />
           <folding />
         </state>
       </provider>

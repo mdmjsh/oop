@@ -121,7 +121,7 @@ public class BalancedBinaryTree {
         if(root.left != null) {
             result = find(root.left, capacity);
         }
-        if(root.data.capacity >= capacity)
+        if(root.data.capacity >= capacity && root.data.available)
             return root;
         if(result == null && root.right != null)
             result = find(root.right, capacity);

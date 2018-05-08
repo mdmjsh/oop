@@ -1,5 +1,7 @@
 package com.oop.abs;
 
+import java.util.Date;
+
 public class ABSClient {
 
     public static void main (String args[]) throws NameValidationException, NonUniqueItemException,
@@ -9,6 +11,7 @@ public class ABSClient {
         SystemManager sm = new SystemManager();
 
         /* Planes */
+        System.out.println("Creating Planes...");
         sm.createPlane("one", 1);
         sm.createPlane("two", 2);
         sm.createPlane("three", 3);
@@ -16,57 +19,70 @@ public class ABSClient {
         sm.createPlane("five", 5);
         sm.createPlane("six", 6);
         sm.createPlane("seven", 7);
-//        sm.displaySystemDetails();
 
 
 
         /* Airports */
-//
-//        sm.createAirport("DEN");
-//        sm.createAirport("DFW");
-//        sm.createAirport("LON");
-//        sm.createAirport("JPN");
-//        sm.createAirport("DEH");
-//        sm.createAirport("NCE");
+        System.out.println("Creating Airports...");
+        sm.createAirport("DEN");
+        sm.createAirport("DFW");
+        sm.createAirport("LON");
+        sm.createAirport("JPN");
+        sm.createAirport("DEH");
+        sm.createAirport("NCE");
+        Airport lhr = sm.createAirport("LHR");
+        Airport sfo = sm.createAirport("SFO");
+        Airport jfk = sm.createAirport("JFK");
 
-//
-////        sm.displaySystemDetails();
-//
-//        sm.createAirline("DELTA");
-//        sm.createAirline("AMER");
-//        sm.createAirline("JET");
-//        sm.createAirline("SWEST");
-//        sm.createAirline("FRONT");
-//
-////        sm.displaySystemDetails();
-////        sm.displaySystemDetailsPolymorphic(sm.airports.getFirst());
-//
-//
-//        Airport lhr = new Airport("LHR");
-//        Airport sfo = new Airport("SFO");
-//        Airport jfk = new Airport("JFK");
-//        sm.displaySystemDetails();
-//
-//        Airline airline = sm.createAirline("air");
-//        Airline airline1 = sm.createAirline("bob");
-//        sm.displaySystemDetails();
-//
-//        Flight flight = sm.createFlight(airline, lhr, sfo, new Date());
-//        Flight flight1 = sm.createFlight(airline, lhr, sfo, new Date());
-//        Flight flight2 = sm.createFlight(airline1, sfo, jfk, new Date());
-//
-////        sm.displaySystemDetails();
-//
-//        // add flight sections
-//        sm.createFlightSection(2, 2, FlightSection.SeatClass.BUSINESS, flight);
-//        sm.createFlightSection(2, 2, FlightSection.SeatClass.FIRST, flight);
-////        sm.displaySystemDetails();
-//        // add book a seat
-//
-//        sm.bookSeat(flight, "A1");
-//
-//        sm.displaySystemDetails();
-//        sm.bookSeat(flight, "A2");
-//        sm.displaySystemDetails();
+
+        System.out.println("Creating Airlines...");
+        sm.createAirline("DELTA");
+        sm.createAirline("AMER");
+        sm.createAirline("JET");
+        sm.createAirline("SWEST");
+        sm.createAirline("FRONT");
+        Airline airline = sm.createAirline("air");
+        Airline airline1 = sm.createAirline("bob");
+        sm.displaySystemDetails();
+
+
+        System.out.println("Creating Flights...");
+        Flight flight = sm.createFlight(airline, lhr, sfo, new Date());
+        Flight flight1 = sm.createFlight(airline, lhr, sfo, new Date());
+        Flight flight2 = sm.createFlight(airline1, sfo, jfk, new Date());
+
+        // add flight sections
+        System.out.println("Creating Flights...");
+        sm.createFlightSection(2, 2, FlightSection.SeatClass.BUSINESS, flight);
+        sm.createFlightSection(2, 2, FlightSection.SeatClass.FIRST, flight);
+
+        sm.createFlightSection(2, 2, FlightSection.SeatClass.BUSINESS, flight1);
+        sm.createFlightSection(2, 2, FlightSection.SeatClass.FIRST, flight1);
+
+        sm.createFlightSection(2, 2, FlightSection.SeatClass.BUSINESS, flight2);
+        sm.createFlightSection(2, 2, FlightSection.SeatClass.FIRST, flight2);
+
+        System.out.println("Creating Planes...");
+        sm.createPlane("one", 250);
+        sm.createPlane("two", 2550);
+        sm.createPlane("three", 200);
+
+        System.out.println("Associating Flight to Planes...");
+        sm.associateFlightToPlane(flight);
+        sm.associateFlightToPlane(flight1);
+        sm.associateFlightToPlane(flight2);
+
+        System.out.println("Booking seats...");
+        sm.bookSeat(flight, "A1");
+
+        sm.displaySystemDetails();
+        sm.bookSeat(flight, "A2");
+        sm.displaySystemDetails();
+
+
+
+
+        /* Easter egg - polymorphic print example */
+//        sm.displaySystemDetailsPolymorphic(sm.airports.getFirst());
     }
 }

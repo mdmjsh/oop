@@ -19,7 +19,6 @@ public class SystemManager {
     public LinkedList<Flight> flights = new LinkedList<>();
     public LinkedList<Plane> planes = new LinkedList<>();
     public static HashMap<String, LinkedList<Flight>> flightMap = new HashMap<>();
-    public static LinkedList<Plane> overbookedFlights = new LinkedList<>();
 
     /**
      * create a new Airport instance
