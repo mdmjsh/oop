@@ -93,7 +93,7 @@ public class BalancedBinaryTree {
             return;
         }
         inorder(root.left);
-        System.out.println("Visted Node: " + root.data.name + " " + root.data.capacity);
+        System.out.println("Visted Node: " + root.data.name + " with capacity:" + root.data.capacity);
         inorder(root.right);
     }
 
@@ -101,9 +101,17 @@ public class BalancedBinaryTree {
      * wrapper for private find function to return a Plane object to the System Manager
      * @param root
      * @param capacity - int value of plane required
+     * @param exactCapacity- boolean - if true find a plane with exactly 'capacity',
+     *                         otherwise  find a plane with at least 'capacity'
      */
-    public Plane searchCapacity(Node root, int capacity) throws NotFoundException {
-        Node result = find(root, capacity);
+    public Plane searchCapacity(Node root, int capacity, boolean exactCapacity) throws NotFoundException {
+        Node result =null;
+        if (exactCapacity) {
+            result = findExactCapacity(root, capacity);
+       }
+       else{
+            result = find(root, capacity);
+       }
         if (result == null){
             return null;
         }
@@ -130,4 +138,21 @@ public class BalancedBinaryTree {
         }
         return null;
     }
+
+
+    private Node findExactCapacity(Node root, int capacity) {
+        Node result = null;
+        if(root.left != null) {
+            result = find(root.left, capacity);
+        }
+        if(root.data.capacity == capacity && root.data.available)
+            return root;
+        if(result == null && root.right != null)
+            result = find(root.right, capacity);
+        if (result != null && result.data.available) {
+            return result;
+        }
+        return null;
+    }
+
 }

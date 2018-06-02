@@ -235,12 +235,13 @@ public class SystemManager {
      * Search a balanced binary tree for planes with matching the capacity.
      * Only returns the plane is it is available
      * @param capacity - required capacity of the Plane
+     * @param exactCapacity - if true exactly match this capacity, otherwise at least this capacity
      * @return
      */
-    public Plane findAvailablePlane(int capacity) throws NotFoundException {
+    public Plane findAvailablePlane(int capacity, boolean exactCapacity) throws NotFoundException {
         BalancedBinaryTree planes = planesBST(this.planes);
         try {
-             return planes.searchCapacity(planes.bst, capacity);
+             return planes.searchCapacity(planes.bst, capacity, exactCapacity);
         } catch (NotFoundException e) {
             e.printStackTrace();
         }
@@ -252,12 +253,13 @@ public class SystemManager {
      *
      * @param flight - Flight instance
      * @return plane - Plane instance associated to the Flight
+     * @param exactCapacity - if true exactly match this capacity, otherwise at least this capacity
      * @throws NotFoundException
      */
-    public Plane associateFlightToPlane(Flight flight) throws NotFoundException {
+    public Plane associateFlightToPlane(Flight flight, boolean exactCapacity) throws NotFoundException {
         Plane plane = null;
         try {
-            plane = findAvailablePlane(flight.totalSeats);
+            plane = findAvailablePlane(flight.totalSeats, exactCapacity);
             if (plane != null) {
                 flight.setPlane(plane); // call setter on private attribute //
                 plane.toggleAvailabity();
@@ -283,7 +285,8 @@ public class SystemManager {
         for (Flight flight : flights)
             if (flight.replacementPlaneRequired()) {
                 try {
-                    Plane plane = findAvailablePlane(flight.totalSeats + flight.getWaitingList());
+                    Plane plane = findAvailablePlane(flight.totalSeats + flight.getWaitingList(),
+                            false);
                     if (plane != null){
                         flight.getPlane().toggleAvailabity(); // make the current plane available
                         flight.setPlane(plane);

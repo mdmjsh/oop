@@ -63,14 +63,14 @@ public class ABSClient {
         sm.createFlightSection(2, 2, FlightSection.SeatClass.FIRST, flight2);
 
         System.out.println("Creating Planes...");
-        sm.createPlane("one", 250);
-        sm.createPlane("two", 2550);
-        sm.createPlane("three", 200);
+        sm.createPlane("blah", 250);
+        sm.createPlane("bloo", 2550);
+        sm.createPlane("blee", 200);
 
         System.out.println("Associating Flight to Planes...");
-        sm.associateFlightToPlane(flight);
-        sm.associateFlightToPlane(flight1);
-        sm.associateFlightToPlane(flight2);
+        sm.associateFlightToPlane(flight, false);
+        sm.associateFlightToPlane(flight1, false);
+        sm.associateFlightToPlane(flight2, false);
 
         System.out.println("Booking seats...");
         sm.bookSeat(flight, "A1");
@@ -79,7 +79,9 @@ public class ABSClient {
         sm.bookSeat(flight, "A2");
         sm.displaySystemDetails();
 
-
+        System.out.println("In order traversal of Planes Binary Search Tree");
+        BalancedBinaryTree tree = sm.planesBST(sm.planes);
+        tree.inorder(tree.bst);
 
 
         /* Easter egg - polymorphic print example */

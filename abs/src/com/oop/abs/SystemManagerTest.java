@@ -152,9 +152,9 @@ public class SystemManagerTest {
         SystemManager sm = new SystemManager();
         Plane one = sm.createPlane("one", 1);
         Plane two = sm.createPlane("two", 2);
-        Plane result = sm.findAvailablePlane(1);
+        Plane result = sm.findAvailablePlane(1, true);
         assertEquals(result, one);
-        result = sm.findAvailablePlane(2);
+        result = sm.findAvailablePlane(2, true);
         assertEquals(result, two);
     }
 
@@ -172,7 +172,7 @@ public class SystemManagerTest {
 
         /* create a flight with 2 seats and associate it to the Plane with two seats */
         sm.createFlightSection(1,2, FlightSection.SeatClass.BUSINESS, flight);
-        sm.associateFlightToPlane(flight);
+        sm.associateFlightToPlane(flight, true);
 
         /* assert that the correct Plane was chosen based on its capacity */
         assertEquals(flight.getPlane(), two);
@@ -185,7 +185,7 @@ public class SystemManagerTest {
 
         /* assert Exception raised if trying to book on a Plane of capcity 2 again */
         Throwable exception = assertThrows(NotFoundException.class, () -> {
-            sm.associateFlightToPlane(flight1);
+            sm.associateFlightToPlane(flight1, true);
         });
         assertEquals("WARNING! no available Planes found for Flight. " +
                 "Flight is not currently associated with any Plane", exception.getMessage());
@@ -198,14 +198,13 @@ public class SystemManagerTest {
         Airline dky = sm.createAirline("DKY");
         Airport prs = sm.createAirport("PRS");
         Airport jfk = sm.createAirport("JFK");
-        Date date = new Date();
-        Flight flight = sm.createFlight(dky, jfk, prs, new Date());
+        Flight flight = sm.createFlight(dky, jfk, prs, date);
         FlightSection first = new FlightSection(1, 1, FlightSection.SeatClass.FIRST);
         flight.addFlightSection(first);
         sm.bookSeat(flight, "A1");
 
         Plane one = sm.createPlane("one", 1);
-        sm.associateFlightToPlane(flight);
+        sm.associateFlightToPlane(flight, true);
 
         /* Test the waiting list whilst we're here, try to book a booked seat */
         assertThrows(SeatBookedException.class, () -> { sm.bookSeat(flight, "A1");});
